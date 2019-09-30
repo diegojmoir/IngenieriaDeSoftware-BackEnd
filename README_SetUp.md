@@ -23,8 +23,9 @@ El Id del work item se consigue en la esquina superior izquierda del editor del 
 **Ejemplo:**
 
 ![](https://lh3.googleusercontent.com/E9m6gJSRSG7QvK1Yd768DYd9JIXCTKs9auorRUU5QNuYjGrV8PFoSpSqy5INcf3_uPMjqxONZdYB)
+<p>&nbsp;</p>
 Donde ID seria 4.
-
+<p>&nbsp;</p>
 Ejemplo de commit:
 
        Sprint 1 | master | AB#4 Configuración Inicial
