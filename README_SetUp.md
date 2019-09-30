@@ -29,3 +29,7 @@ Ejemplo de commit:
 
        Sprint 1 | master | AB#4 Configuración Inicial
 
+
+El resultado podra ser visible en el editor del work item, en la esquina inferior izquierda.
+
+![enter image description here](https://lh3.googleusercontent.com/XuKB2QTa-hL2VIF4j7QZWhP4aM9wFykOcHqckVBj8rqIgdE_TUWDFGLjjX8JhS0DpOXuS7RnX_m-)
