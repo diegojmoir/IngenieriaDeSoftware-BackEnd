@@ -1,4 +1,4 @@
-# IngenieriaEconomica-BackEnd
+# IngenieriaDeSoftware-BackEnd
 
 
 ## Configuración inicial del ambiente de desarrollo
