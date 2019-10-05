@@ -1,7 +1,7 @@
-# IngenieriaEconomica-BackEnd
+# IngenieriaDeSoftware-BackEnd
 
 
-##Configuración inicial del ambiente de desarrollo
+## Configuración inicial del ambiente de desarrollo
 
 
 ## **Formato de Commits**
