@@ -1,35 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using RestauranteAPI.Models;
-using Firebase.Database.Query;
-using RestauranteAPI.Configuration.FirebaseConfiguration;
+﻿using RestauranteAPI.Models;
 using RestauranteAPI.Repositories.Injections;
-
+using Firebase.Database;
+using RestauranteAPI.Configuration.FirebaseConfiguration;
+using Firebase.Database.Query;
+using System.Linq;
 namespace RestauranteAPI.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        public async Task<User> GetUserAsync(string user, string password)
+        public FirebaseObject<User> CreateUserInStorage(User user)
         {
-            await FirebaseConfig.FirebaseStartUp();
+            FirebaseConfig.FirebaseStartUp().Wait();
             using (var client = FirebaseConfig.FirebaseClient)
             {
-                var data = await client.Child("tests")
-                    .OrderByKey()
-                          .OnceAsync<Test>();
-                var result = new List<Test>();
-                foreach (var testObject in data)
-                {
-                    var test = new Test
-                    {
-                        Key = testObject.Key,
-                        TestName = testObject.Object.TestName
-                    };
-                    result.Add(test);
-                }
-                return null;
+                var response = client.Child("Users")
+                     .PostAsync(user, false)
+                     .Result;
+                return response;
+            }
+        }
+
+        public FirebaseObject<User> GetUserFromStorageByUserNameAndPassword(string user, string password)
+        {
+            FirebaseConfig.FirebaseStartUp().Wait();
+            using (var client = FirebaseConfig.FirebaseClient)
+            {
+                var response = client
+                    .Child("Users")
+                    .OnceAsync<User>()
+                    .Result
+                    .FirstOrDefault(x => x.Object != null && (x.Object.Username == user && x.Object.Password == password));
+                return response;
             }
         }
     }

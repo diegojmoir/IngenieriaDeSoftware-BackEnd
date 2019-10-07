@@ -1,10 +1,12 @@
 ﻿using System.Threading.Tasks;
 using RestauranteAPI.Models;
+using Firebase.Database;
 
 namespace RestauranteAPI.Repositories.Injections
 {
     public interface IUserRepository
     {
-        Task<User> GetUserAsync(string user, string password);
+         FirebaseObject<User> GetUserFromStorageByUserNameAndPassword(string user, string password);
+         FirebaseObject<User> CreateUserInStorage(User user);
     }
 }
