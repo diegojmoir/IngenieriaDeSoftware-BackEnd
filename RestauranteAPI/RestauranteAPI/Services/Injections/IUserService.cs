@@ -4,5 +4,6 @@
     public interface IUserService
     {
         User GetUser(string user, string password);
+        User CreateUser(User user); 
     }
 }
