@@ -1,0 +1,63 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using RestauranteAPI.Models;
+using RestauranteAPI.Services.Injections;
+
+namespace RestauranteAPI.Controllers
+{
+    /// <summary>
+    /// Handles users information
+    /// </summary>
+    [Route("api/[controller]")]
+    public class UsersController : ControllerBase
+    {
+        private readonly IUserService _userService;
+
+        public UsersController(IUserService userService)
+        {
+            _userService = userService;
+        }
+        /*
+        [HttpPost("authenticate")]
+        public IActionResult Authenticate([FromBody]Credential credential)
+        {
+            var user = _taxPortalRepository.Authenticate(userParam.Username, userParam.Password);
+
+            if (user == null)
+                return BadRequest(new { message = "Username or password is incorrect" });
+
+            return Ok(user);
+        }
+        */
+
+        /// <summary>
+        /// Get user by username and password
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("user")]
+        public IActionResult GetUser(string username, string password)
+        {
+            var responseObject = _userService.GetUser(username, password);
+            if (responseObject == null)
+                return NotFound();
+            return Ok(responseObject);
+        }
+
+        /// <summary>
+        /// Create user in schema if provided object is valid
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("create")]
+        public IActionResult Create([FromBody] User user)
+        {
+            var responseObject = _userService.CreateUser(user);
+            if (user == null)
+                return BadRequest();
+            return Ok(responseObject);
+        }
+    }
+}
