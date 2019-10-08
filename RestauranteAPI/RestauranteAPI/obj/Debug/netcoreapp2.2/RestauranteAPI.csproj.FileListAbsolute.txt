@@ -28,3 +28,4 @@ C:\Users\david\Documents\IngenieriaDeSoftware-BackEnd\RestauranteAPI\Restaurante
 C:\Users\david\Documents\IngenieriaDeSoftware-BackEnd\RestauranteAPI\RestauranteAPI\obj\Debug\netcoreapp2.2\RestauranteAPI.RazorTargetAssemblyInfo.cache
 C:\Users\david\Documents\IngenieriaDeSoftware-BackEnd\RestauranteAPI\RestauranteAPI\obj\Debug\netcoreapp2.2\RestauranteAPI.dll
 C:\Users\david\Documents\IngenieriaDeSoftware-BackEnd\RestauranteAPI\RestauranteAPI\obj\Debug\netcoreapp2.2\RestauranteAPI.pdb
+C:\Users\david\Documents\IngenieriaDeSoftware-BackEnd\RestauranteAPI\RestauranteAPI\obj\Debug\netcoreapp2.2\RestauranteAPI.csprojAssemblyReference.cache
