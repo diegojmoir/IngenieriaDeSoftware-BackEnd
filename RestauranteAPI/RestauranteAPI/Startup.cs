@@ -12,7 +12,8 @@ using RestauranteAPI.Configuration.FirebaseConfiguration;
 using System;
 using System.Threading;
 using Microsoft.OpenApi.Models;
-
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace RestauranteAPI
 {
@@ -39,7 +40,11 @@ namespace RestauranteAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddJsonOptions (jo =>
+                {
+                    jo.SerializerSettings.ContractResolver = new DefaultContractResolver();
+                }
+            );
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddRequestScopingMiddleware(() => scopeProvider.Value = new Scope());
             services.AddCustomControllerActivation(Resolve);
