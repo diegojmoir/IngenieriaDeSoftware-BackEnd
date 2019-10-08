@@ -17,6 +17,7 @@ namespace RestauranteAPI.Controllers
         {
             _userService = userService;
         }
+
         /*
         [HttpPost("authenticate")]
         public IActionResult Authenticate([FromBody]Credential credential)
@@ -55,16 +56,20 @@ namespace RestauranteAPI.Controllers
         [Route("create")]
         public IActionResult Create([FromBody] User user)
         {
+            if (user == null)
+                return BadRequest();// TO DO: It should have a custom error message
             if (ModelState.IsValid)
             {
                 var responseObject = _userService.CreateUser(user);
+                if (responseObject == null)
+                    return BadRequest(); // TO DO: It should have a custom error message
                 return Ok(responseObject);
             }
             else
             {
                 return BadRequest(new
                 {
-                    errors = (ModelState.Values
+                    errors = (ModelState.Values // TO DO: It should have a custom error message
                     .SelectMany(v => v.Errors)
                     .Select(e => e.ErrorMessage))
                 });
