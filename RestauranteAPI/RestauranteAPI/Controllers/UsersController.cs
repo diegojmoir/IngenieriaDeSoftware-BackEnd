@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RestauranteAPI.Models;
 using RestauranteAPI.Services.Injections;
+using System.Linq;
 
 namespace RestauranteAPI.Controllers
 {
@@ -54,10 +55,21 @@ namespace RestauranteAPI.Controllers
         [Route("create")]
         public IActionResult Create([FromBody] User user)
         {
-            var responseObject = _userService.CreateUser(user);
-            if (user == null)
-                return BadRequest();
-            return Ok(responseObject);
+            if (ModelState.IsValid)
+            {
+                var responseObject = _userService.CreateUser(user);
+                return Ok(responseObject);
+            }
+            else
+            {
+                return BadRequest(new
+                {
+                    errors = (ModelState.Values
+                    .SelectMany(v => v.Errors)
+                    .Select(e => e.ErrorMessage))
+                });
+            }
+            
         }
     }
 }
