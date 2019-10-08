@@ -13,7 +13,8 @@ namespace RestauranteAPI.Repositories
             FirebaseConfig.FirebaseStartUp().Wait();
             using (var client = FirebaseConfig.FirebaseClient)
             {
-                var response = client.Child("Users")
+                var response = client.Child("UsersCollection")
+                    .Child("Users")
                      .PostAsync(user, false)
                      .Result;
                 return response;
@@ -26,6 +27,7 @@ namespace RestauranteAPI.Repositories
             using (var client = FirebaseConfig.FirebaseClient)
             {
                 var response = client
+                    .Child("UsersCollection")
                     .Child("Users")
                     .OnceAsync<User>()
                     .Result

@@ -4,13 +4,12 @@ using RestauranteAPI.Services.Injections;
 
 namespace RestauranteAPI.Controllers
 {
-    
     [Route("api/[controller]")]
-    [ApiController]
     public class UsersController : ControllerBase
     {
         private readonly IUserService _userService;
-        public UsersController(IUserService userService) 
+
+        public UsersController(IUserService userService)
         {
             _userService = userService;
         }
@@ -29,7 +28,7 @@ namespace RestauranteAPI.Controllers
 
         [HttpGet]
         [Route("user")]
-        public IActionResult GetUser(string username, string password) 
+        public IActionResult GetUser(string username, string password)
         {
             var responseObject = _userService.GetUser(username, password);
             if (responseObject == null)
@@ -40,14 +39,12 @@ namespace RestauranteAPI.Controllers
 
         [HttpPost]
         [Route("create")]
-        public IActionResult Create(User user)
+        public IActionResult Create([FromBody] User user)
         {
             var responseObject = _userService.CreateUser(user);
             if (user == null)
                 return BadRequest();
             return Ok(responseObject);
         }
-
-     
     }
 }
