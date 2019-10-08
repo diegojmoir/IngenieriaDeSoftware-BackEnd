@@ -4,6 +4,9 @@ using RestauranteAPI.Services.Injections;
 
 namespace RestauranteAPI.Controllers
 {
+    /// <summary>
+    /// Handles users information
+    /// </summary>
     [Route("api/[controller]")]
     public class UsersController : ControllerBase
     {
@@ -26,6 +29,12 @@ namespace RestauranteAPI.Controllers
         }
         */
 
+        /// <summary>
+        /// Get user by username and password
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("user")]
         public IActionResult GetUser(string username, string password)
@@ -36,7 +45,11 @@ namespace RestauranteAPI.Controllers
             return Ok(responseObject);
         }
 
-
+        /// <summary>
+        /// Create user in schema if provided object is valid
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("create")]
         public IActionResult Create([FromBody] User user)
