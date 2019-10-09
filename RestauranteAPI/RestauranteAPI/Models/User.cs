@@ -10,6 +10,7 @@ namespace RestauranteAPI.Models
         [Required]
         public string LastName { get; set; }
         [Required]
+        [RegularExpression(@"^\S*$")]
         public string Username { get; set; }
         [Required]
         [EmailAddress]
