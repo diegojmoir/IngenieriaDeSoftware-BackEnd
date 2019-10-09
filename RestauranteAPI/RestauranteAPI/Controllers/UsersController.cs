@@ -56,25 +56,36 @@ namespace RestauranteAPI.Controllers
         [Route("create")]
         public IActionResult Create([FromBody] User user)
         {
-            if (user == null)
-                return BadRequest();// TO DO: It should have a custom error message
-            if (ModelState.IsValid)
-            {
-                var responseObject = _userService.CreateUser(user);
-                if (responseObject == null)
-                    return BadRequest(); // TO DO: It should have a custom error message
-                return Ok(responseObject);
-            }
-            else
+            if (user == null || !ModelState.IsValid)
             {
                 return BadRequest(new
                 {
                     errors = (ModelState.Values // TO DO: It should have a custom error message
-                    .SelectMany(v => v.Errors)
-                    .Select(e => e.ErrorMessage))
-                });
+                   .SelectMany(v => v.Errors)
+                   .Select(e => e.ErrorMessage))
+                });// TO DO: It should have a custom error message
             }
-            
+
+            // Check if username is already taken
+            var userSearch = _userService.GetUserByUsername(user.Username);
+            if(userSearch != null)
+            {
+                return BadRequest(); // TODO: Custom message for already taken username
+            }
+
+            // Check if email is already taken
+            userSearch = _userService.GetUserByEmail(user.Email);
+            if (userSearch != null)
+            {
+                return BadRequest(); // TODO: Custom message for already taken email
+            }
+
+            var responseObject = _userService.CreateUser(user);
+            if (responseObject == null)
+            {
+                return BadRequest(); // TO DO: It should have a custom error message
+            }
+            return Ok(responseObject);            
         }
     }
 }

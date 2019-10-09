@@ -8,5 +8,9 @@ namespace RestauranteAPI.Repositories.Injections
     {
          FirebaseObject<User> GetUserFromStorageByUserNameAndPassword(string user, string password);
          FirebaseObject<User> CreateUserInStorage(User user);
+
+        FirebaseObject<User> GetUserFromStorageByUsername(string username);
+
+        FirebaseObject<User> GetUserFromStorageByEmail(string email);
     }
 }
