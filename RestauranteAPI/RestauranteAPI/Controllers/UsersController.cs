@@ -42,6 +42,7 @@ namespace RestauranteAPI.Controllers
         public IActionResult GetUser(string username, string password)
         {
             var responseObject = _userService.GetUser(username, password);
+            var a = Create(null);
             if (responseObject == null)
                 return NotFound();
             return Ok(responseObject);
@@ -56,14 +57,17 @@ namespace RestauranteAPI.Controllers
         [Route("create")]
         public IActionResult Create([FromBody] User user)
         {
-            if (user == null || !ModelState.IsValid)
+            if (user == null) {
+                return BadRequest();
+            }
+            if(!ModelState.IsValid)
             {
                 return BadRequest(new
                 {
                     errors = (ModelState.Values // TO DO: It should have a custom error message
                    .SelectMany(v => v.Errors)
                    .Select(e => e.ErrorMessage))
-                });// TO DO: It should have a custom error message
+                });
             }
 
             // Check if username is already taken
