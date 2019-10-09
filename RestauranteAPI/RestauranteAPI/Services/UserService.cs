@@ -33,5 +33,29 @@ namespace RestauranteAPI.Services
             result.Key = resultObject.Key;
             return result;
         }
+
+        public User GetUserByUsername(string username)
+        {
+            var resultObject = _userRepository
+                .GetUserFromStorageByUsername(username);
+            if(resultObject == null)
+                return null;
+
+            var result = resultObject.Object;
+            result.Key = resultObject.Key;
+            return result;
+        }
+
+        public User GetUserByEmail(string email)
+        {
+            var resultObject = _userRepository
+                .GetUserFromStorageByUsername(email);
+            if (resultObject == null)
+                return null;
+
+            var result = resultObject.Object;
+            result.Key = resultObject.Key;
+            return result;
+        }
     }
 }

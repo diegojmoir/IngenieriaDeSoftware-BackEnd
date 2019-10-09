@@ -21,6 +21,36 @@ namespace RestauranteAPI.Repositories
             }
         }
 
+        public FirebaseObject<User> GetUserFromStorageByUsername(string username)
+        {
+            FirebaseConfig.FirebaseStartUp().Wait();
+            using(var client = FirebaseConfig.FirebaseClient)
+            {
+                var response = client
+                    .Child("UsersCollection")
+                    .Child("Users")
+                    .OnceAsync<User>()
+                    .Result
+                    .FirstOrDefault(x => x.Object != null && (x.Object.Username == username));
+                return response;
+            }
+        }
+
+        public FirebaseObject<User> GetUserFromStorageByEmail(string email)
+        {
+            FirebaseConfig.FirebaseStartUp().Wait();
+            using (var client = FirebaseConfig.FirebaseClient)
+            {
+                var response = client
+                    .Child("UsersCollection")
+                    .Child("Users")
+                    .OnceAsync<User>()
+                    .Result
+                    .FirstOrDefault(x => x.Object != null && (x.Object.Email == email));
+                return response;
+            }
+        }
+
         public FirebaseObject<User> GetUserFromStorageByUserNameAndPassword(string user, string password)
         {
             FirebaseConfig.FirebaseStartUp().Wait();
