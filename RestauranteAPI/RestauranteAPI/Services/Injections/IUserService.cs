@@ -6,6 +6,7 @@
         User GetUser(string user, string password);
         User GetUserByUsername(string username);
         User GetUserByEmail(string email);
-        User CreateUser(User user); 
+        User CreateUser(User user);
+        User Authenticate(string username, string password);
     }
 }

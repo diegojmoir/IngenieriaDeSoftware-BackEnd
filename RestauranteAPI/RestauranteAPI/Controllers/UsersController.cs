@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using RestauranteAPI.Models;
 using RestauranteAPI.Services.Injections;
 using System.Linq;
@@ -8,6 +9,8 @@ namespace RestauranteAPI.Controllers
     /// <summary>
     /// Handles users information
     /// </summary>
+    [Authorize]
+    [ApiController]
     [Route("api/[controller]")]
     public class UsersController : ControllerBase
     {
@@ -18,18 +21,37 @@ namespace RestauranteAPI.Controllers
             _userService = userService;
         }
 
-        /*
+        /// <summary>
+        /// Authenticates user. It generates jwt with duration of 7 days.
+        /// </summary>
+        /// <param name="userParam"></param>
+        /// <returns></returns>
+        [AllowAnonymous]
         [HttpPost("authenticate")]
-        public IActionResult Authenticate([FromBody]Credential credential)
+        public IActionResult Authenticate([FromBody]Credential userParam)
         {
-            var user = _taxPortalRepository.Authenticate(userParam.Username, userParam.Password);
+            var user = _userService.Authenticate(userParam.Username, userParam.Password);
 
             if (user == null)
                 return BadRequest(new { message = "Username or password is incorrect" });
 
             return Ok(user);
         }
-        */
+
+        [AllowAnonymous]
+        [HttpGet("whoiam")]
+        public IActionResult WhoIam()
+        {
+            var username = User.Identity.Name;
+            if (username == null)
+            {
+                return Unauthorized("I do not know");
+            }
+            else
+            {
+               return Ok("You are: "+username);
+            }
+        }
 
         /// <summary>
         /// Get user by username and password
@@ -53,6 +75,7 @@ namespace RestauranteAPI.Controllers
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
+        [AllowAnonymous]
         [HttpPost]
         [Route("create")]
         public IActionResult Create([FromBody] User user)
