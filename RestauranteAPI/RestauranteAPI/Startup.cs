@@ -14,6 +14,7 @@ using System.Threading;
 using AutoMapper;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Serialization;
+using RestauranteAPI.Configuration.NinjectConfiguration;
 using RestauranteAPI.Models.Mapping;
 
 namespace RestauranteAPI
