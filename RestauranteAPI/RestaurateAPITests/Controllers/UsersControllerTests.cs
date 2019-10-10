@@ -5,6 +5,7 @@ using NUnit.Framework;
 using Moq;
 using System;
 using Microsoft.AspNetCore.Mvc;
+using RestauranteAPI.Models.Dto;
 
 namespace RestaurateAPITests.Controllers
 {
@@ -19,7 +20,7 @@ namespace RestaurateAPITests.Controllers
         private const string ValidUserPassword = "pass";
         private const string ValidUserUsername = "someValidUsername";
         private readonly string _validUserKey = Guid.NewGuid().ToString();
-        private User _validUser;
+        private UserDto _validUser;
         private User _nonCreatedValidUser;
         private User _invalidUser;
 
@@ -27,12 +28,12 @@ namespace RestaurateAPITests.Controllers
         [OneTimeSetUp]
         public void BeforeTests() 
         {
-            _validUser = new User
+            _validUser = new UserDto
             {
+                Key = _validUserKey,
                 FirstName="Some FirstName",
                 LastName="Some LastName",
                 Email="validemail@url.com",
-                Key=_validUserKey,
                 Username=ValidUserUsername,
                 Password=ValidUserPassword
             };
@@ -71,7 +72,7 @@ namespace RestaurateAPITests.Controllers
                 .GetUser(ValidUserUsername, ValidUserPassword) as OkObjectResult;
             Assert.IsNotNull(result);
             Assert.IsNotNull(result.Value);
-            Assert.IsInstanceOf(typeof(User), result.Value);
+            Assert.IsInstanceOf(typeof(UserDto), result.Value);
         }
 
         [Test]
@@ -96,7 +97,7 @@ namespace RestaurateAPITests.Controllers
             var result = _testController.Create(_nonCreatedValidUser) as OkObjectResult;
             Assert.IsNotNull(result);
             Assert.AreEqual(200, result.StatusCode);
-            Assert.AreEqual(_validUserKey, ((User)result.Value).Key);
+            Assert.AreEqual(_validUserKey, ((UserDto)result.Value).Key);
         }
 
         [Test]
