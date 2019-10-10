@@ -1,4 +1,5 @@
 ﻿using System;
+using AutoMapper;
 using RestauranteAPI.Models;
 using RestauranteAPI.Services;
 using RestauranteAPI.Repositories.Injections;
@@ -6,6 +7,7 @@ using NUnit.Framework;
 using Moq;
 using Firebase.Database;
 using Firebase.Database.Streaming;
+using RestauranteAPI.Models.Mapping;
 
 namespace RestaurateAPITests.Services
 {
@@ -20,33 +22,37 @@ namespace RestaurateAPITests.Services
         private const string ValidUserUsername = "someValidUsername";
         private readonly string _validUserKey = Guid.NewGuid().ToString();
         private FirebaseObject<User> _validFirebaseObject;
-        private User _validUser;
         private User _nonCreatedValidUser;
         private User _invalidUser;
+        private User _validDatabaseModel;
 
         
 
         [OneTimeSetUp]
         public void BeforeEachTest()
         {
-            _validUser = new User
+
+            _nonCreatedValidUser = new User
             {
                 FirstName="Some FirstName",
                 LastName="Some LastName",
                 Email="validemail@url.com",
                 Username=ValidUserUsername,
                 Password=ValidUserPassword
-            };
-            _nonCreatedValidUser = new User
-            {
-                FirstName=_validUser.FirstName,
-                LastName=_validUser.LastName,
-                Email=_validUser.Email,
-                Username=_validUser.Username,
-                Password=_validUser.Password
+
             };
 
-            _validFirebaseObject=new FirebaseEvent<User>(_validUserKey,_validUser
+            _validDatabaseModel=new User
+            {
+               
+                FirstName=_nonCreatedValidUser.FirstName,
+                LastName=_nonCreatedValidUser.LastName,
+                Email=_nonCreatedValidUser.Email,
+                Username=_nonCreatedValidUser.Username,
+                Password=_nonCreatedValidUser.Password
+            };
+            
+            _validFirebaseObject=new FirebaseEvent<User>(_validUserKey,_validDatabaseModel
                 ,FirebaseEventType.InsertOrUpdate,FirebaseEventSource.Offline);
 
             _invalidUser = null;
@@ -55,7 +61,9 @@ namespace RestaurateAPITests.Services
                 .Returns(_validFirebaseObject);
             _moqRepository.Setup(x => x.GetUserFromStorageByUserNameAndPassword(ValidUserUsername, ValidUserPassword))
                 .Returns(_validFirebaseObject);
-            _userService=new UserService(_moqRepository.Object);
+
+            var myMapper=new MapperConfiguration(x => { x.AddProfile(new MappingProfile());}).CreateMapper();
+            _userService=new UserService(_moqRepository.Object,myMapper);
         }
 
         [Test]
@@ -63,7 +71,7 @@ namespace RestaurateAPITests.Services
         {
             var result = _userService.CreateUser(_nonCreatedValidUser);
             Assert.IsNotNull(result);
-            Assert.AreEqual(_validUser.Key,result.Key);
+            Assert.AreEqual(_validUserKey,result.Key);
         }
 
         [Test]
@@ -74,13 +82,13 @@ namespace RestaurateAPITests.Services
         }
 
         [Test]
-        public void Should_return_valid_object_if_user_exist_whit_valid_password_and_username()
+        public void Should_return_valid_object_if_user_exist_with_valid_password_and_username()
         {
             var result = _userService.GetUser(ValidUserUsername,ValidUserPassword);
             Assert.IsNotNull(result);
-            Assert.AreEqual(_validUser.Key,result.Key);
-            Assert.AreEqual(_validUser.Username,result.Username);
-            Assert.AreEqual(_validUser.Password,result.Password);
+            Assert.AreEqual(_validUserKey,result.Key);
+            Assert.AreEqual(_nonCreatedValidUser.Username,result.Username);
+            Assert.AreEqual(_nonCreatedValidUser.Password,result.Password);
         }
 
         [Test]
