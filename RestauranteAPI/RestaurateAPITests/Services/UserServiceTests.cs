@@ -18,8 +18,10 @@ namespace RestaurateAPITests.Services
         private Mock<IUserRepository> _moqRepository;
         private const string NonExistentUserPassword = "*";
         private const string NonExistentUserUsername = "someInvalidUsername";
+        private const string NonExistentUserEmail = "invalidemail@url.com";
         private const string ValidUserPassword = "pass";
         private const string ValidUserUsername = "someValidUsername";
+        private const string ValidUserEmail = "validemail@url.com";
         private readonly string _validUserKey = Guid.NewGuid().ToString();
         private FirebaseObject<User> _validFirebaseObject;
         private User _nonCreatedValidUser;
@@ -36,7 +38,7 @@ namespace RestaurateAPITests.Services
             {
                 FirstName="Some FirstName",
                 LastName="Some LastName",
-                Email="validemail@url.com",
+                Email= ValidUserEmail,
                 Username=ValidUserUsername,
                 Password=ValidUserPassword
 
@@ -60,6 +62,10 @@ namespace RestaurateAPITests.Services
             _moqRepository.Setup(x => x.CreateUserInStorage(_nonCreatedValidUser))
                 .Returns(_validFirebaseObject);
             _moqRepository.Setup(x => x.GetUserFromStorageByUserNameAndPassword(ValidUserUsername, ValidUserPassword))
+                .Returns(_validFirebaseObject);
+            _moqRepository.Setup(x => x.GetUserFromStorageByEmail(ValidUserEmail))
+                .Returns(_validFirebaseObject);
+            _moqRepository.Setup(x => x.GetUserFromStorageByUsername(ValidUserUsername))
                 .Returns(_validFirebaseObject);
 
             var myMapper=new MapperConfiguration(x => { x.AddProfile(new MappingProfile());}).CreateMapper();
@@ -90,6 +96,38 @@ namespace RestaurateAPITests.Services
             Assert.AreEqual(_nonCreatedValidUser.Username,result.Username);
             Assert.AreEqual(_nonCreatedValidUser.Password,result.Password);
         }
+        [Test]
+        public void Should_return_null_if_user_doesnt_exist_with_given_email()
+        {
+            var result = _userService.GetUserByEmail(NonExistentUserEmail);
+            Assert.IsNull(result);
+        }
+
+        [Test]
+        public void Should_return_valid_object_if_user_exists_with_given_email()
+        {
+            var result = _userService.GetUserByEmail(ValidUserEmail);
+            Assert.IsNotNull(result);
+            Assert.AreEqual(_validUserKey, result.Key);
+            Assert.AreEqual(_nonCreatedValidUser.Email, result.Email);
+        }
+
+        [Test]
+        public void Should_return_null_if_user_doesnt_exist_with_given_username()
+        {
+            var result = _userService.GetUserByUsername(NonExistentUserUsername);
+            Assert.IsNull(result);
+        }
+        [Test]
+        public void Should_return_valid_object_if_user_exists_with_given_username()
+        {
+            var result = _userService.GetUserByUsername(ValidUserUsername);
+            Assert.IsNotNull(result);
+            Assert.AreEqual(_validUserKey, result.Key);
+            Assert.AreEqual(_nonCreatedValidUser.Username, result.Username);
+        }
+
+
 
         [Test]
         public void Should_return_null_when_there_is_no_user_for_password_and_username()
