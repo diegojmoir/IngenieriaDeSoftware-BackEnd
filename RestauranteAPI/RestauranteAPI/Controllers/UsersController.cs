@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 using RestauranteAPI.Models;
 using RestauranteAPI.Services.Injections;
 using System.Linq;
@@ -42,7 +43,6 @@ namespace RestauranteAPI.Controllers
         public IActionResult GetUser(string username, string password)
         {
             var responseObject = _userService.GetUser(username, password);
-            var a = Create(null);
             if (responseObject == null)
                 return NotFound();
             return Ok(responseObject);
@@ -57,31 +57,33 @@ namespace RestauranteAPI.Controllers
         [Route("create")]
         public IActionResult Create([FromBody] User user)
         {
-            if (user == null) {
+            if (user == null)
+            {
                 return BadRequest();
             }
-            if(!ModelState.IsValid)
+
+            if (!ModelState.IsValid)
             {
                 return BadRequest(new
                 {
                     errors = (ModelState.Values // TO DO: It should have a custom error message
-                   .SelectMany(v => v.Errors)
-                   .Select(e => e.ErrorMessage))
+                        .SelectMany(v => v.Errors)
+                        .Select(e => e.ErrorMessage))
                 });
             }
 
             // Check if username is already taken
             var userSearch = _userService.GetUserByUsername(user.Username);
-            if(userSearch != null)
+            if (userSearch != null)
             {
-                return BadRequest(); // TODO: Custom message for already taken username
+                return Conflict(); // TODO: Custom message for already taken username
             }
 
             // Check if email is already taken
             userSearch = _userService.GetUserByEmail(user.Email);
             if (userSearch != null)
             {
-                return BadRequest(); // TODO: Custom message for already taken email
+                return Conflict(); // TODO: Custom message for already taken email
             }
 
             var responseObject = _userService.CreateUser(user);
@@ -89,7 +91,8 @@ namespace RestauranteAPI.Controllers
             {
                 return BadRequest(); // TO DO: It should have a custom error message
             }
-            return Ok(responseObject);            
+
+            return Ok(responseObject);
         }
     }
 }
