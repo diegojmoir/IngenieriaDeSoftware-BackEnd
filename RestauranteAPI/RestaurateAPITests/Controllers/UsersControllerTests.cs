@@ -23,6 +23,7 @@ namespace RestaurateAPITests.Controllers
         private UserDto _validUser;
         private User _nonCreatedValidUser;
         private User _invalidUser;
+        private UserDto _invalidUserDto;
         private Credential _validCredential;
         private Credential _invalidCredential;
         private User _alreadyExistingEmailUser;
@@ -159,7 +160,7 @@ namespace RestaurateAPITests.Controllers
                 .Returns(_validUser);
             _moqUserService
                 .Setup(x => x.Authenticate(NonExistentUserUsername, NonExistentUserPassword))
-                .Returns(_invalidUser);
+                .Returns(_invalidUserDto);
             _testController =new UsersController(_moqUserService.Object);
           
             _testController=new UsersController(_moqUserService.Object);
@@ -223,7 +224,7 @@ namespace RestaurateAPITests.Controllers
             Assert.IsNotNull(result);
             Assert.AreEqual(200, result.StatusCode);
             Assert.IsNotNull(result.Value);
-            Assert.IsInstanceOf(typeof(User), result.Value);
+            Assert.IsInstanceOf(typeof(UserDto), result.Value);
         }
 
         [Test]

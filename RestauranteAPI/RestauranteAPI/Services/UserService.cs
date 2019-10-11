@@ -69,11 +69,11 @@ namespace RestauranteAPI.Services
 
         public UserDto Authenticate(string username, string password)
         {
-            UserDto user = null;
             var resultObject = _userRepository.GetUserFromStorageByUserNameAndPassword(username, password);
+            UserDto user = new UserDto();
+            user = _mapper.Map(resultObject, user);
             if (resultObject != null)
             {
-                user = resultObject.Object;
                 user.Key = resultObject.Key;
             }
 
