@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\david\\Documents\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestaurateAPITests\\RestaurateAPITests.csproj": {}
+    "D:\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestaurateAPITests\\RestaurateAPITests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\david\\Documents\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestauranteAPI\\RestauranteAPI.csproj": {
+    "D:\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestauranteAPI\\RestauranteAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\david\\Documents\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestauranteAPI\\RestauranteAPI.csproj",
+        "projectUniqueName": "D:\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestauranteAPI\\RestauranteAPI.csproj",
         "projectName": "RestauranteAPI",
-        "projectPath": "C:\\Users\\david\\Documents\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestauranteAPI\\RestauranteAPI.csproj",
-        "packagesPath": "C:\\Users\\david\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\david\\Documents\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestauranteAPI\\obj\\",
+        "projectPath": "D:\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestauranteAPI\\RestauranteAPI.csproj",
+        "packagesPath": "C:\\Users\\David\\.nuget\\packages\\",
+        "outputPath": "D:\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestauranteAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\david\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\David\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -121,20 +121,20 @@
         }
       }
     },
-    "C:\\Users\\david\\Documents\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestaurateAPITests\\RestaurateAPITests.csproj": {
+    "D:\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestaurateAPITests\\RestaurateAPITests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\david\\Documents\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestaurateAPITests\\RestaurateAPITests.csproj",
+        "projectUniqueName": "D:\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestaurateAPITests\\RestaurateAPITests.csproj",
         "projectName": "RestaurateAPITests",
-        "projectPath": "C:\\Users\\david\\Documents\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestaurateAPITests\\RestaurateAPITests.csproj",
-        "packagesPath": "C:\\Users\\david\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\david\\Documents\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestaurateAPITests\\obj\\",
+        "projectPath": "D:\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestaurateAPITests\\RestaurateAPITests.csproj",
+        "packagesPath": "C:\\Users\\David\\.nuget\\packages\\",
+        "outputPath": "D:\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestaurateAPITests\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\david\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\David\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -147,8 +147,8 @@
         "frameworks": {
           "netcoreapp3.0": {
             "projectReferences": {
-              "C:\\Users\\david\\Documents\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestauranteAPI\\RestauranteAPI.csproj": {
-                "projectPath": "C:\\Users\\david\\Documents\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestauranteAPI\\RestauranteAPI.csproj"
+              "D:\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestauranteAPI\\RestauranteAPI.csproj": {
+                "projectPath": "D:\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestauranteAPI\\RestauranteAPI.csproj"
               }
             }
           }
