@@ -22,6 +22,8 @@ namespace RestaurateAPITests.Controllers
         private User _validUser;
         private User _nonCreatedValidUser;
         private User _invalidUser;
+        private Credential _validCredential;
+        private Credential _invalidCredential;
 
 
         [OneTimeSetUp]
@@ -44,6 +46,16 @@ namespace RestaurateAPITests.Controllers
                 Username=_validUser.Username,
                 Password=_validUser.Password
             };
+            _validCredential = new Credential
+            {
+                Username = _validUser.Username,
+                Password = _validUser.Password
+            };
+            _invalidCredential = new Credential
+            {
+                Username = NonExistentUserUsername,
+                Password = NonExistentUserPassword
+            };
             _invalidUser = null;
             _moqUserService = new Mock<IUserService>();
             _moqUserService
@@ -52,8 +64,13 @@ namespace RestaurateAPITests.Controllers
             _moqUserService
                 .Setup(x => x.CreateUser(_nonCreatedValidUser))
                 .Returns(_validUser);
-            
-            _testController=new UsersController(_moqUserService.Object);
+            _moqUserService
+                .Setup(x => x.Authenticate(ValidUserUsername, ValidUserPassword))
+                .Returns(_validUser);
+            _moqUserService
+                .Setup(x => x.Authenticate(NonExistentUserUsername, NonExistentUserPassword))
+                .Returns(_invalidUser);
+            _testController =new UsersController(_moqUserService.Object);
         }
         [Test]
         public void Should_return_OkResult_If_username_and_password_exist_for_a_user() 
@@ -105,6 +122,24 @@ namespace RestaurateAPITests.Controllers
             var result = _testController.Create(_invalidUser) as BadRequestResult;
             Assert.IsNotNull(result);
             Assert.AreEqual(400, result.StatusCode);        
+        }
+
+        [Test]
+        public void Should_return_OkResult_Login_is_successful()
+        {
+            var result = _testController.Authenticate(_validCredential) as OkObjectResult;
+            Assert.IsNotNull(result);
+            Assert.AreEqual(200, result.StatusCode);
+            Assert.IsNotNull(result.Value);
+            Assert.IsInstanceOf(typeof(User), result.Value);
+        }
+
+        [Test]
+        public void Should_return_bad_request_if_Login_is_unsuccessful()
+        {
+            var result = _testController.Authenticate(_invalidCredential) as NotFoundResult;
+            Assert.IsNotNull(result);
+            Assert.AreEqual(404, result.StatusCode);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using RestauranteAPI.Models;
 using Firebase.Database;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace RestauranteAPI.Repositories.Injections
 {
@@ -12,5 +13,7 @@ namespace RestauranteAPI.Repositories.Injections
         FirebaseObject<User> GetUserFromStorageByUsername(string username);
 
         FirebaseObject<User> GetUserFromStorageByEmail(string email);
+
+        string CreateToken(string username);
     }
 }
