@@ -5,6 +5,7 @@ using NUnit.Framework;
 using Moq;
 using System;
 using Microsoft.AspNetCore.Mvc;
+using RestauranteAPI.Models.Dto;
 
 namespace RestaurateAPITests.Controllers
 {
@@ -19,22 +20,102 @@ namespace RestaurateAPITests.Controllers
         private const string ValidUserPassword = "pass";
         private const string ValidUserUsername = "someValidUsername";
         private readonly string _validUserKey = Guid.NewGuid().ToString();
-        private User _validUser;
+        private UserDto _validUser;
         private User _nonCreatedValidUser;
         private User _invalidUser;
         private Credential _validCredential;
         private Credential _invalidCredential;
+        private User _alreadyExistingEmailUser;
+        private User _alreadyExistingUsernameUser;
+        private User _emptyUsernameUser;
+        private User _emptyFirstNameUser;
+        private User _emptyLastNameUser;
+        private User _emptyPasswordUser;
+        private User _emptyEmailUser;
+        private UserDto _conflictingUser;
+        private const string AlreadyExisintgEmail = "some.existing@mail";
+        private const string AlreadyExistingUsername = "some.existing@username";
 
 
         [OneTimeSetUp]
         public void BeforeTests() 
         {
-            _validUser = new User
+            _emptyUsernameUser = new User
             {
+                FirstName = "Some FirstName",
+                LastName = "Some LastName",
+                Password = "Some Password",
+                Email = "Some Email",
+                Username = "",
+            };
+
+            _emptyFirstNameUser = new User
+            {
+                FirstName = "",
+                LastName = "Some LastName",
+                Password = "Some Password",
+                Email = "Some Email",
+                Username = "Some Username",
+            };
+
+            _emptyLastNameUser = new User
+            {
+                FirstName = "FirstName",
+                LastName = "",
+                Password = "Some Password",
+                Email = "Some Email",
+                Username = "Some Username",
+            };
+
+            _emptyPasswordUser = new User
+            {
+                FirstName = "Some FirstName",
+                LastName = "Some LastName",
+                Password = "",
+                Email = "Some Email",
+                Username = "Some Username",
+            };
+
+            _emptyEmailUser = new User
+            {
+                FirstName = "Some FirstName",
+                LastName = "Some LastName",
+                Password = "Some Password",
+                Email = "",
+                Username = "Some Username",
+            };
+
+            _alreadyExistingEmailUser = new User
+            {
+                FirstName = "Some FirstName",
+                LastName = "Some LastName",
+                Password = "Some Password",
+                Email = AlreadyExisintgEmail,
+                Username = "Some UserName",
+            };
+            _alreadyExistingUsernameUser = new User
+            {
+                FirstName = "Some Firstname",
+                LastName = "Some LastName",
+                Password = "Some Password",
+                Email = "some@email.com",
+                Username = AlreadyExistingUsername
+            };
+            _conflictingUser = new UserDto
+            {
+                Key = _validUserKey,
+                FirstName = "Some FirstName",
+                LastName = "Some LastName",
+                Email = AlreadyExisintgEmail,
+                Username = AlreadyExistingUsername,
+                Password = ValidUserPassword,
+            };
+            _validUser = new UserDto
+            {
+                Key = _validUserKey,
                 FirstName="Some FirstName",
                 LastName="Some LastName",
                 Email="validemail@url.com",
-                Key=_validUserKey,
                 Username=ValidUserUsername,
                 Password=ValidUserPassword
             };
@@ -65,12 +146,23 @@ namespace RestaurateAPITests.Controllers
                 .Setup(x => x.CreateUser(_nonCreatedValidUser))
                 .Returns(_validUser);
             _moqUserService
+                .Setup(x => x.GetUserByEmail(AlreadyExisintgEmail)).
+                Returns(_conflictingUser);
+            _moqUserService
+                .Setup(x => x.GetUserByUsername(AlreadyExistingUsername)).
+                Returns(_conflictingUser);
+            //_moqUserService
+            //    .Setup(x => x.CreateUser(_alreadyExistingUsernameUser))
+            //   .Returns(_validUser);
+            _moqUserService
                 .Setup(x => x.Authenticate(ValidUserUsername, ValidUserPassword))
                 .Returns(_validUser);
             _moqUserService
                 .Setup(x => x.Authenticate(NonExistentUserUsername, NonExistentUserPassword))
                 .Returns(_invalidUser);
             _testController =new UsersController(_moqUserService.Object);
+          
+            _testController=new UsersController(_moqUserService.Object);
         }
         [Test]
         public void Should_return_OkResult_If_username_and_password_exist_for_a_user() 
@@ -88,7 +180,7 @@ namespace RestaurateAPITests.Controllers
                 .GetUser(ValidUserUsername, ValidUserPassword) as OkObjectResult;
             Assert.IsNotNull(result);
             Assert.IsNotNull(result.Value);
-            Assert.IsInstanceOf(typeof(User), result.Value);
+            Assert.IsInstanceOf(typeof(UserDto), result.Value);
         }
 
         [Test]
@@ -113,7 +205,7 @@ namespace RestaurateAPITests.Controllers
             var result = _testController.Create(_nonCreatedValidUser) as OkObjectResult;
             Assert.IsNotNull(result);
             Assert.AreEqual(200, result.StatusCode);
-            Assert.AreEqual(_validUserKey, ((User)result.Value).Key);
+            Assert.AreEqual(_validUserKey, ((UserDto)result.Value).Key);
         }
 
         [Test]
@@ -140,6 +232,62 @@ namespace RestaurateAPITests.Controllers
             var result = _testController.Authenticate(_invalidCredential) as NotFoundResult;
             Assert.IsNotNull(result);
             Assert.AreEqual(404, result.StatusCode);
+        }
+        
+        [Test]
+        public void Should_return_conflict_if_new_user_username_is_already_taken()
+        {
+            var result = _testController.Create(_alreadyExistingUsernameUser) as ConflictResult;
+            Assert.IsNotNull(result);
+            Assert.AreEqual(409, result.StatusCode);
+        }
+
+        [Test]
+        public void Should_return_conflict_if_new_user_email_is_alreay_taken()
+        {
+            var result = _testController.Create(_alreadyExistingEmailUser) as ConflictResult;
+            Assert.IsNotNull(result);
+            Assert.AreEqual(409, result.StatusCode);
+        }
+
+        [Test]
+        public void Should_return_bad_request_if_username_is_empty()
+        {
+            var result = _testController.Create(_emptyUsernameUser) as BadRequestResult;
+            Assert.IsNotNull(result);
+            Assert.AreEqual(400, result.StatusCode);
+        }
+
+        [Test]
+        public void Should_return_bad_request_if_firstname_is_empty()
+        {
+            var result = _testController.Create(_emptyFirstNameUser) as BadRequestResult;
+            Assert.IsNotNull(result);
+            Assert.AreEqual(400, result.StatusCode);
+        }
+
+        [Test]
+        public void Should_return_bad_request_if_lastname_is_empty()
+        {
+            var result = _testController.Create(_emptyLastNameUser) as BadRequestResult;
+            Assert.IsNotNull(result);
+            Assert.AreEqual(400, result.StatusCode);
+        }
+
+        [Test]
+        public void Should_return_bad_request_if_email_is_empty()
+        {
+            var result = _testController.Create(_emptyEmailUser) as BadRequestResult;
+            Assert.IsNotNull(result);
+            Assert.AreEqual(400, result.StatusCode);
+        }
+
+        [Test]
+        public void Should_return_bad_request_if_password_is_empty()
+        {
+            var result = _testController.Create(_emptyPasswordUser) as BadRequestResult;
+            Assert.IsNotNull(result);
+            Assert.AreEqual(400, result.StatusCode);
         }
     }
 }

@@ -11,8 +11,8 @@ using Ninject.Infrastructure.Disposal;
 using RestauranteAPI.Configuration.FirebaseConfiguration;
 using System;
 using System.Threading;
+using AutoMapper;
 using Microsoft.OpenApi.Models;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using RestauranteAPI.Helpers;
 using System.Text;
@@ -20,16 +20,18 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using RestauranteAPI.Services.Injections;
 using RestauranteAPI.Services;
+using RestauranteAPI.Configuration.NinjectConfiguration;
+using RestauranteAPI.Models.Mapping;
 
 namespace RestauranteAPI
 {
     public class Startup
     {
-        private readonly AsyncLocal<Scope> scopeProvider = new AsyncLocal<Scope>();
+        private readonly AsyncLocal<Scope> _scopeProvider = new AsyncLocal<Scope>();
         private IKernel Kernel { get; set; }
 
         private object Resolve(Type type) => Kernel.Get(type);
-        private object RequestScope(IContext context) => scopeProvider.Value;
+        private object RequestScope(IContext context) => _scopeProvider.Value;
 
 
         private sealed class Scope : DisposableObject
@@ -53,7 +55,7 @@ namespace RestauranteAPI
                 }
             );
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddRequestScopingMiddleware(() => scopeProvider.Value = new Scope());
+            services.AddRequestScopingMiddleware(() => _scopeProvider.Value = new Scope());
             services.AddCustomControllerActivation(Resolve);
             services.AddCustomViewComponentActivation(Resolve);
             // Register the Swagger generator, defining 1 or more Swagger documents
@@ -86,6 +88,12 @@ namespace RestauranteAPI
 
             // configure DI for application services
             services.AddScoped<IUserService, UserService>();
+            var mappingConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new MappingProfile());
+            });
+            var mapper = mappingConfig.CreateMapper();
+            services.AddSingleton(mapper);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -100,7 +108,6 @@ namespace RestauranteAPI
             }
             else
             {
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
             FirebaseConfig.SetEnviromentVariables(Configuration);
@@ -126,8 +133,7 @@ namespace RestauranteAPI
             {
                 kernel.Bind(ctrlType).ToSelf().InScope(RequestScope);
             }
-
-            // This is where our bindings are configurated
+            // This is where our bindings are configured
             NinjectWebBindingConfigure.BindClasses(kernel, RequestScope);
             // Cross-wire required framework services
             kernel.BindToMethod(app.GetRequestService<IViewBufferScope>);

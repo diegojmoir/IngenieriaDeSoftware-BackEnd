@@ -1,9 +1,8 @@
-﻿
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace RestauranteAPI.Models
 {
-    public class User:BaseModel<string>
+    public class User
     {
         [Required]
         public string FirstName { get; set; }
