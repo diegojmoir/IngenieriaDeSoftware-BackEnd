@@ -8,7 +8,6 @@ using System.Text;
 using System.Security.Claims;
 using System;
 using Microsoft.IdentityModel.Tokens;
-using RestauranteAPI.Helpers;
 using Microsoft.Extensions.Options;
 
 namespace RestauranteAPI.Services

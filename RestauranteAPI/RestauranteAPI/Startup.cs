@@ -14,7 +14,6 @@ using System.Threading;
 using AutoMapper;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Serialization;
-using RestauranteAPI.Helpers;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -61,10 +60,6 @@ namespace RestauranteAPI
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "Restaurante_DEV", Version = "v1"}); });
 
-            // configure strongly typed settings objects
-            var appSettingsSection = Configuration.GetSection("AppSettings");
-            services.Configure<AppSettings>(appSettingsSection);
-
             // configure jwt authentication
             //var appSettings = appSettingsSection.Get<AppSettings>();
             var key = Encoding.ASCII.GetBytes("THIS IS OUR SECRET FOR THE JWT");
@@ -94,6 +89,9 @@ namespace RestauranteAPI
             });
             var mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper);
+
+            services.AddCors();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -114,6 +112,7 @@ namespace RestauranteAPI
             app.UseHttpsRedirection();
 
             // global cors policy
+            //app.UseCors(options => options.WithOrigins("http://www.mydomain.com").AllowAnyMethod());
             app.UseCors(x => x
                 .AllowAnyOrigin()
                 .AllowAnyMethod()
