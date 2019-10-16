@@ -20,9 +20,13 @@ namespace RestauranteAPI.Configuration.NinjectConfiguration
             //repositories
             kernel.Bind<ITestRepository>().To<TestRepository>().InScope(requestScope);
             kernel.Bind<IUserRepository>().To<UserRepository>().InScope(requestScope);
+            kernel.Bind<IProductRepository>().To<ProductRepository>().InScope(requestScope);
+
             //services
             kernel.Bind<ITestService>().To<TestService>().InScope(requestScope);
             kernel.Bind<IUserService>().To<UserService>().InScope(requestScope);
+            kernel.Bind<IProductService>().To<ProductService>().InScope(requestScope);
+
         }
     }
 }
