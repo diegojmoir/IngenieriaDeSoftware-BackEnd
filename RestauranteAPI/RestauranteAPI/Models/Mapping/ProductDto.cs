@@ -15,5 +15,7 @@ namespace RestauranteAPI.Models.Dto
         public string EndingTime { get; set; }
         public int Category { get; set; }
 
+        public string Image { get; set; }
+
     }
 }

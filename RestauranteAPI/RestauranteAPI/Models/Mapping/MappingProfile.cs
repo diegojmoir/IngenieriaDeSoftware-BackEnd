@@ -25,6 +25,7 @@ namespace RestauranteAPI.Models.Mapping
                 .ForMember(dest => dest.IsAvailable, opt => opt.MapFrom(src => src.Object.IsAvailable))
                 .ForMember(dest => dest.StartingTime, opt => opt.MapFrom(src => src.Object.StartingTime))
                 .ForMember(dest => dest.EndingTime, opt => opt.MapFrom(src => src.Object.EndingTime))
+                .ForMember(dest => dest.Image, opt => opt.MapFrom(src => src.Object.Image))
                 .ForMember(dest => dest.Category, opt => opt.MapFrom(src => src.Object.Category));
 
 
