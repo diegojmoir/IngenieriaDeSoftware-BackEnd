@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.Globalization;
 
 namespace RestauranteAPI.Models
 {
@@ -11,7 +12,26 @@ namespace RestauranteAPI.Models
         public double Price { get; set; }
         [Required]
         public bool IsAvailable { get; set; }
-        public string HoraInicio { get; set; }
-        public string HoraFin {get; set; }
+        public string StartingTime { get; set; }
+        public string EndingTime {get; set; }
+        public int Category { get; set; }
+
+        public bool IsAvailableNow()
+        {
+            if (!IsAvailable)
+                return false;
+
+            System.DateTime sartingTime = System.DateTime.ParseExact(this.StartingTime, "HH:mm", CultureInfo.InvariantCulture);
+            System.DateTime endingTime = System.DateTime.ParseExact(this.EndingTime, "HH:mm", CultureInfo.InvariantCulture);
+            System.DateTime now = System.DateTime.Now;
+
+            if(now > endingTime || now < sartingTime)
+            {
+                return false;
+            }
+
+            return true;
+            
+        }
     }
 }

@@ -1,12 +1,14 @@
 using System.Threading.Tasks;
 using RestauranteAPI.Models;
 using Firebase.Database;
+using System.Collections.Generic;
 
 namespace RestauranteAPI.Repositories.Injections
 {
     public interface IProductRepository
     {
-        FirebaseObject<User> GetProductFromStorageById(string id);
-        FirebaseObject<User> CrerateProductInStorage(Product product);
+        FirebaseObject<Product> GetProductFromStorageById(string id);
+        FirebaseObject<Product> CrerateProductInStorage(Product product);
+        IEnumerable<FirebaseObject<Product>> GetAvailableProductFromStorage();
     }
 }
