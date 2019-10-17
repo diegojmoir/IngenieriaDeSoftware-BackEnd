@@ -11,7 +11,11 @@ namespace RestauranteAPI.Models.Dto
         public double Price { get; set; }
         [Required]
         public bool IsAvailable { get; set; }
-        public string HoraInicio { get; set; }
-        public string HoraFin { get; set; }
+        public string StartingTime { get; set; }
+        public string EndingTime { get; set; }
+        public int Category { get; set; }
+
+        public string Image { get; set; }
+
     }
 }
