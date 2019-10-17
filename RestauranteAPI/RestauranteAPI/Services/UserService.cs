@@ -52,7 +52,7 @@ namespace RestauranteAPI.Services
         public UserDto GetUserByEmail(string email)
         {
             var resultObject = _userRepository
-                .GetUserFromStorageByUsername(email);
+                .GetUserFromStorageByEmail(email);
             if (resultObject == null)
                 return null;
             var result=new UserDto();

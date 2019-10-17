@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 using RestauranteAPI.Models;
 using RestauranteAPI.Services.Injections;
 using System.Linq;
@@ -75,14 +76,14 @@ namespace RestauranteAPI.Controllers
             var userSearch = _userService.GetUserByUsername(user.Username);
             if (userSearch != null)
             {
-                return BadRequest(); // TODO: Custom message for already taken username
+                return Conflict(); // TODO: Custom message for already taken username
             }
 
             // Check if email is already taken
             userSearch = _userService.GetUserByEmail(user.Email);
             if (userSearch != null)
             {
-                return BadRequest(); // TODO: Custom message for already taken email
+                return Conflict(); // TODO: Custom message for already taken email
             }
 
             var responseObject = _userService.CreateUser(user);
