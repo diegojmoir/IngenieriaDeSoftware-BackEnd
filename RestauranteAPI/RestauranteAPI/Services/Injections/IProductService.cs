@@ -3,9 +3,12 @@ using RestauranteAPI.Models.Dto;
 namespace RestauranteAPI.Services.Injections
 {
     using RestauranteAPI.Models;
+    using System.Collections.Generic;
+
     public interface IProductService
     {
-        UserDto GetProduct(string id);
-        UserDto CreateProduct(Product product); 
+        ProductDto GetProduct(string id);
+        ProductDto CreateProduct(Product product);
+        IEnumerable<ProductDto> GetAvailable();
     }
 }
