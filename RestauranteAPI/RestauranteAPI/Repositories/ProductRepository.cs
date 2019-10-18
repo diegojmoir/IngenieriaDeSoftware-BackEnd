@@ -38,9 +38,6 @@ namespace RestauranteAPI.Repositories
             }
         }
 
-        public FirebaseObject<Product> GetProductFromStorageById(string id)
-        {
-            throw new System.NotImplementedException();
-        }
+
     }
 }

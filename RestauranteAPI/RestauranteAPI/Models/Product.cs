@@ -13,7 +13,7 @@ namespace RestauranteAPI.Models
         public double Price { get; set; }
         [Required]
         public bool IsAvailable { get; set; }
-        public int Category { get; set; }
+        public int[] Categories { get; set; }
         public string Image { get; set; }
         public bool IsAvailableNow()
         {
@@ -37,10 +37,9 @@ namespace RestauranteAPI.Models
         [DataType(DataType.Date)]
         public string EndingDate { get; set; }
 
-        public bool hasValidDate()
+        public bool HasValidDate()
         {
-            DateTime temp;
-            return DateTime.TryParse(this.StartingDate, out temp) && DateTime.TryParse(EndingDate, out temp);
+            return DateTime.TryParse(this.StartingDate, out _) && DateTime.TryParse(EndingDate, out _);
 
         }
     }

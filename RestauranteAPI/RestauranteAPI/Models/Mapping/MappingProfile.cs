@@ -26,7 +26,7 @@ namespace RestauranteAPI.Models.Mapping
                 .ForMember(dest => dest.StartingDate, opt => opt.MapFrom(src => src.Object.StartingDate))
                 .ForMember(dest => dest.EndingDate, opt => opt.MapFrom(src => src.Object.EndingDate))
                 .ForMember(dest => dest.Image, opt => opt.MapFrom(src => src.Object.Image))
-                .ForMember(dest => dest.Category, opt => opt.MapFrom(src => src.Object.Category));
+                .ForMember(dest => dest.Categories, opt => opt.MapFrom(src => src.Object.Categories));
         }
     }
 }

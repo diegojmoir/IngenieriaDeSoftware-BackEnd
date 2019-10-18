@@ -13,7 +13,7 @@ namespace RestauranteAPI.Models.Dto
         [Required]
         public bool IsAvailable { get; set; }
         [Required]
-        public int Category { get; set; }
+        public int[] Categories { get; set; }
         public string Image { get; set; }
 
         [DataType(DataType.Date)]

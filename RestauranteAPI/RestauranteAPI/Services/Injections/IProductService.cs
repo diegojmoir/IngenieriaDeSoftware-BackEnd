@@ -7,7 +7,6 @@ namespace RestauranteAPI.Services.Injections
 
     public interface IProductService
     {
-        ProductDto GetProduct(string id);
         ProductDto CreateProduct(Product product);
         IEnumerable<ProductDto> GetAvailable();
     }
