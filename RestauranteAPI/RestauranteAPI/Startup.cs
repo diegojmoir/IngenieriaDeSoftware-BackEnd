@@ -42,6 +42,7 @@ namespace RestauranteAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddJsonOptions (jo =>
                 {
                     jo.SerializerSettings.ContractResolver = new DefaultContractResolver();
@@ -79,6 +80,7 @@ namespace RestauranteAPI
 
             FirebaseConfig.SetEnviromentVariables(Configuration);
             app.UseHttpsRedirection();
+            app.UseCors(x=>x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             app.UseMvc();
         }
 
