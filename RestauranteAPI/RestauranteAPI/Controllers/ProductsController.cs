@@ -60,6 +60,18 @@ namespace RestauranteAPI.Controllers
                         .Select(e => e.ErrorMessage))
                 });
             }
+
+            if (!product.hasValidDate())
+            {
+                var errores = new List<string>();
+                errores.Add("Fecha(s) ingresadas no válidas");
+                return BadRequest(new
+                {
+                    errors = errores
+
+                });
+            }
+
             var responseObject = _productService.CreateProduct(product);
             if (responseObject == null)
             {
