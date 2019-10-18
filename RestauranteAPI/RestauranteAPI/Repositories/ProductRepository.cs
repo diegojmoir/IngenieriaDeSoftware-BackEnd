@@ -33,15 +33,11 @@ namespace RestauranteAPI.Repositories
                     .Child("Products")
                     .OnceAsync<Product>()
                     .Result
-                    .Where(x => x.Object != null && (x.Object.IsAvailable) && x.Object.IsAvailableNow())
-                    .ToList();
+                    .Where(x => x.Object != null && (x.Object.IsAvailable) && x.Object.IsAvailableNow());
                 return response;
             }
         }
 
-        public FirebaseObject<Product> GetProductFromStorageById(string id)
-        {
-            throw new System.NotImplementedException();
-        }
+
     }
 }
