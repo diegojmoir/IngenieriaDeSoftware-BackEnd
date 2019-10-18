@@ -7,7 +7,6 @@ namespace RestauranteAPI.Repositories.Injections
 {
     public interface IProductRepository
     {
-        FirebaseObject<Product> GetProductFromStorageById(string id);
         FirebaseObject<Product> CrerateProductInStorage(Product product);
         IEnumerable<FirebaseObject<Product>> GetAvailableProductFromStorage();
     }

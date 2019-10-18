@@ -31,10 +31,7 @@ namespace RestauranteAPI.Services
             return result;
         }
 
-        public ProductDto GetProduct(string id)
-        {
-            throw new System.NotImplementedException();
-        }
+
         
         public IEnumerable<ProductDto> GetAvailable()
         {
