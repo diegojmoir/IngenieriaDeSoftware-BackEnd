@@ -40,6 +40,12 @@ namespace RestauranteAPI.Models.Dto
             return true;
 
         }
+        public bool HasValidDate()
+        {
+            return DateTime.TryParse(this.StartingDate, out _) && DateTime.TryParse(EndingDate, out _);
+
+        }
+
 
     }
 }

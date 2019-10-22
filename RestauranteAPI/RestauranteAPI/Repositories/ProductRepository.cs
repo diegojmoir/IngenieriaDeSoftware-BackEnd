@@ -5,6 +5,7 @@ using RestauranteAPI.Configuration.FirebaseConfiguration;
 using Firebase.Database.Query;
 using System.Linq;
 using System.Collections.Generic;
+using RestauranteAPI.Models.Dto;
 
 namespace RestauranteAPI.Repositories
 {
@@ -38,6 +39,22 @@ namespace RestauranteAPI.Repositories
             }
         }
 
+        public FirebaseObject<Product> UpdateProductInStorage(ProductDto product)
+        {
+            FirebaseConfig.FirebaseStartUp().Wait();
+            using (var fbProduct = FirebaseConfig.FirebaseClient)
+            {
+                var responseToUpdate = fbProduct.Child("ProductsCollection").Child("Products").Child(product.Key).PutAsync<ProductDto>(product);
 
+                var response = fbProduct
+                    .Child("ProductsCollection")
+                    .Child("Products")
+                    .OnceAsync<Product>()
+                    .Result
+                    .FirstOrDefault(x => x.Object != null && (x.Object.Name == product.Name));
+                    return response;
+                
+            }
+        }
     }
 }

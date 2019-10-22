@@ -31,8 +31,17 @@ namespace RestauranteAPI.Services
             return result;
         }
 
+        public ProductDto EditProduct(ProductDto product)
+        {
+            var resultObject = _productRepository
+                .UpdateProductInStorage(product);
+            if (resultObject == null)
+                return null;
+            var result = new ProductDto();
+            result = _mapper.Map(resultObject, result);
+            return result;
+        }
 
-        
         public IEnumerable<ProductDto> GetAvailable()
         {
             IEnumerable<FirebaseObject<Product>> resultObjects = _productRepository.GetAvailableProductFromStorage();

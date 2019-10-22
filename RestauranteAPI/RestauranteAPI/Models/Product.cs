@@ -36,11 +36,11 @@ namespace RestauranteAPI.Models
         public string StartingDate { get; set; }
         [DataType(DataType.Date)]
         public string EndingDate { get; set; }
-
         public bool HasValidDate()
         {
             return DateTime.TryParse(this.StartingDate, out _) && DateTime.TryParse(EndingDate, out _);
 
         }
+
     }
 }
