@@ -16,22 +16,16 @@ namespace RestauranteAPI.Configuration.NinjectConfiguration
         {
             //Mapping configuration
 
-
             kernel.Bind<IMapper>().ToMethod(x =>
                 new MapperConfiguration(mc => { mc.AddProfile(new MappingProfile()); }).CreateMapper());
             //services
             kernel.Bind<ITestService>().To<TestService>().InScope(requestScope);
             kernel.Bind<IUserService>().To<UserService>().InScope(requestScope);
             kernel.Bind<IProductService>().To<ProductService>().InScope(requestScope);
-            kernel.Bind<IEfTestService>().To<EfTestService>().InScope(requestScope);
             //repositories
             kernel.Bind<ITestRepository>().To<TestRepository>().InScope(requestScope);
             kernel.Bind<IUserRepository>().To<UserRepository>().InScope(requestScope);
             kernel.Bind<IProductRepository>().To<ProductRepository>().InScope(requestScope);
-            kernel.Bind<IEfTestRepository>().To<EfTestRepository>().InScope(requestScope);
-
-
-
         }
     }
 }

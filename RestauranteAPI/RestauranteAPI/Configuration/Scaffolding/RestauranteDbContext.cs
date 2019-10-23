@@ -8,9 +8,13 @@ namespace RestauranteAPI.Configuration.Scaffolding
         
         public RestauranteDbContext(DbContextOptions<RestauranteDbContext> options) : base(options)
         {
+            
         }
-
-        public DbSet<EfTest> EfTests { get; set; }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer("server=LAPTOP-4KAVGK7N\\DATAANALYSIS;database=EFCoreDatabase;Trusted_Connection=True");
+        }
+        public DbSet<User> Users { get; set; }
 
     }
 }
