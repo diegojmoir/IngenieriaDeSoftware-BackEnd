@@ -134,6 +134,3 @@ D:\IngenieriaDeSoftware-BackEnd\RestauranteAPI\RestaurateAPITests\obj\Debug\netc
 D:\IngenieriaDeSoftware-BackEnd\RestauranteAPI\RestaurateAPITests\obj\Debug\netcoreapp3.0\RestaurateAPITests.csproj.CopyComplete
 D:\IngenieriaDeSoftware-BackEnd\RestauranteAPI\RestaurateAPITests\obj\Debug\netcoreapp3.0\RestaurateAPITests.dll
 D:\IngenieriaDeSoftware-BackEnd\RestauranteAPI\RestaurateAPITests\obj\Debug\netcoreapp3.0\RestaurateAPITests.pdb
-C:\Users\david\Documents\IngenieriaDeSoftware-BackEnd\RestauranteAPI\RestaurateAPITests\obj\Debug\netcoreapp3.0\RestaurateAPITests.csprojAssemblyReference.cache
-C:\Users\david\Documents\IngenieriaDeSoftware-BackEnd\RestauranteAPI\RestaurateAPITests\obj\Debug\netcoreapp3.0\RestaurateAPITests.AssemblyInfoInputs.cache
-C:\Users\david\Documents\IngenieriaDeSoftware-BackEnd\RestauranteAPI\RestaurateAPITests\obj\Debug\netcoreapp3.0\RestaurateAPITests.AssemblyInfo.cs

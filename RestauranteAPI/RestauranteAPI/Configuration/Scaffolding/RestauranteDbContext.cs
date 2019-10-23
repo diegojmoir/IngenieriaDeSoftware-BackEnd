@@ -12,7 +12,7 @@ namespace RestauranteAPI.Configuration.Scaffolding
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("server=LAPTOP-4KAVGK7N\\DATAANALYSIS;database=EFCoreDatabase;Trusted_Connection=True");
+            optionsBuilder.UseSqlServer("server=restaurante-dev.ctthpo6dykjb.us-east-2.rds.amazonaws.com;database=dev_restaurante;User Id=admin; Password=password");
         }
         public DbSet<User> Users { get; set; }
 
