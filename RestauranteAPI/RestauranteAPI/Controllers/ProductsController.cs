@@ -131,5 +131,29 @@ namespace RestauranteAPI.Controllers
             }
             return Ok(responseObject);
         }
+
+        [HttpGet]
+        [Route("getProducts")]
+        public IActionResult GetProducts()
+        {
+            var responseObject = _productService.GetProducts();
+            if(responseObject == null)
+            {
+                return NotFound();
+            }
+            return Ok(responseObject);
+        }
+
+        [HttpDelete]
+        [Route("Delete")]
+        public IActionResult Delete(string key)
+        {
+            var responseObject = _productService.Delete(key);
+            if(responseObject == false)
+            {
+                return NotFound();
+            }
+            return Ok(responseObject);
+        }
     }   
 }

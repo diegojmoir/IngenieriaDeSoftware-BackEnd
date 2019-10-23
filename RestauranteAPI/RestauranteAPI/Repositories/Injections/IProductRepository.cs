@@ -11,5 +11,7 @@ namespace RestauranteAPI.Repositories.Injections
         FirebaseObject<Product> CrerateProductInStorage(Product product);
         IEnumerable<FirebaseObject<Product>> GetAvailableProductFromStorage();
         FirebaseObject<Product> UpdateProductInStorage(ProductDto product);
+        bool DeleteProduct(string key);
+        IEnumerable<FirebaseObject<Product>> GetProductsFromStorage();
     }
 }

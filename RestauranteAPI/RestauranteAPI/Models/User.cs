@@ -1,9 +1,18 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace RestauranteAPI.Models
 {
     public class User
     {
+        public string Key
+        {
+            get { return this.Key; }
+            set
+            {
+                this.Key = Guid.NewGuid().ToString();
+            }
+        }
         [Required]
         public string FirstName { get; set; }
         [Required]

@@ -31,6 +31,12 @@ namespace RestauranteAPI.Services
             return result;
         }
 
+        public bool Delete(string key)
+        {
+            bool resultBool = _productRepository.DeleteProduct(key);
+            return resultBool;
+        }
+
         public ProductDto EditProduct(ProductDto product)
         {
             var resultObject = _productRepository
@@ -51,6 +57,22 @@ namespace RestauranteAPI.Services
 
             List <ProductDto> resultsObjectList = new List<ProductDto>();
             foreach (FirebaseObject<Product> resultObject in resultObjects)
+            {
+                var resultTmp = new ProductDto();
+                resultTmp = _mapper.Map(resultObject, resultTmp);
+                resultsObjectList.Add(resultTmp);
+            }
+            return resultsObjectList;
+        }
+
+        public IEnumerable<ProductDto> GetProducts()
+        {
+            IEnumerable<FirebaseObject<Product>> resultObjects = _productRepository.GetProductsFromStorage();
+            if (resultObjects == null)
+                return null;
+
+            List<ProductDto> resultsObjectList = new List<ProductDto>();
+            foreach(FirebaseObject<Product> resultObject in resultObjects)
             {
                 var resultTmp = new ProductDto();
                 resultTmp = _mapper.Map(resultObject, resultTmp);

@@ -24,6 +24,25 @@ namespace RestauranteAPI.Repositories
             }
         }
 
+        public bool DeleteProduct(string key)
+        {
+            FirebaseConfig.FirebaseStartUp().Wait();
+
+            // TODO: Modificación por SQLServer
+            throw new System.NotImplementedException();
+               
+            using (var client = FirebaseConfig.FirebaseClient)
+            {
+                var response = client
+                    .Child("ProductsCollection")
+                    .Child("Products")
+                    .Child(key)
+                    .DeleteAsync();
+                while (!response.IsCompleted) ;
+                return response.IsCompletedSuccessfully;
+            }
+        }
+
         public IEnumerable<FirebaseObject<Product>> GetAvailableProductFromStorage()
         {
             FirebaseConfig.FirebaseStartUp().Wait();
@@ -52,9 +71,26 @@ namespace RestauranteAPI.Repositories
                     .OnceAsync<Product>()
                     .Result
                     .FirstOrDefault(x => x.Object != null && (x.Object.Name == product.Name));
-                    return response;
-                
+                    return response;                
             }
         }
+
+
+
+        public IEnumerable<FirebaseObject<Product>> GetProductsFromStorage()
+        {
+            FirebaseConfig.FirebaseStartUp().Wait();
+            using (var client = FirebaseConfig.FirebaseClient)
+            {
+                var response = client
+                    .Child("ProductsCollection")
+                    .Child("Products")
+                    .OnceAsync<Product>()
+                    .Result
+                    .Where(x => x.Object != null);
+                return response;
+            }
+        }
+
     }
 }
