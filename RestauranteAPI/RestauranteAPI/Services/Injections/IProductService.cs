@@ -9,5 +9,8 @@ namespace RestauranteAPI.Services.Injections
     {
         ProductDto CreateProduct(Product product);
         IEnumerable<ProductDto> GetAvailable();
+        ProductDto EditProduct(ProductDto product);
+        bool Delete(string key);
+        IEnumerable<ProductDto> GetProducts();
     }
 }

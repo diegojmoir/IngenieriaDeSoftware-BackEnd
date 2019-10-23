@@ -6,6 +6,14 @@ namespace RestauranteAPI.Models
 {
     public class Product
     {
+        public string Key
+        {
+            get { return this.Key; }
+            set
+            {
+                this.Key = Guid.NewGuid().ToString();
+            }
+        }
         [Required]
         public string Name { get; set; }
         public string Description { get; set; }
@@ -36,11 +44,11 @@ namespace RestauranteAPI.Models
         public string StartingDate { get; set; }
         [DataType(DataType.Date)]
         public string EndingDate { get; set; }
-
         public bool HasValidDate()
         {
             return DateTime.TryParse(this.StartingDate, out _) && DateTime.TryParse(EndingDate, out _);
 
         }
+
     }
 }
