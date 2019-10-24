@@ -125,10 +125,7 @@ namespace RestauranteAPI.Controllers
         public IActionResult GetAvailable()
         {
             var responseObject = _productService.GetAvailable();
-            if(responseObject == null)
-            {
-                return NotFound();
-            }
+
             return Ok(responseObject);
         }
 
@@ -137,10 +134,7 @@ namespace RestauranteAPI.Controllers
         public IActionResult GetProducts()
         {
             var responseObject = _productService.GetProducts();
-            if(responseObject == null)
-            {
-                return NotFound();
-            }
+
             return Ok(responseObject);
         }
 
@@ -151,7 +145,7 @@ namespace RestauranteAPI.Controllers
             var responseObject = _productService.Delete(key);
             if(responseObject == false)
             {
-                return NotFound();
+                return NotFound(responseObject);
             }
             return Ok(responseObject);
         }
