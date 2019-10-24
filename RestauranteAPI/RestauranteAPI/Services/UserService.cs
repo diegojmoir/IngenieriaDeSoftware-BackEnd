@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore.Internal;
 using RestauranteAPI.Models;
 using RestauranteAPI.Models.Dto;
 using RestauranteAPI.Services.Injections;
@@ -37,16 +38,12 @@ namespace RestauranteAPI.Services
             return result;
         }
 
-        public UserDto GetUserByUsername(string username)
+        public bool CheckUserAlreadyExist(string username,string email)
         {
             var resultObject = _userRepository
-                .GetUserFromStorageByUsername(username);
-            if(resultObject == null)
-                return null;
-
-            var result=new UserDto();
-            result = _mapper.Map( resultObject,result);
-            return result;
+                .GetExistentUsers(username,email);
+            
+            return resultObject.Any();
         }
 
         public UserDto GetUserByEmail(string email)

@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Cors;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using RestauranteAPI.Models;
 using RestauranteAPI.Services.Injections;
 using System.Linq;
@@ -18,19 +17,6 @@ namespace RestauranteAPI.Controllers
         {
             _userService = userService;
         }
-
-        /*
-        [HttpPost("authenticate")]
-        public IActionResult Authenticate([FromBody]Credential credential)
-        {
-            var user = _taxPortalRepository.Authenticate(userParam.Username, userParam.Password);
-
-            if (user == null)
-                return BadRequest(new { message = "Username or password is incorrect" });
-
-            return Ok(user);
-        }
-        */
 
         /// <summary>
         /// Get user by username and password
@@ -71,27 +57,17 @@ namespace RestauranteAPI.Controllers
                         .Select(e => e.ErrorMessage))
                 });
             }
-
-            // Check if username is already taken
-            var userSearch = _userService.GetUserByUsername(user.Username);
-            if (userSearch != null)
+            // Check if username or email is already taken
+            var userSearch = _userService.CheckUserAlreadyExist(user.Username,user.Email);
+            if (userSearch)
             {
-                return Conflict(); // TODO: Custom message for already taken username
+                return Conflict(); // TODO: Custom message for already taken username or email
             }
-
-            // Check if email is already taken
-            userSearch = _userService.GetUserByEmail(user.Email);
-            if (userSearch != null)
-            {
-                return Conflict(); // TODO: Custom message for already taken email
-            }
-
             var responseObject = _userService.CreateUser(user);
             if (responseObject == null)
             {
                 return BadRequest(); // TO DO: It should have a custom error message
             }
-
             return Ok(responseObject);
         }
     }

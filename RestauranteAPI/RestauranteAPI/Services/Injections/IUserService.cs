@@ -6,7 +6,7 @@ namespace RestauranteAPI.Services.Injections
     public interface IUserService
     {
         UserDto GetUser(string user, string password);
-        UserDto GetUserByUsername(string username);
+        bool CheckUserAlreadyExist(string username, string email);
         UserDto GetUserByEmail(string email);
         UserDto CreateUser(User user); 
     }
