@@ -1,96 +1,86 @@
+using System;
 using RestauranteAPI.Models;
 using RestauranteAPI.Repositories.Injections;
-using Firebase.Database;
-using RestauranteAPI.Configuration.FirebaseConfiguration;
-using Firebase.Database.Query;
 using System.Linq;
 using System.Collections.Generic;
-using RestauranteAPI.Models.Dto;
+using RestauranteAPI.Configuration.Scaffolding;
 
 namespace RestauranteAPI.Repositories
 {
     public class ProductRepository : IProductRepository
     {
-        public FirebaseObject<Product> CrerateProductInStorage(Product product)
+        private RestauranteDbContext Context { get; set; }
+
+        public ProductRepository(RestauranteDbContext context)
         {
-            FirebaseConfig.FirebaseStartUp().Wait();
-            using(var client = FirebaseConfig.FirebaseClient)
-            {
-                var response = client.Child("ProductsCollection")
-                    .Child("Products")
-                    .PostAsync(product, false)
-                    .Result;
-                return response;
-            }
+            Context = context;
+        }
+
+        public Product CreateProductInStorage(Product product)
+        {
+            Context.Products.Add(product);
+            product.ProductCategories=new List<ProductCategory>();
+            Context.SaveChanges();
+            CreateProductCategories(product.ID,product.ProductCategories,product.Categories);
+            Context.ProductCategories.AddRange(product.ProductCategories);
+            Context.SaveChanges();
+            return product;
         }
 
         public bool DeleteProduct(string key)
         {
-            FirebaseConfig.FirebaseStartUp().Wait();
-
-            // TODO: Modificación por SQLServer
-            throw new System.NotImplementedException();
-               
-            using (var client = FirebaseConfig.FirebaseClient)
+            try
             {
-                var response = client
-                    .Child("ProductsCollection")
-                    .Child("Products")
-                    .Child(key)
-                    .DeleteAsync();
-                while (!response.IsCompleted) ;
-                return response.IsCompletedSuccessfully;
+                Context.ProductCategories
+                    .RemoveRange(Context.ProductCategories.Where(x=>x.ID_Product.ToString()==key));
+                Context.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
             }
         }
 
-        public IEnumerable<FirebaseObject<Product>> GetAvailableProductFromStorage()
+        public IEnumerable<Product> GetAvailableProductFromStorage()
         {
-            FirebaseConfig.FirebaseStartUp().Wait();
-            using(var client = FirebaseConfig.FirebaseClient)
-            {
-                var response = client
-                    .Child("ProductsCollection")
-                    .Child("Products")
-                    .OnceAsync<Product>()
-                    .Result
-                    .Where(x => x.Object != null && (x.Object.IsAvailable) && x.Object.IsAvailableNow());
-                return response;
-            }
+            var resultSet = Context.Products.Where(x => x.IsAvailableNow()).ToList();
+            resultSet.ForEach(x =>
+                {
+                    x.Categories = Context.ProductCategories.Where(y => y.ID_Product == x.ID)
+                        .Select(y => y.ID_Category).ToArray();
+                });
+            return Context.Products.Where(x => x.IsAvailableNow());
         }
 
-        public FirebaseObject<Product> UpdateProductInStorage(ProductDto product)
+        public Product UpdateProductInStorage(Product product)
         {
-            FirebaseConfig.FirebaseStartUp().Wait();
-            using (var fbProduct = FirebaseConfig.FirebaseClient)
-            {
-                var responseToUpdate = fbProduct.Child("ProductsCollection").Child("Products").Child(product.Key).PutAsync<ProductDto>(product);
-
-                var response = fbProduct
-                    .Child("ProductsCollection")
-                    .Child("Products")
-                    .OnceAsync<Product>()
-                    .Result
-                    .FirstOrDefault(x => x.Object != null && (x.Object.Name == product.Name));
-                    return response;                
-            }
+            var newProductCategoriesCategories = new List<ProductCategory>();
+            CreateProductCategories(product.ID, newProductCategoriesCategories, product.Categories);
+            Context.RemoveRange( Context.ProductCategories.Where(x=>x.ID_Product==product.ID));
+            Context.Products.Update(product);
+            Context.ProductCategories.AddRange(newProductCategoriesCategories);
+            Context.SaveChanges();
+            return product;
         }
 
 
 
-        public IEnumerable<FirebaseObject<Product>> GetProductsFromStorage()
+        public IEnumerable<Product> GetProductsFromStorage()
         {
-            FirebaseConfig.FirebaseStartUp().Wait();
-            using (var client = FirebaseConfig.FirebaseClient)
-            {
-                var response = client
-                    .Child("ProductsCollection")
-                    .Child("Products")
-                    .OnceAsync<Product>()
-                    .Result
-                    .Where(x => x.Object != null);
-                return response;
-            }
+            return Context.Products;
         }
 
+        private static void CreateProductCategories(Guid?productId,ICollection<ProductCategory> productCategories,IEnumerable<int?> categories)
+        {
+            foreach (var categoryId in categories)
+            {
+                productCategories.Add(new ProductCategory
+                {
+                    ID_Category = categoryId,
+                    ID_Product = productId
+                });
+            }
+        }
     }
 }

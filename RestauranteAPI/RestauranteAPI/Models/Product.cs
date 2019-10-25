@@ -1,19 +1,17 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Globalization;
+using System.ComponentModel.DataAnnotations.Schema;
+using Newtonsoft.Json;
 
 namespace RestauranteAPI.Models
 {
     public class Product
     {
-        public string Key
-        {
-            get { return this.Key; }
-            set
-            {
-                this.Key = Guid.NewGuid().ToString();
-            }
-        }
+        [JsonIgnore]
+        public Guid? ID { get; set; }
+
         [Required]
         public string Name { get; set; }
         public string Description { get; set; }
@@ -21,8 +19,10 @@ namespace RestauranteAPI.Models
         public double Price { get; set; }
         [Required]
         public bool IsAvailable { get; set; }
-        public int[] Categories { get; set; }
+        [NotMapped]
+        public int?[] Categories { get; set; }
         public string Image { get; set; }
+        
         public bool IsAvailableNow()
         {
             if (!IsAvailable)
@@ -49,6 +49,8 @@ namespace RestauranteAPI.Models
             return DateTime.TryParse(this.StartingDate, out _) && DateTime.TryParse(EndingDate, out _);
 
         }
-
+        [JsonIgnore]
+        [NotMapped]
+        public ICollection<ProductCategory>ProductCategories { get; set; }
     }
 }

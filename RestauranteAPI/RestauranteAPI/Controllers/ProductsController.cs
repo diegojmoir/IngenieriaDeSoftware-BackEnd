@@ -1,6 +1,4 @@
-using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json.Linq;
 using RestauranteAPI.Models;
 using RestauranteAPI.Models.Dto;
 using RestauranteAPI.Services.Injections;
