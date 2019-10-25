@@ -1,10 +1,13 @@
-﻿
+﻿using Newtonsoft.Json;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace RestauranteAPI.Models
 {
-    public class User:BaseModel<string>
+    public class User
     {
+        [JsonIgnore]
+        public Guid? ID { get; set; }
         [Required]
         public string FirstName { get; set; }
         [Required]
@@ -17,6 +20,5 @@ namespace RestauranteAPI.Models
         public string Email { get; set; }
         [Required]
         public string Password { get; set; }
-        public string Token { get; set; }
     }
 }

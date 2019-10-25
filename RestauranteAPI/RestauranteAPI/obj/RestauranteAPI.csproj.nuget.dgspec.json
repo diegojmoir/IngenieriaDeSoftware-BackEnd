@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\usuario\\Desktop\\Personal\\Desarrollo de Soft\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestauranteAPI\\RestauranteAPI.csproj": {}
+    "C:\\Users\\usuario\\Desktop\\Personal\\Desarrollo de Soft\\Desarrollo\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestauranteAPI\\RestauranteAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\usuario\\Desktop\\Personal\\Desarrollo de Soft\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestauranteAPI\\RestauranteAPI.csproj": {
+    "C:\\Users\\usuario\\Desktop\\Personal\\Desarrollo de Soft\\Desarrollo\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestauranteAPI\\RestauranteAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\usuario\\Desktop\\Personal\\Desarrollo de Soft\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestauranteAPI\\RestauranteAPI.csproj",
+        "projectUniqueName": "C:\\Users\\usuario\\Desktop\\Personal\\Desarrollo de Soft\\Desarrollo\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestauranteAPI\\RestauranteAPI.csproj",
         "projectName": "RestauranteAPI",
-        "projectPath": "C:\\Users\\usuario\\Desktop\\Personal\\Desarrollo de Soft\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestauranteAPI\\RestauranteAPI.csproj",
+        "projectPath": "C:\\Users\\usuario\\Desktop\\Personal\\Desarrollo de Soft\\Desarrollo\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestauranteAPI\\RestauranteAPI.csproj",
         "packagesPath": "C:\\Users\\usuario\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\usuario\\Desktop\\Personal\\Desarrollo de Soft\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestauranteAPI\\obj\\",
+        "outputPath": "C:\\Users\\usuario\\Desktop\\Personal\\Desarrollo de Soft\\Desarrollo\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestauranteAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -41,6 +41,14 @@
       "frameworks": {
         "netcoreapp2.2": {
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
             "FirebaseAuthentication.net": {
               "target": "Package",
               "version": "[3.3.0, )"
@@ -64,6 +72,16 @@
               "target": "Package",
               "version": "[2.2.0, )"
             },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[2.2.6, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.6, )"
+            },
             "Microsoft.NETCore.App": {
               "suppressParent": "All",
               "target": "Package",
@@ -76,7 +94,7 @@
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
-              "version": "[2.2.3, )"
+              "version": "[2.2.4, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",
