@@ -5,10 +5,7 @@ using RestauranteAPI.Services;
 using RestauranteAPI.Repositories.Injections;
 using NUnit.Framework;
 using Moq;
-using Firebase.Database;
-using Firebase.Database.Streaming;
 using RestauranteAPI.Models.Mapping;
-using System.Collections.Generic;
 using RestauranteAPI.Models.Dto;
 
 namespace RestaurateAPITests.Services
@@ -18,13 +15,10 @@ namespace RestaurateAPITests.Services
     {
         private ProductService _productService;
         private Mock<IProductRepository> _moqRepository;
-        private const string validDate = "10-09-2020";
-        private const double validPrice = 255.2;
+        private readonly DateTime _validDate = DateTime.Parse("10-09-2020");
+        private const decimal ValidPrice = 255.2m;
         private readonly string _validUserKey = Guid.NewGuid().ToString();
-        private FirebaseObject<Product> _validFirebaseObject;
-        private List<ProductDto> _validFirebaseObjects;
         private Product _nonCreatedValidProduct;
-        private Product _invalidProduct;
         private Product _validDatabaseModel;
         private ProductDto _validProductDto;
 
@@ -32,16 +26,15 @@ namespace RestaurateAPITests.Services
         [OneTimeSetUp]
         public void BeforeEachTest()
         {
-            _validFirebaseObjects = new List<ProductDto>();
 
             _validProductDto = new ProductDto
             {
                 Name = "Some Name",
                 Description = "Some Description",
-                Price = validPrice,
+                Price = ValidPrice,
                 IsAvailable = true,
-                StartingDate = validDate,
-                EndingDate = validDate,
+                StartingDate = _validDate,
+                EndingDate = _validDate,
                 Key = Guid.NewGuid().ToString()
             };
 
@@ -49,10 +42,10 @@ namespace RestaurateAPITests.Services
             {
                 Name = "Some Name",
                 Description = "Some Description",
-                Price = validPrice,
+                Price = ValidPrice,
                 IsAvailable = true,
-                StartingDate = validDate,
-                EndingDate = validDate
+                StartingDate = _validDate,
+                EndingDate = _validDate
 
             };
 
@@ -67,15 +60,10 @@ namespace RestaurateAPITests.Services
                 EndingDate = _nonCreatedValidProduct.EndingDate
             };
 
-            _validFirebaseObject = new FirebaseEvent<Product>(_validUserKey, _validDatabaseModel
-                , FirebaseEventType.InsertOrUpdate, FirebaseEventSource.Offline);
-
-            _validFirebaseObjects.Add(_validProductDto);
-
-            _invalidProduct = null;
+            
             _moqRepository = new Mock<IProductRepository>();
-            _moqRepository.Setup(x => x.CrerateProductInStorage(_nonCreatedValidProduct))
-                .Returns(_validFirebaseObject);
+            _moqRepository.Setup(x => x.CreateProductInStorage(_nonCreatedValidProduct))
+                .Returns(_validDatabaseModel);
 
             
 
