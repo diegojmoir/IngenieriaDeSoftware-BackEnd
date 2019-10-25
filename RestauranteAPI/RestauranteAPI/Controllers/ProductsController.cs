@@ -33,7 +33,7 @@ namespace RestauranteAPI.Controllers
                 };
                 return BadRequest(new
                 {
-                    errors = errores
+                    errors = (IEnumerable<string>) errores
 
                 });
             }
@@ -54,7 +54,7 @@ namespace RestauranteAPI.Controllers
                 };
                 return BadRequest(new
                 {
-                    errors = errores
+                    errors = (IEnumerable<string>) errores
 
                 });
             }
@@ -104,7 +104,7 @@ namespace RestauranteAPI.Controllers
                 };
                 return BadRequest(new
                 {
-                    errors = errores
+                    errors = (IEnumerable<string>) errores
 
                 });
             }
@@ -143,9 +143,9 @@ namespace RestauranteAPI.Controllers
             var responseObject = _productService.Delete(key);
             if(responseObject == false)
             {
-                return NotFound(responseObject);
+                return NotFound(false);
             }
-            return Ok(responseObject);
+            return Ok(true);
         }
     }   
 }

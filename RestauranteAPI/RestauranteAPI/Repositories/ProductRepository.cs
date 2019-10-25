@@ -29,17 +29,14 @@ namespace RestauranteAPI.Repositories
 
         public bool DeleteProduct(string key)
         {
-            try
-            {
+            
                 Context.ProductCategories
                     .RemoveRange(Context.ProductCategories.Where(x=>x.ID_Product.ToString()==key));
                 Context.SaveChanges();
+                Context.Products.RemoveRange(Context.Products.Where(x=>x.ID==Guid.Parse(key)));
+                Context.SaveChanges();
                 return true;
-            }
-            catch
-            {
-                return false;
-            }
+
         }
 
         public IEnumerable<Product> GetAvailableProductFromStorage()
@@ -50,7 +47,7 @@ namespace RestauranteAPI.Repositories
                     x.Categories = Context.ProductCategories.Where(y => y.ID_Product == x.ID)
                         .Select(y => y.ID_Category).ToArray();
                 });
-            return Context.Products.Where(x => x.IsAvailableNow());
+            return resultSet;
         }
 
         public Product UpdateProductInStorage(Product product)
@@ -64,11 +61,15 @@ namespace RestauranteAPI.Repositories
             return product;
         }
 
-
-
         public IEnumerable<Product> GetProductsFromStorage()
         {
-            return Context.Products;
+            var resultSet = Context.Products.ToList();
+            resultSet.ForEach(x =>
+            {
+                x.Categories = Context.ProductCategories.Where(y => y.ID_Product == x.ID)
+                    .Select(y => y.ID_Category).ToArray();
+            });
+            return resultSet;
         }
 
         private static void CreateProductCategories(Guid?productId,ICollection<ProductCategory> productCategories,IEnumerable<int?> categories)
