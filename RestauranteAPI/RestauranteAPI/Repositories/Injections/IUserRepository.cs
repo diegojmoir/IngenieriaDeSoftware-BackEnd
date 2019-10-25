@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using RestauranteAPI.Models;
 using Firebase.Database;
 using System.IdentityModel.Tokens.Jwt;
@@ -7,13 +7,9 @@ namespace RestauranteAPI.Repositories.Injections
 {
     public interface IUserRepository
     {
-         FirebaseObject<User> GetUserFromStorageByUserNameAndPassword(string user, string password);
-         FirebaseObject<User> CreateUserInStorage(User user);
-
-        FirebaseObject<User> GetUserFromStorageByUsername(string username);
-
-        FirebaseObject<User> GetUserFromStorageByEmail(string email);
-
-        string CreateToken(string username);
+         User GetUserFromStorageByUserNameAndPassword(string user, string password);
+         User CreateUserInStorage(User user);
+         List<User> GetExistentUsers(string username,string email);
+         FirebaseObject<User> GetUserFromStorageByEmail(string email);
     }
 }

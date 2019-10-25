@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Akabane\\Documents\\GitHub\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestauranteAPI\\RestauranteAPI.csproj": {}
+    "D:\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestauranteAPI\\RestauranteAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Akabane\\Documents\\GitHub\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestauranteAPI\\RestauranteAPI.csproj": {
+    "D:\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestauranteAPI\\RestauranteAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Akabane\\Documents\\GitHub\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestauranteAPI\\RestauranteAPI.csproj",
+        "projectUniqueName": "D:\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestauranteAPI\\RestauranteAPI.csproj",
         "projectName": "RestauranteAPI",
-        "projectPath": "C:\\Users\\Akabane\\Documents\\GitHub\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestauranteAPI\\RestauranteAPI.csproj",
-        "packagesPath": "C:\\Users\\Akabane\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Akabane\\Documents\\GitHub\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestauranteAPI\\obj\\",
+        "projectPath": "D:\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestauranteAPI\\RestauranteAPI.csproj",
+        "packagesPath": "C:\\Users\\David\\.nuget\\packages\\",
+        "outputPath": "D:\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestauranteAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Akabane\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\David\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -76,6 +76,16 @@
               "target": "Package",
               "version": "[2.2.0, )"
             },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[2.2.6, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.6, )"
+            },
             "Microsoft.NETCore.App": {
               "suppressParent": "All",
               "target": "Package",
@@ -88,7 +98,7 @@
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
-              "version": "[2.2.3, )"
+              "version": "[2.2.4, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",

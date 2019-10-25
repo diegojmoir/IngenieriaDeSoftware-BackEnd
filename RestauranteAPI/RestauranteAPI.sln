@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.29326.143
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestauranteAPI", "RestauranteAPI\RestauranteAPI.csproj", "{F7CA6448-0107-4FD5-A822-82223C420AF2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestaurateAPITests", "RestaurateAPITests\RestaurateAPITests.csproj", "{032352F6-8F35-42A5-AABC-88B1A471D4F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestaurateAPITests", "RestaurateAPITests\RestaurateAPITests.csproj", "{032352F6-8F35-42A5-AABC-88B1A471D4F9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GatewayAPI", "GatewayAPI\GatewayAPI.csproj", "{B6AAAD94-8921-462A-9973-D05C21037310}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{032352F6-8F35-42A5-AABC-88B1A471D4F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{032352F6-8F35-42A5-AABC-88B1A471D4F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{032352F6-8F35-42A5-AABC-88B1A471D4F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6AAAD94-8921-462A-9973-D05C21037310}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6AAAD94-8921-462A-9973-D05C21037310}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6AAAD94-8921-462A-9973-D05C21037310}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6AAAD94-8921-462A-9973-D05C21037310}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

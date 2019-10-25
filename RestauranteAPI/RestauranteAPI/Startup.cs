@@ -12,6 +12,7 @@ using RestauranteAPI.Configuration.FirebaseConfiguration;
 using System;
 using System.Threading;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Serialization;
 using System.Text;
@@ -20,6 +21,7 @@ using Microsoft.IdentityModel.Tokens;
 using RestauranteAPI.Services.Injections;
 using RestauranteAPI.Services;
 using RestauranteAPI.Configuration.NinjectConfiguration;
+using RestauranteAPI.Configuration.Scaffolding;
 using RestauranteAPI.Models.Mapping;
 
 namespace RestauranteAPI
@@ -47,17 +49,21 @@ namespace RestauranteAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            
             services.AddCors();
+            
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddJsonOptions (jo =>
                 {
                     jo.SerializerSettings.ContractResolver = new DefaultContractResolver();
                 }
             );
+            services.AddDbContext<RestauranteDbContext>(options=>options
+                .UseSqlServer(Configuration["ConnectionStrings:SqlServer"]));
+
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddRequestScopingMiddleware(() => _scopeProvider.Value = new Scope());
             services.AddCustomControllerActivation(Resolve);
             services.AddCustomViewComponentActivation(Resolve);
-            // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "Restaurante_DEV", Version = "v1"}); });
 
             // configure jwt authentication
@@ -97,7 +103,7 @@ namespace RestauranteAPI
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            Kernel = RegisterApplicationComponents(app);
+            
             app.UseSwagger();
             app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "Restaurante_DEV"); });
             if (env.IsDevelopment())
@@ -108,6 +114,7 @@ namespace RestauranteAPI
             {
                 app.UseHsts();
             }
+
             FirebaseConfig.SetEnviromentVariables(Configuration);
             app.UseHttpsRedirection();
 
@@ -120,6 +127,7 @@ namespace RestauranteAPI
 
             app.UseAuthentication();
             app.UseMvc();
+            Kernel = RegisterApplicationComponents(app);
         }
 
         private IKernel RegisterApplicationComponents(IApplicationBuilder app)

@@ -10,8 +10,6 @@ namespace RestauranteAPI.Controllers
     /// <summary>
     /// Handles users information
     /// </summary>
-    [Authorize]
-    [ApiController]
     [Route("api/[controller]")]
     public class UsersController : ControllerBase
     {
@@ -76,7 +74,6 @@ namespace RestauranteAPI.Controllers
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        [AllowAnonymous]
         [HttpPost]
         [Route("create")]
         public IActionResult Create([FromBody] User user)
@@ -95,27 +92,17 @@ namespace RestauranteAPI.Controllers
                         .Select(e => e.ErrorMessage))
                 });
             }
-
-            // Check if username is already taken
-            var userSearch = _userService.GetUserByUsername(user.Username);
-            if (userSearch != null)
+            // Check if username or email is already taken
+            var userSearch = _userService.CheckUserAlreadyExist(user.Username,user.Email);
+            if (userSearch)
             {
-                return Conflict(); // TODO: Custom message for already taken username
+                return Conflict(); // TODO: Custom message for already taken username or email
             }
-
-            // Check if email is already taken
-            userSearch = _userService.GetUserByEmail(user.Email);
-            if (userSearch != null)
-            {
-                return Conflict(); // TODO: Custom message for already taken email
-            }
-
             var responseObject = _userService.CreateUser(user);
             if (responseObject == null)
             {
                 return BadRequest(); // TO DO: It should have a custom error message
             }
-
             return Ok(responseObject);
         }
     }
