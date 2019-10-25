@@ -1,6 +1,4 @@
-using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json.Linq;
 using RestauranteAPI.Models;
 using RestauranteAPI.Models.Dto;
 using RestauranteAPI.Services.Injections;
@@ -35,7 +33,7 @@ namespace RestauranteAPI.Controllers
                 };
                 return BadRequest(new
                 {
-                    errors = errores
+                    errors = (IEnumerable<string>) errores
 
                 });
             }
@@ -56,7 +54,7 @@ namespace RestauranteAPI.Controllers
                 };
                 return BadRequest(new
                 {
-                    errors = errores
+                    errors = (IEnumerable<string>) errores
 
                 });
             }
@@ -106,7 +104,7 @@ namespace RestauranteAPI.Controllers
                 };
                 return BadRequest(new
                 {
-                    errors = errores
+                    errors = (IEnumerable<string>) errores
 
                 });
             }
@@ -125,10 +123,7 @@ namespace RestauranteAPI.Controllers
         public IActionResult GetAvailable()
         {
             var responseObject = _productService.GetAvailable();
-            if(responseObject == null)
-            {
-                return NotFound();
-            }
+
             return Ok(responseObject);
         }
 
@@ -137,10 +132,7 @@ namespace RestauranteAPI.Controllers
         public IActionResult GetProducts()
         {
             var responseObject = _productService.GetProducts();
-            if(responseObject == null)
-            {
-                return NotFound();
-            }
+
             return Ok(responseObject);
         }
 
@@ -151,9 +143,9 @@ namespace RestauranteAPI.Controllers
             var responseObject = _productService.Delete(key);
             if(responseObject == false)
             {
-                return NotFound();
+                return NotFound(false);
             }
-            return Ok(responseObject);
+            return Ok(true);
         }
     }   
 }

@@ -20,17 +20,25 @@ namespace RestaurateAPITests.Controllers
         private ProductDto _validProduct;
         private ProductDto _notValidDateProduct;
         private Product _notCreatedValidDateProduct;
+        private ProductDto _notCreatedValidDateProductDto;
         private Product _notCreatedNotValidDateProduct;
+        private ProductDto _notCreatedNotValidDateProductDto;
         private Product _validProductModel;
         private Product _invalidProduct;
-        private const string NotValidDate = "111-111-111";
-        private const double ValidPrice = 2;
-        private const string ValidDate = "12-12-2019";
-        private List<ProductDto> _validProducts;
+        private ProductDto _invalidProductDto;
 
+        private DateTime NotValidDate = DateTime.Parse("11-12-2019");
+        private const decimal ValidPrice = 2;
+        private readonly DateTime _validDate = DateTime.Parse( "12-12-2019");
+        private List<ProductDto> _validProducts;
+        private List<ProductDto> _invalidProducts;
+        private const string notExistingKey = "NOT EXISTING KEY";
+        private const string ExistingKey = "EXISTING KEY";
+        private Product _notValidModelProduct;
         [OneTimeSetUp]
         public void BeforeTests()
         {
+            _invalidProducts = null;
             _validProducts = new List<ProductDto>();
 
             _validProductModel = new Product
@@ -39,8 +47,36 @@ namespace RestaurateAPITests.Controllers
                 Description = "Some Description",
                 Price = ValidPrice,
                 IsAvailable = true,
-                StartingDate = ValidDate,
-                EndingDate = ValidDate,
+                StartingDate = _validDate,
+                EndingDate = _validDate,
+            };
+            _notValidModelProduct = new Product
+            {
+                Name = "",
+                Description = "Some Description",
+                Price = ValidPrice,
+                IsAvailable = true,
+                StartingDate = _validDate,
+                EndingDate = _validDate
+            };
+            _notCreatedNotValidDateProduct = new Product
+            {
+                Name = "Some Name",
+                Description = "Some Description",
+                Price = ValidPrice,
+                IsAvailable = true,
+                StartingDate = NotValidDate,
+                EndingDate = _validDate,
+            };
+            _notCreatedNotValidDateProductDto = new ProductDto
+            {
+                Name = "Some Name",
+                Description = "Some Description",
+                Price = ValidPrice,
+                IsAvailable = true,
+                StartingDate = NotValidDate,
+                EndingDate = _validDate,
+                Key = "CLAVE"
             };
             _notValidDateProduct = new ProductDto
             {
@@ -58,8 +94,8 @@ namespace RestaurateAPITests.Controllers
                 Description = "Some Description",
                 Price = ValidPrice,
                 IsAvailable = true,
-                StartingDate = ValidDate,
-                EndingDate = ValidDate,
+                StartingDate = _validDate,
+                EndingDate = _validDate,
                 Key = _validProductKey
             };
             _notCreatedValidDateProduct = new Product
@@ -68,10 +104,21 @@ namespace RestaurateAPITests.Controllers
                 Description = "Some Description",
                 Price = ValidPrice,
                 IsAvailable = true,
-                StartingDate = ValidDate,
-                EndingDate = ValidDate,
+                StartingDate = _validDate,
+                EndingDate = _validDate,
+            };
+            _notCreatedValidDateProductDto = new ProductDto
+            {
+                Name = "Some Name",
+                Description = "Some Description",
+                Price = ValidPrice,
+                IsAvailable = true,
+                StartingDate = _validDate,
+                EndingDate = _validDate,
+                Key = "CLAVE"
             };
             _invalidProduct = null;
+            _invalidProductDto = null;
             _moqProductService = new Mock<IProductService>();
             _moqProductService
                 .Setup(x => x.GetAvailable()).
@@ -83,19 +130,104 @@ namespace RestaurateAPITests.Controllers
             _moqProductService
                 .Setup(x => x.CreateProduct(_validProductModel))
                 .Returns(_validProduct);
-
             _moqProductService
-                .Setup(x => x.CreateProduct(_notCreatedNotValidDateProduct))
-                .Returns(_notValidDateProduct);
+               .Setup(x => x.GetProducts())
+               .Returns(_validProducts);
+            _moqProductService
+                .Setup(x => x.Delete(notExistingKey))
+                .Returns(false);
+            _moqProductService
+                .Setup(x => x.Delete(ExistingKey))
+                .Returns(true);
+            _moqProductService
+                .Setup(x => x.EditProduct(_notCreatedValidDateProductDto))
+                .Returns(_invalidProductDto);
             //_moqUserService
             //    .Setup(x => x.CreateUser(_alreadyExistingUsernameUser))
             //   .Returns(_validUser);
 
             _testController = new ProductsController(_moqProductService.Object);
         }
-        
+        [Test]
+        public void Should_return_BadRequest_when_element_to_modify_is_not_found()
+        {
+            var result = _testController.Edit(_notCreatedValidDateProductDto) as BadRequestObjectResult;
+            Assert.IsNotNull(result);
+            Assert.AreEqual(400, result.StatusCode);
+        }
+        [Test]
+        public void Should_return_true_if_product_to_delete_existed()
+        {
+            var result = _testController.Delete(ExistingKey) as OkObjectResult;
+            Assert.IsNotNull(result);
+            Assert.AreEqual(result.Value, true);
+            Assert.AreEqual(200, result.StatusCode);
+        }
 
-     
+        [Test]
+        public void Should_return_BadRequest_if_new_product_date_is_invalid()
+        {
+            var result = _testController.Create(_notCreatedNotValidDateProduct) as BadRequestObjectResult;
+            Assert.IsNotNull(result);
+            Assert.AreEqual(400, result.StatusCode);
+        }
+
+        [Test]
+        public void Should_return_BadRequest_if_modified_product_date_is_invalid()
+        {
+            var result = _testController.Edit(_notCreatedNotValidDateProductDto) as BadRequestObjectResult;
+            Assert.IsNotNull(result);
+            Assert.AreEqual(400, result.StatusCode);
+        }
+
+        [Test]
+        public void Should_return_BadRequest_if_creating_null_product()
+        {
+            var result = _testController.Create(_invalidProduct) as BadRequestResult;
+            Assert.IsNotNull(result);
+            Assert.AreEqual(400, result.StatusCode);
+        }
+
+        [Test]
+        public void Should_return_BadRequest_if_modifying_null_product()
+        {
+            var result = _testController.Edit(_invalidProductDto) as BadRequestObjectResult;
+            Assert.IsNotNull(result);
+            Assert.AreEqual(400, result.StatusCode);
+        }
+
+        [Test]
+        public void Should_return_BadRequest_if_product_model_is_not_valid()
+        {
+            var result = _testController.Create(_notValidModelProduct) as BadRequestObjectResult;
+            Assert.IsNull(result);
+            Assert.AreEqual(400, result.StatusCode);
+        }
+
+        [Test]
+        public void Should_return_false_if_product_to_delete_not_existed()
+        {
+            var result = _testController.Delete(notExistingKey) as NotFoundObjectResult;
+            Assert.IsNotNull(result);
+            Assert.AreEqual(result.Value, false);
+            Assert.AreEqual(404, result.StatusCode);
+        }
+
+        [Test]
+        public void Should_return_OkResult_if_there_are_products()
+        {
+            var result = _testController.GetProducts() as OkObjectResult;
+            Assert.IsNotNull(result);
+            Assert.AreEqual(200, result.StatusCode);
+        }
+
+        [Test]
+        public void Should_return_OkResult_if_there_are_products_available()
+        {
+            var result = _testController.GetAvailable() as OkObjectResult;
+            Assert.IsNotNull(result);
+            Assert.AreEqual(200, result.StatusCode);
+        }
 
 
         [Test]
@@ -116,9 +248,9 @@ namespace RestaurateAPITests.Controllers
         }
 
         [Test]
-        public void Should_return_bad_request_if_new_user_is_not_valid()
+        public void Should_return_bad_request_if_modified_product_is_not_valid()
         {
-            var result = _testController.Create(_invalidProduct) as BadRequestResult;
+            var result = _testController.Edit(_invalidProductDto) as BadRequestObjectResult;
             Assert.IsNotNull(result);
             Assert.AreEqual(400, result.StatusCode);
         }
