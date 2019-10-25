@@ -4,7 +4,7 @@ using RestauranteAPI.Models.Dto;
 using RestauranteAPI.Services.Injections;
 using RestauranteAPI.Repositories.Injections;
 using System.Collections.Generic;
-using Firebase.Database;
+using System.Linq;
 
 namespace RestauranteAPI.Services
 {
@@ -21,7 +21,7 @@ namespace RestauranteAPI.Services
 
         public ProductDto CreateProduct(Product product)
         {
-            var resultObject = _productRepository.CrerateProductInStorage(product);
+            var resultObject = _productRepository.CreateProductInStorage(product);
             if(resultObject == null)
             {
                 return null;
@@ -31,23 +31,48 @@ namespace RestauranteAPI.Services
             return result;
         }
 
+        public bool Delete(string key)
+        {
+            bool resultBool = _productRepository.DeleteProduct(key);
+            return resultBool;
+        }
 
-        
+        public ProductDto EditProduct(ProductDto product)
+        {
+            var domainModel = _mapper.Map<Product>(product);
+
+            var resultObject = _productRepository
+                .UpdateProductInStorage(domainModel);
+            if (resultObject == null)
+                return null;
+            var result = new ProductDto();
+            result = _mapper.Map(resultObject, result);
+            return result;
+        }
+
         public IEnumerable<ProductDto> GetAvailable()
         {
-            IEnumerable<FirebaseObject<Product>> resultObjects = _productRepository.GetAvailableProductFromStorage();
-            if (resultObjects == null)
-                return null;
-            
+            var resultObjects = _productRepository.GetAvailableProductFromStorage();
+            return MapProductsDtos(resultObjects);
+        }
 
-            List <ProductDto> resultsObjectList = new List<ProductDto>();
-            foreach (FirebaseObject<Product> resultObject in resultObjects)
+        public IEnumerable<ProductDto> GetProducts()
+        {
+            var resultObjects = _productRepository.GetProductsFromStorage();
+            return MapProductsDtos(resultObjects);
+
+        }
+
+        private  IEnumerable<ProductDto> MapProductsDtos(IEnumerable<Product> products)
+        {
+            var resultsObjectList = products.ToList().Select(x =>
             {
                 var resultTmp = new ProductDto();
-                resultTmp = _mapper.Map(resultObject, resultTmp);
-                resultsObjectList.Add(resultTmp);
-            }
+                return _mapper.Map(x, resultTmp);
+            });
             return resultsObjectList;
         }
+
+        
     }
 }

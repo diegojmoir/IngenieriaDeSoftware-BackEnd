@@ -1,43 +1,87 @@
+using System;
 using RestauranteAPI.Models;
 using RestauranteAPI.Repositories.Injections;
-using Firebase.Database;
-using RestauranteAPI.Configuration.FirebaseConfiguration;
-using Firebase.Database.Query;
 using System.Linq;
 using System.Collections.Generic;
+using RestauranteAPI.Configuration.Scaffolding;
 
 namespace RestauranteAPI.Repositories
 {
     public class ProductRepository : IProductRepository
     {
-        public FirebaseObject<Product> CrerateProductInStorage(Product product)
+        private RestauranteDbContext Context { get; set; }
+
+        public ProductRepository(RestauranteDbContext context)
         {
-            FirebaseConfig.FirebaseStartUp().Wait();
-            using(var client = FirebaseConfig.FirebaseClient)
-            {
-                var response = client.Child("ProductsCollection")
-                    .Child("Products")
-                    .PostAsync(product, false)
-                    .Result;
-                return response;
-            }
+            Context = context;
         }
 
-        public IEnumerable<FirebaseObject<Product>> GetAvailableProductFromStorage()
+        public Product CreateProductInStorage(Product product)
         {
-            FirebaseConfig.FirebaseStartUp().Wait();
-            using(var client = FirebaseConfig.FirebaseClient)
-            {
-                var response = client
-                    .Child("ProductsCollection")
-                    .Child("Products")
-                    .OnceAsync<Product>()
-                    .Result
-                    .Where(x => x.Object != null && (x.Object.IsAvailable) && x.Object.IsAvailableNow());
-                return response;
-            }
+            Context.Products.Add(product);
+            product.ProductCategories=new List<ProductCategory>();
+            Context.SaveChanges();
+            CreateProductCategories(product.ID,product.ProductCategories,product.Categories);
+            Context.ProductCategories.AddRange(product.ProductCategories);
+            Context.SaveChanges();
+            return product;
         }
 
+        public bool DeleteProduct(string key)
+        {
+            
+                Context.ProductCategories
+                    .RemoveRange(Context.ProductCategories.Where(x=>x.ID_Product.ToString()==key));
+                Context.SaveChanges();
+                Context.Products.RemoveRange(Context.Products.Where(x=>x.ID==Guid.Parse(key)));
+                Context.SaveChanges();
+                return true;
 
+        }
+
+        public IEnumerable<Product> GetAvailableProductFromStorage()
+        {
+            var resultSet = Context.Products.Where(x => x.IsAvailableNow()).ToList();
+            resultSet.ForEach(x =>
+                {
+                    x.Categories = Context.ProductCategories.Where(y => y.ID_Product == x.ID)
+                        .Select(y => y.ID_Category).ToArray();
+                });
+            return resultSet;
+        }
+
+        public Product UpdateProductInStorage(Product product)
+        {
+            var newProductCategoriesCategories = new List<ProductCategory>();
+            CreateProductCategories(product.ID, newProductCategoriesCategories, product.Categories);
+            Context.RemoveRange( Context.ProductCategories.Where(x=>x.ID_Product==product.ID));
+            Context.Products.Update(product);
+            Context.ProductCategories.AddRange(newProductCategoriesCategories);
+            Context.SaveChanges();
+            return product;
+        }
+
+        public IEnumerable<Product> GetProductsFromStorage()
+        {
+            var resultSet = Context.Products.ToList();
+            resultSet.ForEach(x =>
+            {
+                x.Categories = Context.ProductCategories.Where(y => y.ID_Product == x.ID)
+                    .Select(y => y.ID_Category).ToArray();
+            });
+            return resultSet;
+        }
+
+        private static void CreateProductCategories(Guid?productId,ICollection<ProductCategory> productCategories,IEnumerable<int?> categories)
+        {
+            foreach (var categoryId in categories)
+            {
+                productCategories.Add(new ProductCategory
+                {
+                    ID_Category = categoryId,
+                    ID_Product = productId
+                });
+            }
+        }
     }
 }

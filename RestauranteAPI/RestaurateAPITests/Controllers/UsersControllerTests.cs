@@ -136,9 +136,10 @@ namespace RestaurateAPITests.Controllers
             _moqUserService
                 .Setup(x => x.GetUserByEmail(AlreadyExisintgEmail)).
                 Returns(_conflictingUser);
-            _moqUserService
-                .Setup(x => x.GetUserByUsername(AlreadyExistingUsername)).
-                Returns(_conflictingUser);
+
+            //_moqUserService
+            //    .Setup(x => x.GetUserByUsername(AlreadyExistingUsername)).
+            //    Returns(_conflictingUser);
             //_moqUserService
             //    .Setup(x => x.CreateUser(_alreadyExistingUsernameUser))
             //   .Returns(_validUser);
