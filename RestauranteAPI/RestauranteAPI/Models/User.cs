@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Newtonsoft.Json;
+using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace RestauranteAPI.Models
 {
