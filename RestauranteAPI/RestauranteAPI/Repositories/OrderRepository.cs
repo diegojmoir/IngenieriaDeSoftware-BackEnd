@@ -19,6 +19,11 @@ namespace RestauranteAPI.Repositories
             throw new NotImplementedException();
         }
 
+        public FirebaseObject<Order> DeleteOrderInStorage(OrderDto order)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<FirebaseObject<Order>> GetOrdersFromStorageByStatus(string status)
         {
             throw new NotImplementedException();
