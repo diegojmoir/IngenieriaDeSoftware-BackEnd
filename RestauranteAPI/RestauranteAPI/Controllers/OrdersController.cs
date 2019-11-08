@@ -125,5 +125,48 @@ namespace RestauranteAPI.Controllers
             }
             return Ok(responseObject);
         }
+
+        [HttpDelete]
+        [Route("delete")]
+        public IActionResult Delete([FromBody] OrderDto order)
+        {
+            if (order == null)
+            {
+                var errores = new List<string>
+                {
+                    "La orden no puede ser nula"
+                };
+                return BadRequest(new
+                {
+                    errors = errores
+
+                });
+            }
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(new
+                {
+                    errors = (ModelState.Values // TO DO: It should have a custom error message
+                        .SelectMany(v => v.Errors)
+                        .Select(e => e.ErrorMessage))
+                });
+            }
+            var responseObject = _orderService.DeleteOrder(order);
+
+            if (responseObject == false)
+            {
+                var errores = new List<string>
+                {
+                    "La orden a eliminar no existe"
+                };
+                return BadRequest(new
+                {
+                    errors = errores
+
+                }); // TO DO: It should have a custom error message
+            }
+            return Ok("Orden Eliminada");
+        }
+
     }
 }
