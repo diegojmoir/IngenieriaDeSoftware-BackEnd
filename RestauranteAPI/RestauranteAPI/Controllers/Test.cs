@@ -20,7 +20,7 @@ namespace RestauranteAPI.Controllers
         [Route("testvalues")]
         public IActionResult GetTestValues() 
         {
-            return Ok("Hola como estan");
+            return Ok("Cambio Jenkins");
         }
 
         [HttpGet]
