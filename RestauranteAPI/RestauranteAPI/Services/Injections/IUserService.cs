@@ -9,6 +9,5 @@ namespace RestauranteAPI.Services.Injections
         bool CheckUserAlreadyExist(string username, string email);
         UserDto GetUserByEmail(string email);
         UserDto CreateUser(User user); 
-        UserDto Authenticate(string username, string password);
     }
 }

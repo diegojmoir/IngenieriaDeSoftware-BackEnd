@@ -23,9 +23,6 @@ namespace RestaurateAPITests.Controllers
         private UserDto _validUser;
         private User _nonCreatedValidUser;
         private User _invalidUser;
-        private UserDto _invalidUserDto;
-        private Credential _validCredential;
-        private Credential _invalidCredential;
         private User _alreadyExistingEmailUser;
         private User _alreadyExistingUsernameUser;
         private User _emptyUsernameUser;
@@ -128,16 +125,6 @@ namespace RestaurateAPITests.Controllers
                 Username=_validUser.Username,
                 Password=_validUser.Password
             };
-            _validCredential = new Credential
-            {
-                Username = _validUser.Username,
-                Password = _validUser.Password
-            };
-            _invalidCredential = new Credential
-            {
-                Username = NonExistentUserUsername,
-                Password = NonExistentUserPassword
-            };
             _invalidUser = null;
             _moqUserService = new Mock<IUserService>();
             _moqUserService
@@ -156,13 +143,6 @@ namespace RestaurateAPITests.Controllers
             //_moqUserService
             //    .Setup(x => x.CreateUser(_alreadyExistingUsernameUser))
             //   .Returns(_validUser);
-            _moqUserService
-                .Setup(x => x.Authenticate(ValidUserUsername, ValidUserPassword))
-                .Returns(_validUser);
-            _moqUserService
-                .Setup(x => x.Authenticate(NonExistentUserUsername, NonExistentUserPassword))
-                .Returns(_invalidUserDto);
-            _testController =new UsersController(_moqUserService.Object);
           
             _testController=new UsersController(_moqUserService.Object);
         }
@@ -218,24 +198,6 @@ namespace RestaurateAPITests.Controllers
             Assert.AreEqual(400, result.StatusCode);        
         }
 
-        [Test]
-        public void Should_return_OkResult_Login_is_successful()
-        {
-            var result = _testController.Authenticate(_validCredential) as OkObjectResult;
-            Assert.IsNotNull(result);
-            Assert.AreEqual(200, result.StatusCode);
-            Assert.IsNotNull(result.Value);
-            Assert.IsInstanceOf(typeof(UserDto), result.Value);
-        }
-
-        [Test]
-        public void Should_return_bad_request_if_Login_is_unsuccessful()
-        {
-            var result = _testController.Authenticate(_invalidCredential) as NotFoundResult;
-            Assert.IsNotNull(result);
-            Assert.AreEqual(404, result.StatusCode);
-        }
-        
         [Test]
         public void Should_return_conflict_if_new_user_username_is_already_taken()
         {

@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using RestauranteAPI.Models;
 using Firebase.Database;
-using System.IdentityModel.Tokens.Jwt;
 
 namespace RestauranteAPI.Repositories.Injections
 {

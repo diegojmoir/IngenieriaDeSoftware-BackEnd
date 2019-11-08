@@ -5,11 +5,6 @@ using Firebase.Database;
 using RestauranteAPI.Configuration.FirebaseConfiguration;
 using Firebase.Database.Query;
 using System.Linq;
-using System.IdentityModel.Tokens.Jwt;
-using System.Text;
-using System.Security.Claims;
-using Microsoft.IdentityModel.Tokens;
-using System;
 using RestauranteAPI.Configuration.Scaffolding;
 
 namespace RestauranteAPI.Repositories
@@ -58,25 +53,6 @@ namespace RestauranteAPI.Repositories
             var result=Context.Users
                 .FirstOrDefault(x => x.Username == user && x.Password == password);
             return result;
-        }
-
-        public string CreateToken(string username)
-        {
-            // authentication successful so generate jwt token
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes("THIS IS OUR SECRET FOR THE JWT");
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(new Claim[]
-                {
-                    new Claim(ClaimTypes.Name, username)
-                }),
-                Expires = DateTime.UtcNow.AddDays(7),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-            };
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-            var Token = tokenHandler.WriteToken(token);
-            return Token;
         }
     }
 }

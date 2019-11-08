@@ -1,6 +1,4 @@
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Cors;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using RestauranteAPI.Models;
 using RestauranteAPI.Services.Injections;
 using System.Linq;
@@ -18,39 +16,6 @@ namespace RestauranteAPI.Controllers
         public UsersController(IUserService userService)
         {
             _userService = userService;
-        }
-
-        /// <summary>
-        /// Authenticates user. It generates jwt with duration of 7 days.
-        /// </summary>
-        /// <param name="userParam"></param>
-        /// <returns></returns>
-        [AllowAnonymous]
-        [HttpPost("authenticate")]
-        public IActionResult Authenticate([FromBody]Credential userParam)
-        {
-            var user = _userService.Authenticate(userParam.Username, userParam.Password);
-
-            if (user == null)
-                return NotFound();
-            //return BadRequest(new { message = "Username or password is incorrect" });
-
-            return Ok(user);
-        }
-
-        [AllowAnonymous]
-        [HttpGet("whoiam")]
-        public IActionResult WhoIam()
-        {
-            var username = User.Identity.Name;
-            if (username == null)
-            {
-                return Unauthorized("I do not know");
-            }
-            else
-            {
-               return Ok("You are: "+username);
-            }
         }
 
         /// <summary>

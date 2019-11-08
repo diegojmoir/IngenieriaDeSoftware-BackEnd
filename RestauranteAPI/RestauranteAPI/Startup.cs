@@ -15,11 +15,6 @@ using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Serialization;
-using System.Text;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using RestauranteAPI.Services.Injections;
-using RestauranteAPI.Services;
 using RestauranteAPI.Configuration.NinjectConfiguration;
 using RestauranteAPI.Configuration.Scaffolding;
 using RestauranteAPI.Models.Mapping;
@@ -65,30 +60,6 @@ namespace RestauranteAPI
             services.AddCustomControllerActivation(Resolve);
             services.AddCustomViewComponentActivation(Resolve);
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "Restaurante_DEV", Version = "v1"}); });
-
-            // configure jwt authentication
-            //var appSettings = appSettingsSection.Get<AppSettings>();
-            var key = Encoding.ASCII.GetBytes("THIS IS OUR SECRET FOR THE JWT");
-            services.AddAuthentication(x =>
-            {
-                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-            .AddJwtBearer(x =>
-            {
-                x.RequireHttpsMetadata = false;
-                x.SaveToken = true;
-                x.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(key),
-                    ValidateIssuer = false,
-                    ValidateAudience = false
-                };
-            });
-
-            // configure DI for application services
-            services.AddScoped<IUserService, UserService>();
             var mappingConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new MappingProfile());
@@ -96,8 +67,7 @@ namespace RestauranteAPI
             var mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper);
 
-            services.AddCors();
-
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -117,15 +87,7 @@ namespace RestauranteAPI
 
             FirebaseConfig.SetEnviromentVariables(Configuration);
             app.UseHttpsRedirection();
-
-            // global cors policy
-            //app.UseCors(options => options.WithOrigins("http://www.mydomain.com").AllowAnyMethod());
-            app.UseCors(x => x
-                .AllowAnyOrigin()
-                .AllowAnyMethod()
-                .AllowAnyHeader());
-
-            app.UseAuthentication();
+            app.UseCors(x=>x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             app.UseMvc();
             Kernel = RegisterApplicationComponents(app);
         }

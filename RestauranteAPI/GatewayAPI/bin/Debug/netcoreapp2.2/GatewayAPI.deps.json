@@ -10,7 +10,7 @@
       "NETCOREAPP",
       "NETCOREAPP2_2"
     ],
-    "languageVersion": "7.3",
+    "languageVersion": "",
     "platform": "",
     "allowUnsafe": false,
     "warningsAsErrors": false,
@@ -27,6 +27,9 @@
           "Microsoft.AspNetCore.App": "2.2.0",
           "Microsoft.AspNetCore.Razor.Design": "2.2.0",
           "Microsoft.NETCore.App": "2.2.0",
+<<<<<<< HEAD:RestauranteAPI/GatewayAPI/bin/Debug/netcoreapp2.2/GatewayAPI.deps.json
+          "Ocelot": "13.5.2"
+=======
           "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "1.9.5",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "2.2.4",
           "Newtonsoft.Json": "12.0.2",
@@ -34,6 +37,7 @@
           "Swashbuckle.AspNetCore.Swagger": "5.0.0-rc4",
           "Swashbuckle.AspNetCore.SwaggerGen": "5.0.0-rc4",
           "Swashbuckle.AspNetCore.SwaggerUI": "5.0.0-rc4"
+>>>>>>> dev_kathy:RestauranteAPI/RestauranteAPI/bin/Debug/netcoreapp2.2/RestauranteAPI.deps.json
         },
         "runtime": {
           "GatewayAPI.dll": {}
@@ -333,6 +337,11 @@
         },
         "compileOnly": true
       },
+<<<<<<< HEAD:RestauranteAPI/GatewayAPI/bin/Debug/netcoreapp2.2/GatewayAPI.deps.json
+      "Microsoft.AspNetCore.Authentication.Google/2.2.0": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Authentication.OAuth": "2.2.0"
+=======
       "Microsoft.VisualStudio.Azure.Containers.Tools.Targets/1.9.5": {},
       "Microsoft.VisualStudio.Web.CodeGeneration/2.2.4": {
         "dependencies": {
@@ -344,12 +353,19 @@
             "assemblyVersion": "2.2.4.0",
             "fileVersion": "2.2.4.0"
           }
+>>>>>>> dev_kathy:RestauranteAPI/RestauranteAPI/bin/Debug/netcoreapp2.2/RestauranteAPI.deps.json
         },
         "compile": {
           "lib/netstandard2.0/Microsoft.AspNetCore.Authentication.Google.dll": {}
         },
         "compileOnly": true
       },
+<<<<<<< HEAD:RestauranteAPI/GatewayAPI/bin/Debug/netcoreapp2.2/GatewayAPI.deps.json
+      "Microsoft.AspNetCore.Authentication.JwtBearer/2.2.0": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Authentication": "2.2.0",
+          "Microsoft.IdentityModel.Protocols.OpenIdConnect": "5.3.0"
+=======
       "Microsoft.VisualStudio.Web.CodeGeneration.Contracts/2.2.4": {
         "dependencies": {
           "Newtonsoft.Json": "12.0.2"
@@ -359,17 +375,18 @@
             "assemblyVersion": "2.2.4.0",
             "fileVersion": "2.2.4.0"
           }
+>>>>>>> dev_kathy:RestauranteAPI/RestauranteAPI/bin/Debug/netcoreapp2.2/RestauranteAPI.deps.json
         },
-        "Microsoft.AspNetCore.Authentication.JwtBearer/2.2.0": {
-          "dependencies": {
-            "Microsoft.AspNetCore.Authentication": "2.2.0",
-            "Microsoft.IdentityModel.Protocols.OpenIdConnect": "5.3.0"
-          },
         "compile": {
           "lib/netstandard2.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll": {}
         },
         "compileOnly": true
       },
+<<<<<<< HEAD:RestauranteAPI/GatewayAPI/bin/Debug/netcoreapp2.2/GatewayAPI.deps.json
+      "Microsoft.AspNetCore.Authentication.MicrosoftAccount/2.2.0": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Authentication.OAuth": "2.2.0"
+=======
       "Microsoft.VisualStudio.Web.CodeGeneration.Core/2.2.4": {
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection": "2.2.0",
@@ -381,16 +398,19 @@
             "assemblyVersion": "2.2.4.0",
             "fileVersion": "2.2.4.0"
           }
+>>>>>>> dev_kathy:RestauranteAPI/RestauranteAPI/bin/Debug/netcoreapp2.2/RestauranteAPI.deps.json
         },
-        "Microsoft.AspNetCore.Authentication.MicrosoftAccount/2.2.0": {
-          "dependencies": {
-            "Microsoft.AspNetCore.Authentication.OAuth": "2.2.0"
-          },
         "compile": {
           "lib/netstandard2.0/Microsoft.AspNetCore.Authentication.MicrosoftAccount.dll": {}
         },
         "compileOnly": true
       },
+<<<<<<< HEAD:RestauranteAPI/GatewayAPI/bin/Debug/netcoreapp2.2/GatewayAPI.deps.json
+      "Microsoft.AspNetCore.Authentication.OAuth/2.2.0": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Authentication": "2.2.0",
+          "Newtonsoft.Json": "11.0.2"
+=======
       "Microsoft.VisualStudio.Web.CodeGeneration.Design/2.2.4": {
         "dependencies": {
           "Microsoft.VisualStudio.Web.CodeGenerators.Mvc": "2.2.4"
@@ -400,17 +420,19 @@
             "assemblyVersion": "2.2.4.0",
             "fileVersion": "2.2.4.0"
           }
+>>>>>>> dev_kathy:RestauranteAPI/RestauranteAPI/bin/Debug/netcoreapp2.2/RestauranteAPI.deps.json
         },
-        "Microsoft.AspNetCore.Authentication.OAuth/2.2.0": {
-          "dependencies": {
-            "Microsoft.AspNetCore.Authentication": "2.2.0",
-            "Newtonsoft.Json": "11.0.2"
-          },
         "compile": {
           "lib/netstandard2.0/Microsoft.AspNetCore.Authentication.OAuth.dll": {}
         },
         "compileOnly": true
       },
+<<<<<<< HEAD:RestauranteAPI/GatewayAPI/bin/Debug/netcoreapp2.2/GatewayAPI.deps.json
+      "Microsoft.AspNetCore.Authentication.OpenIdConnect/2.2.0": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Authentication.OAuth": "2.2.0",
+          "Microsoft.IdentityModel.Protocols.OpenIdConnect": "5.3.0"
+=======
       "Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore/2.2.4": {
         "dependencies": {
           "Microsoft.VisualStudio.Web.CodeGeneration.Core": "2.2.4"
@@ -420,17 +442,18 @@
             "assemblyVersion": "2.2.4.0",
             "fileVersion": "2.2.4.0"
           }
+>>>>>>> dev_kathy:RestauranteAPI/RestauranteAPI/bin/Debug/netcoreapp2.2/RestauranteAPI.deps.json
         },
-        "Microsoft.AspNetCore.Authentication.OpenIdConnect/2.2.0": {
-          "dependencies": {
-            "Microsoft.AspNetCore.Authentication.OAuth": "2.2.0",
-            "Microsoft.IdentityModel.Protocols.OpenIdConnect": "5.3.0"
-          },
         "compile": {
           "lib/netstandard2.0/Microsoft.AspNetCore.Authentication.OpenIdConnect.dll": {}
         },
         "compileOnly": true
       },
+<<<<<<< HEAD:RestauranteAPI/GatewayAPI/bin/Debug/netcoreapp2.2/GatewayAPI.deps.json
+      "Microsoft.AspNetCore.Authentication.Twitter/2.2.0": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Authentication.OAuth": "2.2.0"
+=======
       "Microsoft.VisualStudio.Web.CodeGeneration.Templating/2.2.4": {
         "dependencies": {
           "Microsoft.AspNetCore.Razor.Language": "2.2.0",
@@ -442,12 +465,20 @@
             "assemblyVersion": "2.2.4.0",
             "fileVersion": "2.2.4.0"
           }
+>>>>>>> dev_kathy:RestauranteAPI/RestauranteAPI/bin/Debug/netcoreapp2.2/RestauranteAPI.deps.json
         },
         "compile": {
           "lib/netstandard2.0/Microsoft.AspNetCore.Authentication.Twitter.dll": {}
         },
         "compileOnly": true
       },
+<<<<<<< HEAD:RestauranteAPI/GatewayAPI/bin/Debug/netcoreapp2.2/GatewayAPI.deps.json
+      "Microsoft.AspNetCore.Authentication.WsFederation/2.2.0": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Authentication": "2.2.0",
+          "Microsoft.IdentityModel.Protocols.WsFederation": "5.3.0",
+          "System.IdentityModel.Tokens.Jwt": "5.3.0"
+=======
       "Microsoft.VisualStudio.Web.CodeGeneration.Utils/2.2.4": {
         "dependencies": {
           "Microsoft.CodeAnalysis.CSharp.Workspaces": "2.8.0",
@@ -460,18 +491,19 @@
             "assemblyVersion": "2.2.4.0",
             "fileVersion": "2.2.4.0"
           }
+>>>>>>> dev_kathy:RestauranteAPI/RestauranteAPI/bin/Debug/netcoreapp2.2/RestauranteAPI.deps.json
         },
-        "Microsoft.AspNetCore.Authentication.WsFederation/2.2.0": {
-          "dependencies": {
-            "Microsoft.AspNetCore.Authentication": "2.2.0",
-            "Microsoft.IdentityModel.Protocols.WsFederation": "5.3.0",
-            "System.IdentityModel.Tokens.Jwt": "5.3.0"
-          },
         "compile": {
           "lib/netstandard2.0/Microsoft.AspNetCore.Authentication.WsFederation.dll": {}
         },
         "compileOnly": true
       },
+<<<<<<< HEAD:RestauranteAPI/GatewayAPI/bin/Debug/netcoreapp2.2/GatewayAPI.deps.json
+      "Microsoft.AspNetCore.Authorization/2.2.0": {
+        "dependencies": {
+          "Microsoft.Extensions.Logging.Abstractions": "2.2.0",
+          "Microsoft.Extensions.Options": "2.2.0"
+=======
       "Microsoft.VisualStudio.Web.CodeGenerators.Mvc/2.2.4": {
         "dependencies": {
           "Microsoft.VisualStudio.Web.CodeGeneration": "2.2.4"
@@ -481,12 +513,8 @@
             "assemblyVersion": "2.2.4.0",
             "fileVersion": "2.2.4.0"
           }
+>>>>>>> dev_kathy:RestauranteAPI/RestauranteAPI/bin/Debug/netcoreapp2.2/RestauranteAPI.deps.json
         },
-        "Microsoft.AspNetCore.Authorization/2.2.0": {
-          "dependencies": {
-            "Microsoft.Extensions.Logging.Abstractions": "2.2.0",
-            "Microsoft.Extensions.Options": "2.2.0"
-          },
         "compile": {
           "lib/netstandard2.0/Microsoft.AspNetCore.Authorization.dll": {}
         },
@@ -3352,6 +3380,12 @@
     }
   },
   "libraries": {
+<<<<<<< HEAD:RestauranteAPI/GatewayAPI/bin/Debug/netcoreapp2.2/GatewayAPI.deps.json
+    "GatewayAPI/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+=======
     "RestauranteAPI/1.0.0": {
       "type": "project",
       "serviceable": false,
@@ -3692,6 +3726,7 @@
       "sha512": "sha512-yaVAxT2Yl28p9+DupGwj2oPbIOYZUQimOQ+n7N7vML2oofIRj9BmcfD7DHc6FLrNah65EigOgG6U9VnwWEyz5g==",
       "path": "system.reactive/4.0.0",
       "hashPath": "system.reactive.4.0.0.nupkg.sha512"
+>>>>>>> dev_kathy:RestauranteAPI/RestauranteAPI/bin/Debug/netcoreapp2.2/RestauranteAPI.deps.json
     },
     "FluentValidation/8.4.0": {
       "type": "package",
@@ -4970,7 +5005,7 @@
     "runtime.native.System.IO.Compression/4.3.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-b+V9JC/Ii3sR659flBeaBJww111425tgjcDS1k+hqV4sGh9FALRDBvJnDtQ895gAzpPTUOFDHdqaZ2Et7BpZMg==",
+      "sha512": "sha512-INBPonS5QPEgn7naufQFXJEp3zX6L4bwHgJ/ZH78aBTpeNfQMtf7C6VrAFhlq2xxWBveIOWyFzQjJ8XzHMhdOQ==",
       "path": "runtime.native.system.io.compression/4.3.0",
       "hashPath": "runtime.native.system.io.compression.4.3.0.nupkg.sha512"
     },
@@ -5026,7 +5061,7 @@
     "runtime.rhel.7-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-T5NvFgmHX0WH4c7lP72krsnk+IJI10vJf2j2twGE+5QBRA4RyRAgD+ZjEgdmpLOjW4B+nZGaadewTCUcR899OQ==",
+      "sha512": "sha512-nyFNiCk/r+VOiIqreLix8yN+q3Wga9+SE8BCgkf+2BwEKiNx6DyvFjCgkfV743/grxv8jHJ8gUK4XEQw7yzRYg==",
       "path": "runtime.rhel.7-x64.runtime.native.system.security.cryptography.openssl/4.3.0",
       "hashPath": "runtime.rhel.7-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512"
     },
@@ -5110,7 +5145,7 @@
     "System.Collections.NonGeneric/4.3.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-LE/oChpRvkSi3U25u0KnJcI44JeDZ1QJCyN4qFDx2uusEypdqR24w7lKYw21eYe5esuCBuc862wRmpF63Yy1KQ==",
+      "sha512": "sha512-prtjIEMhGUnQq6RnPEYLpFt8AtLbp9yq2zxOSrY7KJJZrw25Fi97IzBqY7iqssbM61Ek5b8f3MG/sG1N2sN5KA==",
       "path": "system.collections.nongeneric/4.3.0",
       "hashPath": "system.collections.nongeneric.4.3.0.nupkg.sha512"
     },
