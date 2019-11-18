@@ -1,4 +1,5 @@
 ﻿using Firebase.Database;
+using RestauranteAPI.Configuration.Scaffolding;
 using RestauranteAPI.Models;
 using RestauranteAPI.Models.Mapping;
 using RestauranteAPI.Repositories.Injections;
@@ -9,9 +10,20 @@ namespace RestauranteAPI.Repositories
 {
     public class OrderRepository : IOrderRepository
     {
-        public FirebaseObject<Order> CreateOrderInStorage(Order order)
+        private RestauranteDbContext Context { get; set; }
+        public OrderRepository(RestauranteDbContext context)
         {
-            throw new NotImplementedException();
+            Context = context;
+        }
+        public Order CreateOrderInStorage(Order order)
+        {
+            Context.Orders.Add(order);
+            order.ProductsOrdered = new List<OrderedProduct>(); 
+            Context.SaveChanges();
+            CreateOrderedProducts(order.ID, order.ProductsOrdered, order.Products);
+            Context.OrderedProducts.AddRange(order.ProductsOrdered);
+            Context.SaveChanges();
+            return order;
         }
 
         public FirebaseObject<Order> CrerateOrderInStorage(Order order)
@@ -32,6 +44,18 @@ namespace RestauranteAPI.Repositories
         public FirebaseObject<Order> UpdateOrderInStorage(OrderDto order)
         {
             throw new NotImplementedException();
+        }
+
+        private static void CreateOrderedProducts(Guid? orderId, ICollection<OrderedProduct> orderedProducts, IEnumerable<Guid> products)
+        {
+            foreach (var productId in products)
+            {
+                orderedProducts.Add(new OrderedProduct
+                {
+                    ID_Product = productId,
+                    ID_Order = orderId
+                });
+            }
         }
     }
 }

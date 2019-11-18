@@ -1,20 +1,15 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RestauranteAPI.Models
 {
     public class Order
     {
-        public string Key
-        {
-            get { return this.Key; }
-            set
-            {
-                this.Key = Guid.NewGuid().ToString();
-            }
-        }
+        [JsonIgnore]
+        public Guid? ID { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
@@ -24,10 +19,12 @@ namespace RestauranteAPI.Models
         public string Client { set; get; }
 
         [Required]
-        public string Status { set; get; }
-
-        [Required]
-        public Collection<Product> ProductsOrdered { get; set; }
+        public int Status { set; get; }
+        [NotMapped]
+        public Guid[] Products { get; set; }
+        [JsonIgnore]
+        [NotMapped]
+        public ICollection<OrderedProduct> ProductsOrdered { get; set; } // TODO: must change to ordered products
         public bool HasValidDate()
         {
             return DateTime.TryParse(this.Date, out _);

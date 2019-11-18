@@ -1,6 +1,7 @@
 ﻿using RestauranteAPI.Models;
 using RestauranteAPI.Models.Mapping;
 using System.Collections.Generic;
+using RestauranteAPI.Models.Dto;
 
 namespace RestauranteAPI.Services.Injections
 {
