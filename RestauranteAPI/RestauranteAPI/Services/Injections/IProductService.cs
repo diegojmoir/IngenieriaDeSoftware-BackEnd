@@ -1,10 +1,9 @@
+using System.Collections.Generic;
+using RestauranteAPI.Models;
 using RestauranteAPI.Models.Dto;
 
 namespace RestauranteAPI.Services.Injections
 {
-    using RestauranteAPI.Models;
-    using System.Collections.Generic;
-
     public interface IProductService
     {
         ProductDto CreateProduct(Product product);

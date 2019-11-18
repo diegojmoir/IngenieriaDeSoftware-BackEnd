@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\david\\Documents\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestaurateAPITests\\RestaurateAPITests.csproj": {}
+    "D:\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestaurateAPITests\\RestaurateAPITests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\david\\Documents\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestauranteAPI\\RestauranteAPI.csproj": {
+    "D:\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestauranteAPI\\RestauranteAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\david\\Documents\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestauranteAPI\\RestauranteAPI.csproj",
+        "projectUniqueName": "D:\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestauranteAPI\\RestauranteAPI.csproj",
         "projectName": "RestauranteAPI",
-        "projectPath": "C:\\Users\\david\\Documents\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestauranteAPI\\RestauranteAPI.csproj",
-        "packagesPath": "C:\\Users\\david\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\david\\Documents\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestauranteAPI\\obj\\",
+        "projectPath": "D:\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestauranteAPI\\RestauranteAPI.csproj",
+        "packagesPath": "C:\\Users\\David\\.nuget\\packages\\",
+        "outputPath": "D:\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestauranteAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\david\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\David\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -94,7 +94,7 @@
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
-              "version": "[2.2.3, )"
+              "version": "[2.2.4, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",
@@ -131,34 +131,34 @@
         }
       }
     },
-    "C:\\Users\\david\\Documents\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestaurateAPITests\\RestaurateAPITests.csproj": {
+    "D:\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestaurateAPITests\\RestaurateAPITests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\david\\Documents\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestaurateAPITests\\RestaurateAPITests.csproj",
+        "projectUniqueName": "D:\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestaurateAPITests\\RestaurateAPITests.csproj",
         "projectName": "RestaurateAPITests",
-        "projectPath": "C:\\Users\\david\\Documents\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestaurateAPITests\\RestaurateAPITests.csproj",
-        "packagesPath": "C:\\Users\\david\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\david\\Documents\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestaurateAPITests\\obj\\",
+        "projectPath": "D:\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestaurateAPITests\\RestaurateAPITests.csproj",
+        "packagesPath": "C:\\Users\\David\\.nuget\\packages\\",
+        "outputPath": "D:\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestaurateAPITests\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\david\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\David\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "netcoreapp3.0"
+          "netcoreapp2.2"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netcoreapp3.0": {
+          "netcoreapp2.2": {
             "projectReferences": {
-              "C:\\Users\\david\\Documents\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestauranteAPI\\RestauranteAPI.csproj": {
-                "projectPath": "C:\\Users\\david\\Documents\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestauranteAPI\\RestauranteAPI.csproj"
+              "D:\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestauranteAPI\\RestauranteAPI.csproj": {
+                "projectPath": "D:\\IngenieriaDeSoftware-BackEnd\\RestauranteAPI\\RestauranteAPI\\RestauranteAPI.csproj"
               }
             }
           }
@@ -170,7 +170,7 @@
         }
       },
       "frameworks": {
-        "netcoreapp3.0": {
+        "netcoreapp2.2": {
           "dependencies": {
             "Microsoft.AspNetCore.Mvc.Abstractions": {
               "target": "Package",
@@ -183,6 +183,12 @@
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
               "version": "[16.2.0, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
             },
             "Moq": {
               "target": "Package",
@@ -207,14 +213,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "frameworkReferences": {
-            "Microsoft.AspNetCore.App": {
-              "privateAssets": "none"
-            },
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
         }
       }
