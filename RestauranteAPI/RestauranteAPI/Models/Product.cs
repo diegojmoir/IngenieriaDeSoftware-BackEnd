@@ -1,28 +1,31 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Globalization;
+using System.ComponentModel.DataAnnotations.Schema;
+using Newtonsoft.Json;
 
 namespace RestauranteAPI.Models
 {
     public class Product
     {
-        public string Key
-        {
-            get { return this.Key; }
-            set
-            {
-                this.Key = Guid.NewGuid().ToString();
-            }
-        }
+        [JsonIgnore]
+        public Guid? ID { get; set; }
+
         [Required]
         public string Name { get; set; }
         public string Description { get; set; }
         [Required]
-        public double Price { get; set; }
+        public decimal Price { get; set; }
         [Required]
         public bool IsAvailable { get; set; }
-        public int[] Categories { get; set; }
+        [NotMapped]
+        public int?[] Categories { get; set; }
         public string Image { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime StartingDate { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime EndingDate { get; set; }
         public bool IsAvailableNow()
         {
             if (!IsAvailable)
@@ -40,15 +43,14 @@ namespace RestauranteAPI.Models
             return true;
 
         }
-        [DataType(DataType.Date)]
-        public string StartingDate { get; set; }
-        [DataType(DataType.Date)]
-        public string EndingDate { get; set; }
+
         public bool HasValidDate()
         {
-            return DateTime.TryParse(this.StartingDate, out _) && DateTime.TryParse(EndingDate, out _);
+            return DateTime.TryParse(this.StartingDate.ToLongDateString(), out _) && DateTime.TryParse(EndingDate.ToLongDateString(), out _);
 
         }
-
+        [JsonIgnore]
+        [NotMapped]
+        public ICollection<ProductCategory>ProductCategories { get; set; }
     }
 }

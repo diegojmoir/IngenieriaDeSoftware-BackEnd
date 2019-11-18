@@ -15,6 +15,8 @@ namespace RestauranteAPI.Configuration.Scaffolding
             optionsBuilder.UseSqlServer("server=restaurante-dev.ctthpo6dykjb.us-east-2.rds.amazonaws.com;database=dev_restaurante;User Id=admin; Password=password");
         }
         public DbSet<User> Users { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<ProductCategory> ProductCategories { get; set; }
 
     }
 }

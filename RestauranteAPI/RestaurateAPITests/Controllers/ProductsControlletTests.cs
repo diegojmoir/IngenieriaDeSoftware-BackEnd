@@ -27,9 +27,9 @@ namespace RestaurateAPITests.Controllers
         private Product _invalidProduct;
         private ProductDto _invalidProductDto;
 
-        private const string NotValidDate = "111-111-111";
-        private const double ValidPrice = 2;
-        private const string ValidDate = "12-12-2019";
+        private DateTime NotValidDate = DateTime.Parse("11-12-2019");
+        private const decimal ValidPrice = 2;
+        private readonly DateTime _validDate = DateTime.Parse( "12-12-2019");
         private List<ProductDto> _validProducts;
         private List<ProductDto> _invalidProducts;
         private const string notExistingKey = "NOT EXISTING KEY";
@@ -47,8 +47,8 @@ namespace RestaurateAPITests.Controllers
                 Description = "Some Description",
                 Price = ValidPrice,
                 IsAvailable = true,
-                StartingDate = ValidDate,
-                EndingDate = ValidDate,
+                StartingDate = _validDate,
+                EndingDate = _validDate,
             };
             _notValidModelProduct = new Product
             {
@@ -56,8 +56,8 @@ namespace RestaurateAPITests.Controllers
                 Description = "Some Description",
                 Price = ValidPrice,
                 IsAvailable = true,
-                StartingDate = ValidDate,
-                EndingDate = ValidDate
+                StartingDate = _validDate,
+                EndingDate = _validDate
             };
             _notCreatedNotValidDateProduct = new Product
             {
@@ -66,7 +66,7 @@ namespace RestaurateAPITests.Controllers
                 Price = ValidPrice,
                 IsAvailable = true,
                 StartingDate = NotValidDate,
-                EndingDate = ValidDate,
+                EndingDate = _validDate,
             };
             _notCreatedNotValidDateProductDto = new ProductDto
             {
@@ -75,7 +75,7 @@ namespace RestaurateAPITests.Controllers
                 Price = ValidPrice,
                 IsAvailable = true,
                 StartingDate = NotValidDate,
-                EndingDate = ValidDate,
+                EndingDate = _validDate,
                 Key = "CLAVE"
             };
             _notValidDateProduct = new ProductDto
@@ -94,8 +94,8 @@ namespace RestaurateAPITests.Controllers
                 Description = "Some Description",
                 Price = ValidPrice,
                 IsAvailable = true,
-                StartingDate = ValidDate,
-                EndingDate = ValidDate,
+                StartingDate = _validDate,
+                EndingDate = _validDate,
                 Key = _validProductKey
             };
             _notCreatedValidDateProduct = new Product
@@ -104,8 +104,8 @@ namespace RestaurateAPITests.Controllers
                 Description = "Some Description",
                 Price = ValidPrice,
                 IsAvailable = true,
-                StartingDate = ValidDate,
-                EndingDate = ValidDate,
+                StartingDate = _validDate,
+                EndingDate = _validDate,
             };
             _notCreatedValidDateProductDto = new ProductDto
             {
@@ -113,8 +113,8 @@ namespace RestaurateAPITests.Controllers
                 Description = "Some Description",
                 Price = ValidPrice,
                 IsAvailable = true,
-                StartingDate = ValidDate,
-                EndingDate = ValidDate,
+                StartingDate = _validDate,
+                EndingDate = _validDate,
                 Key = "CLAVE"
             };
             _invalidProduct = null;
