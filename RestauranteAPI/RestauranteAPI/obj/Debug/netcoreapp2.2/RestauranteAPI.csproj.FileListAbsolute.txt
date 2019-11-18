@@ -54,3 +54,17 @@ C:\Users\usuario\Desktop\Personal\Desarrollo de Soft\Desarrollo\IngenieriaDeSoft
 C:\Users\usuario\Desktop\Personal\Desarrollo de Soft\Desarrollo\IngenieriaDeSoftware-BackEnd\RestauranteAPI\RestauranteAPI\bin\Debug\netcoreapp2.2\RestauranteAPI.pdb
 C:\Users\usuario\Desktop\Personal\Desarrollo de Soft\Desarrollo\IngenieriaDeSoftware-BackEnd\RestauranteAPI\RestauranteAPI\obj\Debug\netcoreapp2.2\RestauranteAPI.RazorTargetAssemblyInfo.cache
 >>>>>>> dev_kathy
+D:\UserFiles\U\Ingeniería de Software\repos\IngenieriaDeSoftware-BackEnd\RestauranteAPI\RestauranteAPI\bin\Debug\netcoreapp2.2\RestauranteAPI.deps.json
+D:\UserFiles\U\Ingeniería de Software\repos\IngenieriaDeSoftware-BackEnd\RestauranteAPI\RestauranteAPI\bin\Debug\netcoreapp2.2\RestauranteAPI.runtimeconfig.json
+D:\UserFiles\U\Ingeniería de Software\repos\IngenieriaDeSoftware-BackEnd\RestauranteAPI\RestauranteAPI\bin\Debug\netcoreapp2.2\RestauranteAPI.runtimeconfig.dev.json
+D:\UserFiles\U\Ingeniería de Software\repos\IngenieriaDeSoftware-BackEnd\RestauranteAPI\RestauranteAPI\bin\Debug\netcoreapp2.2\RestauranteAPI.dll
+D:\UserFiles\U\Ingeniería de Software\repos\IngenieriaDeSoftware-BackEnd\RestauranteAPI\RestauranteAPI\bin\Debug\netcoreapp2.2\RestauranteAPI.pdb
+D:\UserFiles\U\Ingeniería de Software\repos\IngenieriaDeSoftware-BackEnd\RestauranteAPI\RestauranteAPI\obj\Debug\netcoreapp2.2\RestauranteAPI.csprojAssemblyReference.cache
+D:\UserFiles\U\Ingeniería de Software\repos\IngenieriaDeSoftware-BackEnd\RestauranteAPI\RestauranteAPI\obj\Debug\netcoreapp2.2\RestauranteAPI.csproj.CoreCompileInputs.cache
+D:\UserFiles\U\Ingeniería de Software\repos\IngenieriaDeSoftware-BackEnd\RestauranteAPI\RestauranteAPI\obj\Debug\netcoreapp2.2\RestauranteAPI.RazorAssemblyInfo.cache
+D:\UserFiles\U\Ingeniería de Software\repos\IngenieriaDeSoftware-BackEnd\RestauranteAPI\RestauranteAPI\obj\Debug\netcoreapp2.2\RestauranteAPI.RazorAssemblyInfo.cs
+D:\UserFiles\U\Ingeniería de Software\repos\IngenieriaDeSoftware-BackEnd\RestauranteAPI\RestauranteAPI\obj\Debug\netcoreapp2.2\RestauranteAPI.AssemblyInfoInputs.cache
+D:\UserFiles\U\Ingeniería de Software\repos\IngenieriaDeSoftware-BackEnd\RestauranteAPI\RestauranteAPI\obj\Debug\netcoreapp2.2\RestauranteAPI.AssemblyInfo.cs
+D:\UserFiles\U\Ingeniería de Software\repos\IngenieriaDeSoftware-BackEnd\RestauranteAPI\RestauranteAPI\obj\Debug\netcoreapp2.2\RestauranteAPI.RazorTargetAssemblyInfo.cache
+D:\UserFiles\U\Ingeniería de Software\repos\IngenieriaDeSoftware-BackEnd\RestauranteAPI\RestauranteAPI\obj\Debug\netcoreapp2.2\RestauranteAPI.dll
+D:\UserFiles\U\Ingeniería de Software\repos\IngenieriaDeSoftware-BackEnd\RestauranteAPI\RestauranteAPI\obj\Debug\netcoreapp2.2\RestauranteAPI.pdb
