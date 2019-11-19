@@ -9,7 +9,7 @@ namespace RestauranteAPI.Services.Injections
     {
         OrderDto CreateOrder(Order product);
         OrderDto EditOrder(OrderDto order);
-        bool DeleteOrder(OrderDto order);
+        bool DeleteOrder(Order order);
         IEnumerable<OrderDto> GetOrdersByStatus(string status);
     }
 }

@@ -128,7 +128,7 @@ namespace RestauranteAPI.Controllers
 
         [HttpDelete]
         [Route("delete")]
-        public IActionResult Delete([FromBody] OrderDto order)
+        public IActionResult Delete([FromBody] Order order)
         {
             if (order == null)
             {

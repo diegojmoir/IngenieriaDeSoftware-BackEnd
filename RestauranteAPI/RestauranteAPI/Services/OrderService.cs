@@ -42,12 +42,9 @@ namespace RestauranteAPI.Services
             return result;
         }
 
-        public bool DeleteOrder(OrderDto order)
+        public bool DeleteOrder(Order order)
         {
-            var resultado = _orderRepository.DeleteOrderInStorage(order);
-            if (resultado == null)
-                return true;
-            return false;
+            return _orderRepository.DeleteOrderInStorage(order);
         }
 
         public IEnumerable<OrderDto> GetOrdersByStatus(string status)

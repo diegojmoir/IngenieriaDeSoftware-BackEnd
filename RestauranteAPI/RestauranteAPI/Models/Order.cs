@@ -8,7 +8,7 @@ namespace RestauranteAPI.Models
 {
     public class Order
     {
-        [JsonIgnore]
+        
         public Guid? ID { get; set; }
 
         [Required]
@@ -28,7 +28,6 @@ namespace RestauranteAPI.Models
         public bool HasValidDate()
         {
             return DateTime.TryParse(this.Date, out _);
-
         }
     }
 }

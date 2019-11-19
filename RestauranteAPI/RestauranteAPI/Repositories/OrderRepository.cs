@@ -1,10 +1,12 @@
 ﻿using Firebase.Database;
+using Microsoft.EntityFrameworkCore;
 using RestauranteAPI.Configuration.Scaffolding;
 using RestauranteAPI.Models;
 using RestauranteAPI.Models.Mapping;
 using RestauranteAPI.Repositories.Injections;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace RestauranteAPI.Repositories
 {
@@ -26,15 +28,26 @@ namespace RestauranteAPI.Repositories
             return order;
         }
 
+        public bool DeleteOrderInStorage(Order order)
+        {
+            var ProductsOrdered = Context.OrderedProducts.Where(p => p.ID_Order == order.ID).ToList();
+            foreach (var product in ProductsOrdered) 
+            {
+                Context.OrderedProducts.Remove(product);
+            }
+            Context.SaveChanges();
+            var order1 = new Order { ID = order.ID };
+            Context.Orders.Attach(order1);
+            Context.Orders.Remove(order1);
+            Context.SaveChanges();
+            return true;
+        }
+
         public FirebaseObject<Order> CrerateOrderInStorage(Order order)
         {
             throw new NotImplementedException();
         }
 
-        public FirebaseObject<Order> DeleteOrderInStorage(OrderDto order)
-        {
-            throw new NotImplementedException();
-        }
 
         public IEnumerable<FirebaseObject<Order>> GetOrdersFromStorageByStatus(string status)
         {

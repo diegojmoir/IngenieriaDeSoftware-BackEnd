@@ -9,7 +9,7 @@ namespace RestauranteAPI.Repositories.Injections
     {
         Order CreateOrderInStorage(Order order);
         FirebaseObject<Order> UpdateOrderInStorage(OrderDto order);
-        FirebaseObject<Order> DeleteOrderInStorage(OrderDto order);
+        bool DeleteOrderInStorage(Order order);
         IEnumerable<FirebaseObject<Order>> GetOrdersFromStorageByStatus(string status);
     }
 }
