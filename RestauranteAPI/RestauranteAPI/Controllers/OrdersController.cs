@@ -7,6 +7,7 @@ using RestauranteAPI.Services.Injections;
 
 namespace RestauranteAPI.Controllers
 {
+    [Route("api/[controller]")]
     public class OrdersController : ControllerBase
     {
         private readonly IOrderService _orderService;

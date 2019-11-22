@@ -2,19 +2,14 @@
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RestauranteAPI.Models
 {
     public class Order
     {
-        public string Key
-        {
-            get { return this.Key; }
-            set
-            {
-                this.Key = Guid.NewGuid().ToString();
-            }
-        }
+        [JsonIgnore]
+        public Guid? ID { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
@@ -24,10 +19,11 @@ namespace RestauranteAPI.Models
         public string Client { set; get; }
 
         [Required]
-        public string Status { set; get; }
+        public int Status { set; get; }
 
         [Required]
-        public Collection<Product> ProductsOrdered { get; set; }
+        [NotMapped]
+        public Guid[] Products { get; set; }
         public bool HasValidDate()
         {
             return DateTime.TryParse(this.Date, out _);

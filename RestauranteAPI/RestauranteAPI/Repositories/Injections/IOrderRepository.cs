@@ -7,8 +7,8 @@ namespace RestauranteAPI.Repositories.Injections
 {
     public interface IOrderRepository
     {
-        FirebaseObject<Order> CreateOrderInStorage(Order order);
-        FirebaseObject<Order> UpdateOrderInStorage(OrderDto order);
-        IEnumerable<FirebaseObject<Order>> GetOrdersFromStorageByStatus(string status);
+        Order CreateOrderInStorage(Order order);
+        Order UpdateOrderInStorage(Order order);
+        IEnumerable<Order> GetOrdersFromStorageByStatus(string status);
     }
 }

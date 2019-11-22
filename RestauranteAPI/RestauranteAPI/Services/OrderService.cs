@@ -33,8 +33,9 @@ namespace RestauranteAPI.Services
 
         public OrderDto EditOrder(OrderDto order)
         {
+            var domainModel = _mapper.Map<Order>(order);
             var resultObject = _orderRepository
-                .UpdateOrderInStorage(order);
+                .UpdateOrderInStorage(domainModel);
             if (resultObject == null)
                 return null;
             var result = new OrderDto();
@@ -44,12 +45,12 @@ namespace RestauranteAPI.Services
 
         public IEnumerable<OrderDto> GetOrdersByStatus(string status)
         {
-            IEnumerable<FirebaseObject<Order>> resultObjects = _orderRepository.GetOrdersFromStorageByStatus(status);
+            IEnumerable<Order> resultObjects = _orderRepository.GetOrdersFromStorageByStatus(status);
             if (resultObjects == null)
                 return null;
 
             List<OrderDto> resultsObjectList = new List<OrderDto>();
-            foreach (FirebaseObject<Order> resultObject in resultObjects)
+            foreach (Order resultObject in resultObjects)
             {
                 var resultTmp = new OrderDto();
                 resultTmp = _mapper.Map(resultObject, resultTmp);

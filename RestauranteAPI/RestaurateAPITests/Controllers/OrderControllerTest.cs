@@ -36,7 +36,7 @@ namespace RestaurateAPITests.Controllers
 
             _validOrderModel = new Order
             {
-                Key = Guid.NewGuid().ToString(),
+                ID = Guid.NewGuid(),
                 Date = ValidDate,
                 Client = "Some client key",
                 Status = "pending",
@@ -60,7 +60,7 @@ namespace RestaurateAPITests.Controllers
             };
             _notCreatedValidDateOrder = new Order
             {
-                Key = Guid.NewGuid().ToString(),
+                ID = Guid.NewGuid(),
                 Date = NotValidDate,
                 Client = "Some client key",
                 Status = "pending",

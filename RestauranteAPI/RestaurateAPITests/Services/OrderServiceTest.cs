@@ -44,7 +44,7 @@ namespace RestaurateAPITests.Services
 
             _nonCreatedValidOrder = new Order
             {
-                Key = Guid.NewGuid().ToString(),
+                ID = Guid.NewGuid(),
                 Date = validDate,
                 Client = "Some client key",
                 Status = "pending",
@@ -53,25 +53,12 @@ namespace RestaurateAPITests.Services
 
             _validDatabaseModel = new Order
             {
-                Key = _nonCreatedValidOrder.Key,
+                ID = _nonCreatedValidOrder.ID,
                 Date = _nonCreatedValidOrder.Date,
                 Client = _nonCreatedValidOrder.Client,
                 Status = _nonCreatedValidOrder.Status,
                 ProductsOrdered = _nonCreatedValidOrder.ProductsOrdered
             };
-
-            _validFirebaseObject = new FirebaseEvent<Order>(_validUserKey, _validDatabaseModel
-                , FirebaseEventType.InsertOrUpdate, FirebaseEventSource.Offline);
-
-            _validFirebaseObjects.Add(_validOrderDto);
-
-            _invalidOrder = null;
-            _moqRepository = new Mock<IOrderRepository>();
-            _moqRepository.Setup(x => x.CreateOrderInStorage(_nonCreatedValidOrder))
-                .Returns(_validFirebaseObject);
-
-            var myMapper = new MapperConfiguration(x => { x.AddProfile(new MappingProfile()); }).CreateMapper();
-            _OrderService = new OrderService(_moqRepository.Object, myMapper);
         }
 
     }

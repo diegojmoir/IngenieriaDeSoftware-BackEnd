@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -10,6 +11,9 @@ namespace RestauranteAPI.Models.Mapping
     public class OrderDto : BaseModel<string>
     {
         [Required]
+        public Guid? ID { get; set; }
+
+        [Required]
         [DataType(DataType.Date)]
         public string Date { set; get; }
 
@@ -17,10 +21,11 @@ namespace RestauranteAPI.Models.Mapping
         public string Client { set; get; }
 
         [Required]
-        public string Status { set; get; }
+        public int Status { set; get; }
 
         [Required]
-        public Collection<Product> ProductsOrdered { get; set; }
+        [NotMapped]
+        public Guid[] Products { get; set; }
 
         public bool HasValidDate()
         {

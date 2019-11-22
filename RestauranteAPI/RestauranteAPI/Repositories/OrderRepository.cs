@@ -1,32 +1,37 @@
 ﻿using Firebase.Database;
+using RestauranteAPI.Configuration.Scaffolding;
 using RestauranteAPI.Models;
 using RestauranteAPI.Models.Mapping;
 using RestauranteAPI.Repositories.Injections;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace RestauranteAPI.Repositories
 {
     public class OrderRepository : IOrderRepository
     {
-        public FirebaseObject<Order> CreateOrderInStorage(Order order)
+        private RestauranteDbContext Context { get; set; }
+
+        public OrderRepository(RestauranteDbContext context)
+        {
+            Context = context;
+        }
+        public Order CreateOrderInStorage(Order order)
         {
             throw new NotImplementedException();
         }
 
-        public FirebaseObject<Order> CrerateOrderInStorage(Order order)
+        public IEnumerable<Order> GetOrdersFromStorageByStatus(string status)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<FirebaseObject<Order>> GetOrdersFromStorageByStatus(string status)
+        public Order UpdateOrderInStorage(Order order)
         {
-            throw new NotImplementedException();
-        }
-
-        public FirebaseObject<Order> UpdateOrderInStorage(OrderDto order)
-        {
-            throw new NotImplementedException();
+            Context.Orders.Update(order);
+            Context.SaveChanges();
+            return order;
         }
     }
 }
