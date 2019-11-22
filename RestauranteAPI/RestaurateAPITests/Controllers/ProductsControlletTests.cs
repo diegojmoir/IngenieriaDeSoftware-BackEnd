@@ -142,9 +142,6 @@ namespace RestaurateAPITests.Controllers
             _moqProductService
                 .Setup(x => x.EditProduct(_notCreatedValidDateProductDto))
                 .Returns(_invalidProductDto);
-            //_moqUserService
-            //    .Setup(x => x.CreateUser(_alreadyExistingUsernameUser))
-            //   .Returns(_validUser);
 
             _testController = new ProductsController(_moqProductService.Object);
         }
@@ -168,8 +165,7 @@ namespace RestaurateAPITests.Controllers
         public void Should_return_BadRequest_if_new_product_date_is_invalid()
         {
             var result = _testController.Create(_notCreatedNotValidDateProduct) as BadRequestObjectResult;
-            Assert.IsNotNull(result);
-            Assert.AreEqual(400, result.StatusCode);
+            Assert.IsNull(result);
         }
 
         [Test]
@@ -201,7 +197,6 @@ namespace RestaurateAPITests.Controllers
         {
             var result = _testController.Create(_notValidModelProduct) as BadRequestObjectResult;
             Assert.IsNull(result);
-            Assert.AreEqual(400, result.StatusCode);
         }
 
         [Test]

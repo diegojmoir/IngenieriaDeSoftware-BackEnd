@@ -34,7 +34,7 @@ namespace RestauranteAPI.Services
 
         public bool Delete(string key)
         {
-            bool resultBool = _productRepository.DeleteProduct(key);
+            var resultBool = _productRepository.DeleteProduct(key);
             return resultBool;
         }
 

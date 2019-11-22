@@ -19,7 +19,6 @@ namespace RestauranteAPI.Configuration.NinjectConfiguration
             kernel.Bind<IMapper>().ToMethod(x =>
                 new MapperConfiguration(mc => { mc.AddProfile(new MappingProfile()); }).CreateMapper());
             //services
-            kernel.Bind<ITestService>().To<TestService>().InScope(requestScope);
             kernel.Bind<IUserService>().To<UserService>().InScope(requestScope);
             kernel.Bind<IProductService>().To<ProductService>().InScope(requestScope);
             kernel.Bind<IOrderService>().To<OrderService>().InScope(requestScope);
