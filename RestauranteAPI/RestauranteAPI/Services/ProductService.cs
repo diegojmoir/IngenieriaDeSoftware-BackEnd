@@ -5,6 +5,7 @@ using RestauranteAPI.Services.Injections;
 using RestauranteAPI.Repositories.Injections;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace RestauranteAPI.Services
 {
@@ -33,7 +34,7 @@ namespace RestauranteAPI.Services
 
         public bool Delete(string key)
         {
-            bool resultBool = _productRepository.DeleteProduct(key);
+            var resultBool = _productRepository.DeleteProduct(key);
             return resultBool;
         }
 
@@ -43,6 +44,16 @@ namespace RestauranteAPI.Services
 
             var resultObject = _productRepository
                 .UpdateProductInStorage(domainModel);
+            if (resultObject == null)
+                return null;
+            var result = new ProductDto();
+            result = _mapper.Map(resultObject, result);
+            return result;
+        }
+
+        public ProductDto GetProduct(Guid? key)
+        {
+            var resultObject = _productRepository.GetProductFromStorage(key);
             if (resultObject == null)
                 return null;
             var result = new ProductDto();

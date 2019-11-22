@@ -246,3 +246,5 @@ ModelManifest.xml
 # FAKE - F# Make
 .fake/
 /WCFSOAPWebService/InnovationDB/InnovationDB.jfm
+
+RestauranteAPI/RestaurateAPITests/obj/

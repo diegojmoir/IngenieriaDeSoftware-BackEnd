@@ -49,10 +49,10 @@ namespace RestauranteAPI.Repositories
             if (orders.ToList().Count == 0) { return null; }
             var order = orders.First();
             var products = Context.OrderedProducts.Where(x => x.ID_Order == ID).ToList();
-            var products_ids = new List<Guid>();
+            var products_ids = new List<Guid?>();
             foreach (var p in products)
             {
-                products_ids.Add((Guid)p.ID_Product);   
+                products_ids.Add(p.ID_Product);   
             }
             order.Products = products_ids.ToArray();
             return order;
@@ -90,7 +90,7 @@ namespace RestauranteAPI.Repositories
             return orderUpdated;
         }
 
-        private static void CreateOrderedProducts(Guid? orderId, ICollection<OrderedProduct> orderedProducts, IEnumerable<Guid> products)
+        private static void CreateOrderedProducts(Guid? orderId, ICollection<OrderedProduct> orderedProducts, IEnumerable<Guid?> products)
         {
             foreach (var productId in products)
             {
@@ -100,6 +100,17 @@ namespace RestauranteAPI.Repositories
                     ID_Order = orderId
                 });
             }
+        }
+
+        public IEnumerable<Order> GetOrdersFromStorage()
+        {
+            var resultSet = Context.Orders.ToList();
+            resultSet.ForEach(x =>
+            {
+                x.Products = Context.OrderedProducts.Where(y => y.ID_Order == x.ID)
+                    .Select(y => y.ID).ToArray();
+            });
+            return resultSet;
         }
     }
 }
