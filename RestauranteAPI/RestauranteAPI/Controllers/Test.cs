@@ -7,7 +7,7 @@ namespace RestauranteAPI.Controllers
     [ApiController]
     public class Test:ControllerBase
     {
-        
+
 
     
     }
