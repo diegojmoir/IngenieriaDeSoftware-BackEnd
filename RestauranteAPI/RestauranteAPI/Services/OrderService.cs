@@ -5,6 +5,7 @@ using RestauranteAPI.Models.Mapping;
 using RestauranteAPI.Repositories.Injections;
 using RestauranteAPI.Services.Injections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace RestauranteAPI.Services
 {
@@ -60,6 +61,22 @@ namespace RestauranteAPI.Services
                 resultTmp = _mapper.Map(resultObject, resultTmp);
                 resultsObjectList.Add(resultTmp);
             }
+            return resultsObjectList;
+        }
+
+        public IEnumerable<OrderDto> GetOrders(string status)
+        {
+            var resultObjects = _orderRepository.GetOrdersFromStorage();
+            return MapOrdersDto(resultObjects);
+        }
+
+        private IEnumerable<OrderDto> MapOrdersDto(IEnumerable<Order> _orders)
+        {
+            var resultsObjectList = _orders.ToList().Select(x =>
+            {
+                var resultTmp = new OrderDto();
+                return _mapper.Map(x, resultTmp);
+            });
             return resultsObjectList;
         }
     }

@@ -116,9 +116,9 @@ namespace RestauranteAPI.Controllers
       
         [HttpGet]
         [Route("getOrders")]
-        public IActionResult GetProducts(string status)
+        public IActionResult GetOrders(string status)
         {
-            var responseObject = _orderService.GetOrdersByStatus(status);
+            var responseObject = _orderService.GetOrders(status);
             if (responseObject == null)
             {
                 return NotFound();

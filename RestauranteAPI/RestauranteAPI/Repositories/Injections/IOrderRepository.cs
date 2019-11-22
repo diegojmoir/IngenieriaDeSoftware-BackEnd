@@ -11,5 +11,6 @@ namespace RestauranteAPI.Repositories.Injections
         FirebaseObject<Order> UpdateOrderInStorage(OrderDto order);
         bool DeleteOrderInStorage(Order order);
         IEnumerable<FirebaseObject<Order>> GetOrdersFromStorageByStatus(string status);
+        IEnumerable<Order> GetOrdersFromStorage();
     }
 }

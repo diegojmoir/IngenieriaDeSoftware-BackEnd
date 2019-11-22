@@ -59,7 +59,7 @@ namespace RestauranteAPI.Repositories
             throw new NotImplementedException();
         }
 
-        private static void CreateOrderedProducts(Guid? orderId, ICollection<OrderedProduct> orderedProducts, IEnumerable<Guid> products)
+        private static void CreateOrderedProducts(Guid? orderId, ICollection<OrderedProduct> orderedProducts, IEnumerable<Guid?> products)
         {
             foreach (var productId in products)
             {
@@ -69,6 +69,17 @@ namespace RestauranteAPI.Repositories
                     ID_Order = orderId
                 });
             }
+        }
+
+        public IEnumerable<Order> GetOrdersFromStorage()
+        {
+            var resultSet = Context.Orders.ToList();
+            resultSet.ForEach(x =>
+            {
+                x.Products = Context.OrderedProducts.Where(y => y.ID_Order == x.ID)
+                    .Select(y => y.ID).ToArray();
+            });
+            return resultSet;
         }
     }
 }
