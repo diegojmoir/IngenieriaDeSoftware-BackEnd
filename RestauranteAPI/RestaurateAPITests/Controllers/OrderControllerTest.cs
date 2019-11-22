@@ -4,8 +4,6 @@ using RestauranteAPI.Models;
 using NUnit.Framework;
 using Moq;
 using System;
-using Microsoft.AspNetCore.Mvc;
-using RestauranteAPI.Models.Dto;
 using System.Collections.Generic;
 using RestauranteAPI.Models.Mapping;
 using System.Collections.ObjectModel;
@@ -25,8 +23,7 @@ namespace RestaurateAPITests.Controllers
         private Order _validOrderModel;
         private Order _invalidOrder;
         private const string NotValidDate = "111-111-111";
-        private const double ValidPrice = 2;
-        private const string ValidDate = "12-12-2019";
+        private readonly DateTime _validDate =DateTime.Parse("12-12-2019");
         private List<OrderDto> _validOrders;
 
          [OneTimeSetUp]
@@ -36,35 +33,35 @@ namespace RestaurateAPITests.Controllers
 
             _validOrderModel = new Order
             {
-                Key = Guid.NewGuid().ToString(),
-                Date = ValidDate,
+                ID = Guid.NewGuid(),
+                Date = _validDate,
                 Client = "Some client key",
-                Status = "pending",
-                ProductsOrdered = new Collection<Product>()
+                Status = 1,
+                ProductsOrdered = new Collection<OrderedProduct>()
             };
             _notValidDateOrder = new OrderDto
             {
-                Key = Guid.NewGuid().ToString(),
-                Date = NotValidDate,
+                ID = Guid.NewGuid(),
+                Date = _validDate,
                 Client = "Some client key",
-                Status = "pending",
-                ProductsOrdered = new Collection<Product>()
+                Status = 1,
+                ProductsOrdered = new Collection<OrderedProduct>()
             };
             _validOrder = new OrderDto
             {
-                Key = Guid.NewGuid().ToString(),
-                Date = ValidDate,
+                ID = Guid.NewGuid(),
+                Date = _validDate,
                 Client = "Some client key",
-                Status = "pending",
-                ProductsOrdered = new Collection<Product>()
+                Status = 1,
+                ProductsOrdered = new Collection<OrderedProduct>()
             };
             _notCreatedValidDateOrder = new Order
             {
-                Key = Guid.NewGuid().ToString(),
-                Date = NotValidDate,
+                ID = Guid.NewGuid(),
+                Date = _validDate,
                 Client = "Some client key",
-                Status = "pending",
-                ProductsOrdered = new Collection<Product>()
+                Status = 1,
+                ProductsOrdered = new Collection<OrderedProduct>()
             };
             _invalidOrder = null;
             _moqOrderService = new Mock<IOrderService>();

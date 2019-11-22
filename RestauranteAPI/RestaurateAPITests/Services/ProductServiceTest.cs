@@ -59,15 +59,9 @@ namespace RestaurateAPITests.Services
                 StartingDate = _nonCreatedValidProduct.StartingDate,
                 EndingDate = _nonCreatedValidProduct.EndingDate
             };
-
-            
             _moqRepository = new Mock<IProductRepository>();
             _moqRepository.Setup(x => x.CreateProductInStorage(_nonCreatedValidProduct))
                 .Returns(_validDatabaseModel);
-
-            
-
-
             var myMapper = new MapperConfiguration(x => { x.AddProfile(new MappingProfile()); }).CreateMapper();
             _productService = new ProductService(_moqRepository.Object, myMapper);
         }
@@ -77,7 +71,6 @@ namespace RestaurateAPITests.Services
         {
             var result = _productService.CreateProduct(_nonCreatedValidProduct);
             Assert.IsNotNull(result);
-            Assert.AreEqual(_validUserKey, result.Key);
         }
 
         [Test]
