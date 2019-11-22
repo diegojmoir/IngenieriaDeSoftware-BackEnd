@@ -1,20 +1,3 @@
-C:\Users\david\Documents\IngenieriaDeSoftware-BackEnd\RestauranteAPI\GatewayAPI\bin\Debug\netcoreapp2.2\appsettings.Development.json
-C:\Users\david\Documents\IngenieriaDeSoftware-BackEnd\RestauranteAPI\GatewayAPI\bin\Debug\netcoreapp2.2\appsettings.json
-C:\Users\david\Documents\IngenieriaDeSoftware-BackEnd\RestauranteAPI\GatewayAPI\bin\Debug\netcoreapp2.2\ocelot.json
-C:\Users\david\Documents\IngenieriaDeSoftware-BackEnd\RestauranteAPI\GatewayAPI\bin\Debug\netcoreapp2.2\Properties\launchSettings.json
-C:\Users\david\Documents\IngenieriaDeSoftware-BackEnd\RestauranteAPI\GatewayAPI\bin\Debug\netcoreapp2.2\GatewayAPI.deps.json
-C:\Users\david\Documents\IngenieriaDeSoftware-BackEnd\RestauranteAPI\GatewayAPI\bin\Debug\netcoreapp2.2\GatewayAPI.runtimeconfig.json
-C:\Users\david\Documents\IngenieriaDeSoftware-BackEnd\RestauranteAPI\GatewayAPI\bin\Debug\netcoreapp2.2\GatewayAPI.runtimeconfig.dev.json
-C:\Users\david\Documents\IngenieriaDeSoftware-BackEnd\RestauranteAPI\GatewayAPI\bin\Debug\netcoreapp2.2\GatewayAPI.dll
-C:\Users\david\Documents\IngenieriaDeSoftware-BackEnd\RestauranteAPI\GatewayAPI\bin\Debug\netcoreapp2.2\GatewayAPI.pdb
-C:\Users\david\Documents\IngenieriaDeSoftware-BackEnd\RestauranteAPI\GatewayAPI\obj\Debug\netcoreapp2.2\GatewayAPI.csprojAssemblyReference.cache
-C:\Users\david\Documents\IngenieriaDeSoftware-BackEnd\RestauranteAPI\GatewayAPI\obj\Debug\netcoreapp2.2\GatewayAPI.RazorAssemblyInfo.cache
-C:\Users\david\Documents\IngenieriaDeSoftware-BackEnd\RestauranteAPI\GatewayAPI\obj\Debug\netcoreapp2.2\GatewayAPI.RazorAssemblyInfo.cs
-C:\Users\david\Documents\IngenieriaDeSoftware-BackEnd\RestauranteAPI\GatewayAPI\obj\Debug\netcoreapp2.2\GatewayAPI.AssemblyInfoInputs.cache
-C:\Users\david\Documents\IngenieriaDeSoftware-BackEnd\RestauranteAPI\GatewayAPI\obj\Debug\netcoreapp2.2\GatewayAPI.AssemblyInfo.cs
-C:\Users\david\Documents\IngenieriaDeSoftware-BackEnd\RestauranteAPI\GatewayAPI\obj\Debug\netcoreapp2.2\GatewayAPI.RazorTargetAssemblyInfo.cache
-C:\Users\david\Documents\IngenieriaDeSoftware-BackEnd\RestauranteAPI\GatewayAPI\obj\Debug\netcoreapp2.2\GatewayAPI.dll
-C:\Users\david\Documents\IngenieriaDeSoftware-BackEnd\RestauranteAPI\GatewayAPI\obj\Debug\netcoreapp2.2\GatewayAPI.pdb
 C:\Users\usuario\Desktop\Personal\Desarrollo de Soft\IngenieriaDeSoftware-BackEnd\RestauranteAPI\GatewayAPI\bin\Debug\netcoreapp2.2\GatewayAPI.deps.json
 C:\Users\usuario\Desktop\Personal\Desarrollo de Soft\IngenieriaDeSoftware-BackEnd\RestauranteAPI\GatewayAPI\bin\Debug\netcoreapp2.2\GatewayAPI.runtimeconfig.json
 C:\Users\usuario\Desktop\Personal\Desarrollo de Soft\IngenieriaDeSoftware-BackEnd\RestauranteAPI\GatewayAPI\bin\Debug\netcoreapp2.2\GatewayAPI.runtimeconfig.dev.json

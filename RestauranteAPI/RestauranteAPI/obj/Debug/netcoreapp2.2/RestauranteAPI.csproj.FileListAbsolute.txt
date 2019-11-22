@@ -3,7 +3,6 @@ C:\Users\usuario\Desktop\Personal\Desarrollo de Soft\IngenieriaDeSoftware-BackEn
 C:\Users\usuario\Desktop\Personal\Desarrollo de Soft\IngenieriaDeSoftware-BackEnd\RestauranteAPI\RestauranteAPI\bin\Debug\netcoreapp2.2\RestauranteAPI.runtimeconfig.dev.json
 C:\Users\usuario\Desktop\Personal\Desarrollo de Soft\IngenieriaDeSoftware-BackEnd\RestauranteAPI\RestauranteAPI\bin\Debug\netcoreapp2.2\RestauranteAPI.dll
 C:\Users\usuario\Desktop\Personal\Desarrollo de Soft\IngenieriaDeSoftware-BackEnd\RestauranteAPI\RestauranteAPI\bin\Debug\netcoreapp2.2\RestauranteAPI.pdb
-C:\Users\usuario\Desktop\Personal\Desarrollo de Soft\IngenieriaDeSoftware-BackEnd\RestauranteAPI\RestauranteAPI\obj\Debug\netcoreapp2.2\RestauranteAPI.csprojAssemblyReference.cache
 C:\Users\usuario\Desktop\Personal\Desarrollo de Soft\IngenieriaDeSoftware-BackEnd\RestauranteAPI\RestauranteAPI\obj\Debug\netcoreapp2.2\RestauranteAPI.csproj.CoreCompileInputs.cache
 C:\Users\usuario\Desktop\Personal\Desarrollo de Soft\IngenieriaDeSoftware-BackEnd\RestauranteAPI\RestauranteAPI\obj\Debug\netcoreapp2.2\RestauranteAPI.RazorAssemblyInfo.cache
 C:\Users\usuario\Desktop\Personal\Desarrollo de Soft\IngenieriaDeSoftware-BackEnd\RestauranteAPI\RestauranteAPI\obj\Debug\netcoreapp2.2\RestauranteAPI.RazorAssemblyInfo.cs
@@ -12,3 +11,4 @@ C:\Users\usuario\Desktop\Personal\Desarrollo de Soft\IngenieriaDeSoftware-BackEn
 C:\Users\usuario\Desktop\Personal\Desarrollo de Soft\IngenieriaDeSoftware-BackEnd\RestauranteAPI\RestauranteAPI\obj\Debug\netcoreapp2.2\RestauranteAPI.RazorTargetAssemblyInfo.cache
 C:\Users\usuario\Desktop\Personal\Desarrollo de Soft\IngenieriaDeSoftware-BackEnd\RestauranteAPI\RestauranteAPI\obj\Debug\netcoreapp2.2\RestauranteAPI.dll
 C:\Users\usuario\Desktop\Personal\Desarrollo de Soft\IngenieriaDeSoftware-BackEnd\RestauranteAPI\RestauranteAPI\obj\Debug\netcoreapp2.2\RestauranteAPI.pdb
+C:\Users\usuario\Desktop\Personal\Desarrollo de Soft\IngenieriaDeSoftware-BackEnd\RestauranteAPI\RestauranteAPI\obj\Debug\netcoreapp2.2\RestauranteAPI.csprojAssemblyReference.cache

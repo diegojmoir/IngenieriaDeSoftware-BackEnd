@@ -11,5 +11,6 @@ namespace RestauranteAPI.Repositories.Injections
         Order CreateOrderInStorage(Order order);
         Order UpdateOrderInStorage(Order order);
         Order GetOrderFromStorage(Guid? ID);
+        bool DeleteOrderInStorage(Order order);
     }
 }

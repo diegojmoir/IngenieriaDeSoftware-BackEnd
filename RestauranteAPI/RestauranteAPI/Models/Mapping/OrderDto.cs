@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
@@ -10,7 +11,7 @@ namespace RestauranteAPI.Models.Mapping
 {
     public class OrderDto : BaseModel<string>
     {
-        [Required]
+        [JsonIgnore]
         public Guid? ID { get; set; }
 
         [Required]
@@ -22,10 +23,12 @@ namespace RestauranteAPI.Models.Mapping
 
         [Required]
         public int Status { set; get; }
-
-        [Required]
+ 
         [NotMapped]
         public Guid[] Products { get; set; }
+        [JsonIgnore]
+        [NotMapped]
+        public ICollection<OrderedProduct> ProductsOrdered { get; set; } // TODO: must change to ordered products
 
         public bool HasValidDate()
         {
