@@ -16,7 +16,7 @@ namespace RestauranteAPI.Models.Mapping
 
         [Required]
         [DataType(DataType.Date)]
-        public string Date { set; get; }
+        public DateTime Date { set; get; }
 
         [Required]
         public string Client { set; get; }
@@ -32,7 +32,7 @@ namespace RestauranteAPI.Models.Mapping
 
         public bool HasValidDate()
         {
-            return DateTime.TryParse(this.Date, out _);
+            return DateTime.TryParse(this.Date.ToString(), out _);
 
         }
     }

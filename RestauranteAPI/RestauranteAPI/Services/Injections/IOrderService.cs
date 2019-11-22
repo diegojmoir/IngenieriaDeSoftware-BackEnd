@@ -11,5 +11,6 @@ namespace RestauranteAPI.Services.Injections
         OrderDto EditOrder(OrderDto order);
         bool DeleteOrder(Order order);
         IEnumerable<OrderDto> GetOrdersByStatus(string status);
+        IEnumerable<OrderDto> GetOrders(string status);
     }
 }
