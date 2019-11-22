@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using AutoMapper;
 using RestauranteAPI.Models;
 using RestauranteAPI.Services;
@@ -104,6 +105,40 @@ namespace RestaurateAPITests.Services
             var result = _userService.GetUser(NonExistentUserUsername,NonExistentUserPassword);
             Assert.IsNull(result);
         }
+
+
+        [Test]
+        public void should_return_true_when_user_exist_for_username_or_email()
+        {
+            _moqRepository.Setup(x => x.GetExistentUsers(ValidUserUsername,
+                ValidUserEmail))
+                .Returns(new List<User>
+                {
+                    _validDatabaseModel
+                });
+            var result = _userService.CheckUserAlreadyExist(ValidUserUsername, ValidUserEmail);
+            Assert.IsTrue(result);
+        }
+
+        [Test]
+        public void should_return_false_when_user_do_not_exist_for_username_or_email()
+        {
+            _moqRepository.Setup(x => x.GetExistentUsers(NonExistentUserUsername,
+                    NonExistentUserEmail))
+                .Returns(new List<User>());
+            var result = _userService.CheckUserAlreadyExist(NonExistentUserUsername, NonExistentUserEmail);
+            Assert.IsFalse(result);
+        }
+
+        [Test]
+        public void should_return_valid_user_model_when_user_exist_by_email()
+        {
+            _moqRepository.Setup(x => x.GetUserFromStorageByEmail(ValidUserEmail))
+                .Returns(_nonCreatedValidUser);
+            var result = _userService.GetUserByEmail(ValidUserEmail);
+            Assert.IsTrue(result.Email==ValidUserEmail);
+        }
+
 
     }
 }

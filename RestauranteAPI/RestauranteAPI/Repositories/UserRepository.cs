@@ -1,9 +1,6 @@
 ﻿using System.Collections.Generic;
 using RestauranteAPI.Models;
 using RestauranteAPI.Repositories.Injections;
-using Firebase.Database;
-using RestauranteAPI.Configuration.FirebaseConfiguration;
-using Firebase.Database.Query;
 using System.Linq;
 using RestauranteAPI.Configuration.Scaffolding;
 
@@ -33,19 +30,14 @@ namespace RestauranteAPI.Repositories
                 return result;
         }
 
-        public FirebaseObject<User> GetUserFromStorageByEmail(string email)
+        public User GetUserFromStorageByEmail(string email)
         {
-            FirebaseConfig.FirebaseStartUp().Wait();
-            using (var client = FirebaseConfig.FirebaseClient)
-            {
-                var response = client
-                    .Child("UsersCollection")
-                    .Child("Users")
-                    .OnceAsync<User>()
-                    .Result
-                    .FirstOrDefault(x => x.Object != null && (x.Object.Email == email));
-                return response;
-            }
+
+            var result = Context.Users
+                .FirstOrDefault(x => x.Email==email);//When the query is enumerated, then is sent to db
+            return result;
+
+          
         }
 
         public User GetUserFromStorageByUserNameAndPassword(string user, string password)

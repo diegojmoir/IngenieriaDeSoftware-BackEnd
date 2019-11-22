@@ -9,6 +9,6 @@ namespace RestauranteAPI.Repositories.Injections
          User GetUserFromStorageByUserNameAndPassword(string user, string password);
          User CreateUserInStorage(User user);
          List<User> GetExistentUsers(string username,string email);
-         FirebaseObject<User> GetUserFromStorageByEmail(string email);
+         User GetUserFromStorageByEmail(string email);
     }
 }
