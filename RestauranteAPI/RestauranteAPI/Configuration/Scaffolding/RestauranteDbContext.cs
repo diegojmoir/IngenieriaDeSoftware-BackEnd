@@ -17,6 +17,7 @@ namespace RestauranteAPI.Configuration.Scaffolding
         public DbSet<User> Users { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductCategory> ProductCategories { get; set; }
-
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderedProduct> OrderedProducts { get; set; }
     }
 }

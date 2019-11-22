@@ -49,6 +49,17 @@ namespace RestauranteAPI.Models.Mapping
                 .ForMember(dest => dest.EndingDate, opt => opt.MapFrom(src => src.EndingDate))
                 .ForMember(dest => dest.Image, opt => opt.MapFrom(src => src.Image))
                 .ForMember(dest => dest.Categories, opt => opt.MapFrom(src => src.Categories));
+            CreateMap<Order, OrderDto>()
+                .ForMember(dest => dest.ID, opt => opt.MapFrom(src => src.ID))
+                .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status))
+                .ForMember(dest => dest.Date, opt => opt.MapFrom(src => src.Date))
+                .ForMember(dest => dest.Client, opt => opt.MapFrom(src => src.Client));
+
+            CreateMap<OrderDto, Order>()
+                .ForMember(dest => dest.ID, opt => opt.MapFrom(src => src.ID))
+                .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status))
+                .ForMember(dest => dest.Date, opt => opt.MapFrom(src => src.Date))
+                .ForMember(dest => dest.Client, opt => opt.MapFrom(src => src.Client));
 
         }
     }
