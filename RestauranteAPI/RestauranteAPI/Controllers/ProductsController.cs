@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using RestauranteAPI.Models;
 using RestauranteAPI.Models.Dto;
 using RestauranteAPI.Services.Injections;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -134,6 +135,18 @@ namespace RestauranteAPI.Controllers
             var responseObject = _productService.GetProducts();
 
             return Ok(responseObject);
+        }
+
+        [HttpGet]
+        [Route("getProduct")]
+        public IActionResult GetProduct(Guid? key)
+        {
+            var responseObject = _productService.GetProduct(key);
+            if(responseObject == null)
+            {
+                return NotFound(false);
+            }
+            return Ok(responseObject);;
         }
 
         [HttpDelete]

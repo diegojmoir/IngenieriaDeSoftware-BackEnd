@@ -1,4 +1,5 @@
 using RestauranteAPI.Models;
+using System;
 using System.Collections.Generic;
 
 namespace RestauranteAPI.Repositories.Injections
@@ -10,6 +11,6 @@ namespace RestauranteAPI.Repositories.Injections
         Product UpdateProductInStorage(Product product);
         bool DeleteProduct(string key);
         IEnumerable<Product> GetProductsFromStorage();
-
+        Product GetProductFromStorage(Guid? key);
     }
 }

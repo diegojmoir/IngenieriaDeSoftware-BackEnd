@@ -1,7 +1,7 @@
 # Enviroment
 <p>
-Esta es la configuración inicial del proyecto, tambien se presenta la estructura para las clases y la forma de inyectar dependencia.
-</p>
+Esta es la configuración inicial del proyecto, tambien se presenta la estructura para las clases y la forma de inyectar dependencia
+.</p>
 
 ## Estructura del proyecto
 
