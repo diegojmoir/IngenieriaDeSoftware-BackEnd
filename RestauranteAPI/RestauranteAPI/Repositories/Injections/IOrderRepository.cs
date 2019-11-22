@@ -1,6 +1,7 @@
 ﻿using Firebase.Database;
 using RestauranteAPI.Models;
 using RestauranteAPI.Models.Mapping;
+using System;
 using System.Collections.Generic;
 
 namespace RestauranteAPI.Repositories.Injections
@@ -8,9 +9,9 @@ namespace RestauranteAPI.Repositories.Injections
     public interface IOrderRepository
     {
         Order CreateOrderInStorage(Order order);
-        FirebaseObject<Order> UpdateOrderInStorage(OrderDto order);
+        Order UpdateOrderInStorage(Order order);
+        Order GetOrderFromStorage(Guid? ID);
         bool DeleteOrderInStorage(Order order);
-        IEnumerable<FirebaseObject<Order>> GetOrdersFromStorageByStatus(string status);
-        IEnumerable<Order> GetOrdersFromStorage();
+        Order UpdateOrderStatusInStorage(Guid? orderID, int status);
     }
 }

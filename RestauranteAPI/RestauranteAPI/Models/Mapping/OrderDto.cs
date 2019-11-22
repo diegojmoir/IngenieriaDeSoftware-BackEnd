@@ -20,12 +20,12 @@ namespace RestauranteAPI.Models.Mapping
 
         [Required]
         public int Status { set; get; }
+ 
         [NotMapped]
         public Guid[] Products { get; set; }
         [JsonIgnore]
         [NotMapped]
         public ICollection<OrderedProduct> ProductsOrdered { get; set; } // TODO: must change to ordered products
-
 
         public bool HasValidDate()
         {
