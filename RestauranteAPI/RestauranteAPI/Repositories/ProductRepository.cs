@@ -83,5 +83,12 @@ namespace RestauranteAPI.Repositories
                 });
             }
         }
+
+        public Product GetProductFromStorage(Guid? key)
+        {
+            var result = Context.Products
+                .FirstOrDefault(x => x.ID == key);
+            return result;
+        }
     }
 }

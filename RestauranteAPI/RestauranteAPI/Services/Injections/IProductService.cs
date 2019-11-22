@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using RestauranteAPI.Models;
 using RestauranteAPI.Models.Dto;
@@ -11,5 +12,6 @@ namespace RestauranteAPI.Services.Injections
         ProductDto EditProduct(ProductDto product);
         bool Delete(string key);
         IEnumerable<ProductDto> GetProducts();
+        ProductDto GetProduct(Guid? key);
     }
 }
