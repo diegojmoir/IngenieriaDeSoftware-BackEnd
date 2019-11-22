@@ -1,12 +1,9 @@
 ﻿using AutoMapper;
-using Firebase.Database;
 using RestauranteAPI.Models;
 using RestauranteAPI.Models.Mapping;
 using RestauranteAPI.Repositories.Injections;
 using RestauranteAPI.Services.Injections;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace RestauranteAPI.Services
 {
@@ -70,16 +67,6 @@ namespace RestauranteAPI.Services
             var result = new OrderDto();
             var resultTmp = _mapper.Map(resultObject, result);
             return resultTmp;
-        }
-
-        private IEnumerable<OrderDto> MapOrdersDto(IEnumerable<Order> _orders)
-        {
-            var resultsObjectList = _orders.ToList().Select(x =>
-            {
-                var resultTmp = new OrderDto();
-                return _mapper.Map(x, resultTmp);
-            });
-            return resultsObjectList;
         }
     }
 }
