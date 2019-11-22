@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using RestauranteAPI.Models.Mapping;
 using System.Collections.ObjectModel;
+using Microsoft.AspNetCore.Mvc;
 
 namespace RestaurateAPITests.Controllers
 {
@@ -74,8 +75,29 @@ namespace RestaurateAPITests.Controllers
             _moqOrderService
                 .Setup(x => x.CreateOrder(_notCreatedNotValidDateOrder))
                 .Returns(_notValidDateOrder);
+            _moqOrderService
+                .Setup(x => x.DeleteOrder(_validOrderModel))
+                .Returns(true);
+            _moqOrderService
+                .Setup(x => x.DeleteOrder(_notCreatedValidDateOrder))
+                .Returns(false);
             _testController = new OrdersController(_moqOrderService.Object);
         }
-  
+
+        [Test]
+        public void Should_return_true_if_order_to_delete_existed()
+        {
+            var result = _testController.Delete(_validOrderModel) as OkObjectResult;
+            Assert.IsNotNull(result);
+            Assert.AreEqual(result.Value, "Orden Eliminada");
+            Assert.AreEqual(200, result.StatusCode);
+        }
+        [Test]
+        public void Should_return_false_if_order_to_delete_doesnt_existed()
+        {
+            var result = _testController.Delete(_notCreatedValidDateOrder) as BadRequestObjectResult;
+            Assert.IsNotNull(result);
+            Assert.AreEqual(400, result.StatusCode);
+        }
     }
 }
