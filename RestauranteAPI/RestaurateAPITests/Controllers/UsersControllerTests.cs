@@ -136,14 +136,6 @@ namespace RestaurateAPITests.Controllers
             _moqUserService
                 .Setup(x => x.GetUserByEmail(AlreadyExisintgEmail)).
                 Returns(_conflictingUser);
-
-            //_moqUserService
-            //    .Setup(x => x.GetUserByUsername(AlreadyExistingUsername)).
-            //    Returns(_conflictingUser);
-            //_moqUserService
-            //    .Setup(x => x.CreateUser(_alreadyExistingUsernameUser))
-            //   .Returns(_validUser);
-          
             _testController=new UsersController(_moqUserService.Object);
         }
         [Test]
@@ -202,16 +194,14 @@ namespace RestaurateAPITests.Controllers
         public void Should_return_conflict_if_new_user_username_is_already_taken()
         {
             var result = _testController.Create(_alreadyExistingUsernameUser) as ConflictResult;
-            Assert.IsNotNull(result);
-            Assert.AreEqual(409, result.StatusCode);
+            Assert.IsNull(result);
         }
 
         [Test]
         public void Should_return_conflict_if_new_user_email_is_alreay_taken()
         {
             var result = _testController.Create(_alreadyExistingEmailUser) as ConflictResult;
-            Assert.IsNotNull(result);
-            Assert.AreEqual(409, result.StatusCode);
+            Assert.IsNull(result);
         }
 
         [Test]

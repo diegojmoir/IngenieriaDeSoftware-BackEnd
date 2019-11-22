@@ -10,7 +10,6 @@ using RestauranteAPI.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 
 namespace RestaurateAPITests.Services
 {
@@ -27,6 +26,7 @@ namespace RestaurateAPITests.Services
         private Order _invalidOrder;
         private Order _validDatabaseModel;
         private OrderDto _validOrderDto;
+        private readonly DateTime _validDate =DateTime.Parse("12-12-2019");
 
         [OneTimeSetUp]
         public void BeforeEachTest()
@@ -35,29 +35,29 @@ namespace RestaurateAPITests.Services
 
             _validOrderDto = new OrderDto
             {
-                Key = Guid.NewGuid().ToString(),
-                Date = validDate,
+                ID = Guid.NewGuid(),
+                Date = _validDate,
                 Client = "Some client key",
-                Status = "pending",
-                ProductsOrdered = new Collection<Product>()
+                Status = 1,
+                ProductsOrdered = new Collection<OrderedProduct>()
             };
 
             _nonCreatedValidOrder = new Order
             {
-                Key = Guid.NewGuid().ToString(),
-                Date = validDate,
+                ID = Guid.NewGuid(),
+                Date = _validDate,
                 Client = "Some client key",
-                Status = "pending",
-                ProductsOrdered = new Collection<Product>()
+                Status = 1,
+                ProductsOrdered = new Collection<OrderedProduct>()
             };
 
             _validDatabaseModel = new Order
             {
-                Key = _nonCreatedValidOrder.Key,
-                Date = _nonCreatedValidOrder.Date,
-                Client = _nonCreatedValidOrder.Client,
-                Status = _nonCreatedValidOrder.Status,
-                ProductsOrdered = _nonCreatedValidOrder.ProductsOrdered
+                ID = Guid.NewGuid(),
+                Date = _validDate,
+                Client = "Some client key",
+                Status = 1,
+                ProductsOrdered = new Collection<OrderedProduct>()
             };
 
             _validFirebaseObject = new FirebaseEvent<Order>(_validUserKey, _validDatabaseModel
@@ -67,8 +67,7 @@ namespace RestaurateAPITests.Services
 
             _invalidOrder = null;
             _moqRepository = new Mock<IOrderRepository>();
-            _moqRepository.Setup(x => x.CreateOrderInStorage(_nonCreatedValidOrder))
-                .Returns(_validFirebaseObject);
+            _moqRepository.Setup(x => x.CreateOrderInStorage(_nonCreatedValidOrder));
 
             var myMapper = new MapperConfiguration(x => { x.AddProfile(new MappingProfile()); }).CreateMapper();
             _OrderService = new OrderService(_moqRepository.Object, myMapper);

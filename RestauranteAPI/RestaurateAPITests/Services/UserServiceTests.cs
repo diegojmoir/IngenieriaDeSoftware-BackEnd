@@ -28,8 +28,6 @@ namespace RestaurateAPITests.Services
         private User _invalidUser;
         private User _validDatabaseModel;
 
-        
-
         [OneTimeSetUp]
         public void BeforeEachTest()
         {
@@ -59,15 +57,12 @@ namespace RestaurateAPITests.Services
 
             _invalidUser = null;
             _moqRepository=new Mock<IUserRepository>();
-            /*_moqRepository.Setup(x => x.CreateUserInStorage(_nonCreatedValidUser))
-                .Returns(_validFirebaseObject);
-            _moqRepository.Setup(x => x.GetUserFromStorageByUserNameAndPassword(ValidUserUsername, ValidUserPassword))
-                .Returns(_validFirebaseObject);
-            _moqRepository.Setup(x => x.GetUserFromStorageByEmail(ValidUserEmail))
-                .Returns(_validFirebaseObject);
-            _moqRepository.Setup(x => x.GetUserFromStorageByUsername(ValidUserUsername))
-                .Returns(_validFirebaseObject);
-            */
+
+            _moqRepository.Setup(x => x.GetUserFromStorageByUserNameAndPassword(It.IsAny<string>(),
+                    It.IsAny<string>()))
+                .Returns(_nonCreatedValidUser);
+            _moqRepository.Setup(x => x.CreateUserInStorage(_nonCreatedValidUser))
+                .Returns(_validDatabaseModel);
             var myMapper=new MapperConfiguration(x => { x.AddProfile(new MappingProfile());}).CreateMapper();
             _userService=new UserService(_moqRepository.Object,myMapper);
         }
@@ -77,7 +72,6 @@ namespace RestaurateAPITests.Services
         {
             var result = _userService.CreateUser(_nonCreatedValidUser);
             Assert.IsNotNull(result);
-            Assert.AreEqual(_validUserKey,result.Key);
         }
 
         [Test]
@@ -92,7 +86,6 @@ namespace RestaurateAPITests.Services
         {
             var result = _userService.GetUser(ValidUserUsername,ValidUserPassword);
             Assert.IsNotNull(result);
-            Assert.AreEqual(_validUserKey,result.Key);
             Assert.AreEqual(_nonCreatedValidUser.Username,result.Username);
             Assert.AreEqual(_nonCreatedValidUser.Password,result.Password);
         }
@@ -104,34 +97,10 @@ namespace RestaurateAPITests.Services
         }
 
         [Test]
-        public void Should_return_valid_object_if_user_exists_with_given_email()
-        {
-            var result = _userService.GetUserByEmail(ValidUserEmail);
-            Assert.IsNotNull(result);
-            Assert.AreEqual(_validUserKey, result.Key);
-            Assert.AreEqual(_nonCreatedValidUser.Email, result.Email);
-        }
-
-        /*[Test]
-        public void Should_return_null_if_user_doesnt_exist_with_given_username()
-        {
-            var result = _userService.GetUserByUsername(NonExistentUserUsername);
-            Assert.IsNull(result);
-        }
-        [Test]
-        public void Should_return_valid_object_if_user_exists_with_given_username()
-        {
-            var result = _userService.GetUserByUsername(ValidUserUsername);
-            Assert.IsNotNull(result);
-            Assert.AreEqual(_validUserKey, result.Key);
-            Assert.AreEqual(_nonCreatedValidUser.Username, result.Username);
-        }*/
-
-
-
-        [Test]
         public void Should_return_null_when_there_is_no_user_for_password_and_username()
         {
+            _moqRepository.Setup(x => x.GetUserFromStorageByUserNameAndPassword(NonExistentUserUsername,
+                NonExistentUserPassword));
             var result = _userService.GetUser(NonExistentUserUsername,NonExistentUserPassword);
             Assert.IsNull(result);
         }
