@@ -42,6 +42,11 @@ namespace RestauranteAPI.Services
             return result;
         }
 
+        public bool DeleteOrder(Order order)
+        {
+            return _orderRepository.DeleteOrderInStorage(order);
+        }
+
         public IEnumerable<OrderDto> GetOrdersByStatus(string status)
         {
             IEnumerable<FirebaseObject<Order>> resultObjects = _orderRepository.GetOrdersFromStorageByStatus(status);
