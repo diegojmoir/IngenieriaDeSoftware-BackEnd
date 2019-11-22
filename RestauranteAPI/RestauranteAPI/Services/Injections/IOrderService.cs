@@ -12,5 +12,6 @@ namespace RestauranteAPI.Services.Injections
         OrderDto EditOrder(OrderDto order);
         OrderDto GetOrder(Guid? ID);
         bool DeleteOrder(Order order);
+        OrderDto EditOrderStatus(Guid? orderID, int status);
     }
 }

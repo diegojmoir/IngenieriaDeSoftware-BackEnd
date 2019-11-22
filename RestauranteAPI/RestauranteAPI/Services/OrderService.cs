@@ -43,7 +43,18 @@ namespace RestauranteAPI.Services
             result = _mapper.Map(resultObject, result);
             return result;
         }
-        
+
+        public OrderDto EditOrderStatus(Guid? orderID, int status)
+        {
+            var resultObject = _orderRepository
+                .UpdateOrderStatusInStorage(orderID, status);
+            if (resultObject == null)
+                return null;
+            var result = new OrderDto();
+            result = _mapper.Map(resultObject, result);
+            return result;
+        }
+
         public bool DeleteOrder(Order order)
         {
             return _orderRepository.DeleteOrderInStorage(order);

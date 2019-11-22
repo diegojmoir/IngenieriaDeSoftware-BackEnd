@@ -61,8 +61,33 @@ namespace RestauranteAPI.Repositories
         public Order UpdateOrderInStorage(Order order)
         {
             Context.Orders.Update(order);
+
+            //remove all products
+            var forDelete = Context.OrderedProducts.Where(x => x.ID_Order == order.ID).ToList();
+            foreach (var product in forDelete)
+            {
+                Context.OrderedProducts.Remove(product);
+            }
+            //all new products
+            foreach (var productID in order.Products)
+            {
+                var productExists = Context.Products.Where(x => x.ID == productID).ToList().Count > 0;
+                if (productExists)
+                {
+                    Context.OrderedProducts.Add(new OrderedProduct() {  ID = new Guid(), ID_Order = order.ID, ID_Product = productID });
+                }
+            }
+            
             Context.SaveChanges();
             return order;
+        }
+
+        public Order UpdateOrderStatusInStorage(Guid? orderID, int status)
+        {
+            var order = GetOrderFromStorage(orderID);
+            order.Status = status;
+            var orderUpdated = UpdateOrderInStorage(order);
+            return orderUpdated;
         }
 
         private static void CreateOrderedProducts(Guid? orderId, ICollection<OrderedProduct> orderedProducts, IEnumerable<Guid> products)

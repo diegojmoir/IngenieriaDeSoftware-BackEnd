@@ -56,6 +56,7 @@ namespace RestauranteAPI.Controllers
                 });
             }
 
+            order.ID = Guid.Parse(order.Key);
             var responseObject = _orderService.EditOrder(order);
 
             if (responseObject == null)
@@ -73,6 +74,55 @@ namespace RestauranteAPI.Controllers
 
             return Ok(responseObject);
         }
+
+        [HttpPut]
+        [Route("changeOrderStatus")]
+        public IActionResult changeOrderStatus(Guid? orderID, int? status)
+        {
+            if (orderID == null)
+            {
+                var errores = new List<string>
+                {
+                    "Se necesita un número de orden"
+                };
+                return BadRequest(new
+                {
+                    errors = errores
+
+                });
+            }
+
+            if (orderID == null)
+            {
+                var errores = new List<string>
+                {
+                    "Se necesita un status"
+                };
+                return BadRequest(new
+                {
+                    errors = errores
+
+                });
+            }
+
+            var responseObject = _orderService.EditOrderStatus(orderID, (int)status);
+
+            if (responseObject == null)
+            {
+                var errores = new List<string>
+                {
+                    "La orden a editar no existe"
+                };
+                return BadRequest(new
+                {
+                    errors = errores
+
+                }); // TO DO: It should have a custom error message
+            }
+
+            return Ok(responseObject);
+        }
+
 
         [HttpPost]
         [Route("create")]
