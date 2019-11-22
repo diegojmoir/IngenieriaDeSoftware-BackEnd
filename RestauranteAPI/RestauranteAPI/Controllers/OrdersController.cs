@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using RestauranteAPI.Models;
@@ -7,6 +8,7 @@ using RestauranteAPI.Services.Injections;
 
 namespace RestauranteAPI.Controllers
 {
+    [Route("api/[controller]")]
     public class OrdersController : ControllerBase
     {
         private readonly IOrderService _orderService;
@@ -54,6 +56,7 @@ namespace RestauranteAPI.Controllers
                 });
             }
 
+            order.ID = Guid.Parse(order.Key);
             var responseObject = _orderService.EditOrder(order);
 
             if (responseObject == null)
@@ -71,6 +74,55 @@ namespace RestauranteAPI.Controllers
 
             return Ok(responseObject);
         }
+
+        [HttpPut]
+        [Route("changeOrderStatus")]
+        public IActionResult changeOrderStatus(Guid? orderID, int? status)
+        {
+            if (orderID == null)
+            {
+                var errores = new List<string>
+                {
+                    "Se necesita un número de orden"
+                };
+                return BadRequest(new
+                {
+                    errors = errores
+
+                });
+            }
+
+            if (orderID == null)
+            {
+                var errores = new List<string>
+                {
+                    "Se necesita un status"
+                };
+                return BadRequest(new
+                {
+                    errors = errores
+
+                });
+            }
+
+            var responseObject = _orderService.EditOrderStatus(orderID, (int)status);
+
+            if (responseObject == null)
+            {
+                var errores = new List<string>
+                {
+                    "La orden a editar no existe"
+                };
+                return BadRequest(new
+                {
+                    errors = errores
+
+                }); // TO DO: It should have a custom error message
+            }
+
+            return Ok(responseObject);
+        }
+
 
         [HttpPost]
         [Route("create")]
@@ -115,10 +167,10 @@ namespace RestauranteAPI.Controllers
 
       
         [HttpGet]
-        [Route("getOrders")]
-        public IActionResult GetOrders(string status)
+        [Route("getOrder")]
+        public IActionResult GetOrder(Guid? ID)
         {
-            var responseObject = _orderService.GetOrders(status);
+            var responseObject = _orderService.GetOrder(ID);
             if (responseObject == null)
             {
                 return NotFound();

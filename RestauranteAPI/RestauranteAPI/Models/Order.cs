@@ -8,7 +8,7 @@ namespace RestauranteAPI.Models
 {
     public class Order
     {
-        
+        [JsonIgnore]
         public Guid? ID { get; set; }
 
         [Required]
@@ -20,6 +20,7 @@ namespace RestauranteAPI.Models
 
         [Required]
         public int Status { set; get; }
+
         [NotMapped]
         public Guid?[] Products { get; set; }
         [JsonIgnore]

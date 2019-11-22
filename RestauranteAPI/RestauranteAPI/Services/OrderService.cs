@@ -4,6 +4,7 @@ using RestauranteAPI.Models;
 using RestauranteAPI.Models.Mapping;
 using RestauranteAPI.Repositories.Injections;
 using RestauranteAPI.Services.Injections;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -34,8 +35,20 @@ namespace RestauranteAPI.Services
 
         public OrderDto EditOrder(OrderDto order)
         {
+            var domainModel = _mapper.Map<Order>(order);
             var resultObject = _orderRepository
-                .UpdateOrderInStorage(order);
+                .UpdateOrderInStorage(domainModel);
+            if (resultObject == null)
+                return null;
+            var result = new OrderDto();
+            result = _mapper.Map(resultObject, result);
+            return result;
+        }
+
+        public OrderDto EditOrderStatus(Guid? orderID, int status)
+        {
+            var resultObject = _orderRepository
+                .UpdateOrderStatusInStorage(orderID, status);
             if (resultObject == null)
                 return null;
             var result = new OrderDto();
@@ -48,26 +61,15 @@ namespace RestauranteAPI.Services
             return _orderRepository.DeleteOrderInStorage(order);
         }
 
-        public IEnumerable<OrderDto> GetOrdersByStatus(string status)
+        public OrderDto GetOrder(Guid? ID)
         {
-            IEnumerable<FirebaseObject<Order>> resultObjects = _orderRepository.GetOrdersFromStorageByStatus(status);
-            if (resultObjects == null)
+            Order resultObject = _orderRepository.GetOrderFromStorage(ID);
+            if (resultObject == null)
                 return null;
 
-            List<OrderDto> resultsObjectList = new List<OrderDto>();
-            foreach (FirebaseObject<Order> resultObject in resultObjects)
-            {
-                var resultTmp = new OrderDto();
-                resultTmp = _mapper.Map(resultObject, resultTmp);
-                resultsObjectList.Add(resultTmp);
-            }
-            return resultsObjectList;
-        }
-
-        public IEnumerable<OrderDto> GetOrders(string status)
-        {
-            var resultObjects = _orderRepository.GetOrdersFromStorage();
-            return MapOrdersDto(resultObjects);
+            var result = new OrderDto();
+            var resultTmp = _mapper.Map(resultObject, result);
+            return resultTmp;
         }
 
         private IEnumerable<OrderDto> MapOrdersDto(IEnumerable<Order> _orders)
