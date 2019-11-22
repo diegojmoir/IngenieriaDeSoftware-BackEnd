@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using RestauranteAPI.Models;
@@ -116,10 +117,10 @@ namespace RestauranteAPI.Controllers
 
       
         [HttpGet]
-        [Route("getOrders")]
-        public IActionResult GetProducts(string status)
+        [Route("getOrder")]
+        public IActionResult GetOrder(Guid? ID)
         {
-            var responseObject = _orderService.GetOrdersByStatus(status);
+            var responseObject = _orderService.GetOrder(ID);
             if (responseObject == null)
             {
                 return NotFound();

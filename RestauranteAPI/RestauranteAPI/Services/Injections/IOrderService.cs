@@ -1,5 +1,6 @@
 ﻿using RestauranteAPI.Models;
 using RestauranteAPI.Models.Mapping;
+using System;
 using System.Collections.Generic;
 
 namespace RestauranteAPI.Services.Injections
@@ -8,6 +9,6 @@ namespace RestauranteAPI.Services.Injections
     {
         OrderDto CreateOrder(Order product);
         OrderDto EditOrder(OrderDto order);
-        IEnumerable<OrderDto> GetOrdersByStatus(string status);
+        OrderDto GetOrder(Guid? ID);
     }
 }

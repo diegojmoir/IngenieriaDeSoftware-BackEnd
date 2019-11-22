@@ -13,7 +13,7 @@ namespace RestauranteAPI.Models
 
         [Required]
         [DataType(DataType.Date)]
-        public string Date { set; get; }
+        public DateTime Date { set; get; }
 
         [Required]
         public string Client { set; get; }
@@ -26,7 +26,7 @@ namespace RestauranteAPI.Models
         public Guid[] Products { get; set; }
         public bool HasValidDate()
         {
-            return DateTime.TryParse(this.Date, out _);
+            return DateTime.TryParse(this.Date.ToString(), out _);
 
         }
     }

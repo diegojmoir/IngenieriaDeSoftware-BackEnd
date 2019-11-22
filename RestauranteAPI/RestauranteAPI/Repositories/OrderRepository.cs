@@ -22,9 +22,12 @@ namespace RestauranteAPI.Repositories
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Order> GetOrdersFromStorageByStatus(string status)
+        public Order GetOrderFromStorage(Guid? ID)
         {
-            throw new NotImplementedException();
+            var orders = Context.Orders.Where(x => x.ID == ID);
+            if(orders.ToList().Count == 0) { return null; }
+            var order = orders.First();
+            return order;
         }
 
         public Order UpdateOrderInStorage(Order order)

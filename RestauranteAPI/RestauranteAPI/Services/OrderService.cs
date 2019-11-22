@@ -4,6 +4,7 @@ using RestauranteAPI.Models;
 using RestauranteAPI.Models.Mapping;
 using RestauranteAPI.Repositories.Injections;
 using RestauranteAPI.Services.Injections;
+using System;
 using System.Collections.Generic;
 
 namespace RestauranteAPI.Services
@@ -43,20 +44,15 @@ namespace RestauranteAPI.Services
             return result;
         }
 
-        public IEnumerable<OrderDto> GetOrdersByStatus(string status)
+        public OrderDto GetOrder(Guid? ID)
         {
-            IEnumerable<Order> resultObjects = _orderRepository.GetOrdersFromStorageByStatus(status);
-            if (resultObjects == null)
+            Order resultObject = _orderRepository.GetOrderFromStorage(ID);
+            if (resultObject == null)
                 return null;
 
-            List<OrderDto> resultsObjectList = new List<OrderDto>();
-            foreach (Order resultObject in resultObjects)
-            {
-                var resultTmp = new OrderDto();
-                resultTmp = _mapper.Map(resultObject, resultTmp);
-                resultsObjectList.Add(resultTmp);
-            }
-            return resultsObjectList;
+            var result = new OrderDto();
+            var resultTmp = _mapper.Map(resultObject, result);
+            return resultTmp;
         }
     }
 }
