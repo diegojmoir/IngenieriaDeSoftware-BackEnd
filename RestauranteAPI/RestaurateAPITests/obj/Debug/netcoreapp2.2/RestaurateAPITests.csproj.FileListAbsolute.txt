@@ -1,0 +1,17 @@
+D:\UserFiles\U\Ingeniería de Software\repos\IngenieriaDeSoftware-BackEnd\RestauranteAPI\RestaurateAPITests\bin\Debug\netcoreapp2.2\NUnit3.TestAdapter.dll
+D:\UserFiles\U\Ingeniería de Software\repos\IngenieriaDeSoftware-BackEnd\RestauranteAPI\RestaurateAPITests\bin\Debug\netcoreapp2.2\NUnit3.TestAdapter.pdb
+D:\UserFiles\U\Ingeniería de Software\repos\IngenieriaDeSoftware-BackEnd\RestauranteAPI\RestaurateAPITests\bin\Debug\netcoreapp2.2\nunit.engine.netstandard.dll
+D:\UserFiles\U\Ingeniería de Software\repos\IngenieriaDeSoftware-BackEnd\RestauranteAPI\RestaurateAPITests\bin\Debug\netcoreapp2.2\RestaurateAPITests.deps.json
+D:\UserFiles\U\Ingeniería de Software\repos\IngenieriaDeSoftware-BackEnd\RestauranteAPI\RestaurateAPITests\bin\Debug\netcoreapp2.2\RestaurateAPITests.runtimeconfig.json
+D:\UserFiles\U\Ingeniería de Software\repos\IngenieriaDeSoftware-BackEnd\RestauranteAPI\RestaurateAPITests\bin\Debug\netcoreapp2.2\RestaurateAPITests.runtimeconfig.dev.json
+D:\UserFiles\U\Ingeniería de Software\repos\IngenieriaDeSoftware-BackEnd\RestauranteAPI\RestaurateAPITests\bin\Debug\netcoreapp2.2\RestaurateAPITests.dll
+D:\UserFiles\U\Ingeniería de Software\repos\IngenieriaDeSoftware-BackEnd\RestauranteAPI\RestaurateAPITests\bin\Debug\netcoreapp2.2\RestaurateAPITests.pdb
+D:\UserFiles\U\Ingeniería de Software\repos\IngenieriaDeSoftware-BackEnd\RestauranteAPI\RestaurateAPITests\bin\Debug\netcoreapp2.2\RestauranteAPI.dll
+D:\UserFiles\U\Ingeniería de Software\repos\IngenieriaDeSoftware-BackEnd\RestauranteAPI\RestaurateAPITests\bin\Debug\netcoreapp2.2\RestauranteAPI.pdb
+D:\UserFiles\U\Ingeniería de Software\repos\IngenieriaDeSoftware-BackEnd\RestauranteAPI\RestaurateAPITests\obj\Debug\netcoreapp2.2\RestaurateAPITests.csprojAssemblyReference.cache
+D:\UserFiles\U\Ingeniería de Software\repos\IngenieriaDeSoftware-BackEnd\RestauranteAPI\RestaurateAPITests\obj\Debug\netcoreapp2.2\RestaurateAPITests.csproj.CoreCompileInputs.cache
+D:\UserFiles\U\Ingeniería de Software\repos\IngenieriaDeSoftware-BackEnd\RestauranteAPI\RestaurateAPITests\obj\Debug\netcoreapp2.2\RestaurateAPITests.AssemblyInfoInputs.cache
+D:\UserFiles\U\Ingeniería de Software\repos\IngenieriaDeSoftware-BackEnd\RestauranteAPI\RestaurateAPITests\obj\Debug\netcoreapp2.2\RestaurateAPITests.AssemblyInfo.cs
+D:\UserFiles\U\Ingeniería de Software\repos\IngenieriaDeSoftware-BackEnd\RestauranteAPI\RestaurateAPITests\obj\Debug\netcoreapp2.2\RestaurateAPITests.csproj.CopyComplete
+D:\UserFiles\U\Ingeniería de Software\repos\IngenieriaDeSoftware-BackEnd\RestauranteAPI\RestaurateAPITests\obj\Debug\netcoreapp2.2\RestaurateAPITests.dll
+D:\UserFiles\U\Ingeniería de Software\repos\IngenieriaDeSoftware-BackEnd\RestauranteAPI\RestaurateAPITests\obj\Debug\netcoreapp2.2\RestaurateAPITests.pdb

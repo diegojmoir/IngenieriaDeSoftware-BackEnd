@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\RestauranteAPI",
+    "\\RestauranteAPI\\Services",
+    "\\RestauranteAPI\\Services\\Injections",
+    "\\RestaurateAPITests",
+    "\\RestaurateAPITests\\Services"
+  ],
+  "SelectedNode": "\\RestaurateAPITests\\Services\\OrderServiceTest.cs",
+  "PreviewInSolutionExplorer": false
+}

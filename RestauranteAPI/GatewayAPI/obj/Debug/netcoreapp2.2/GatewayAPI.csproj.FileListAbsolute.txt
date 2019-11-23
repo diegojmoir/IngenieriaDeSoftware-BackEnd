@@ -29,3 +29,17 @@ C:\Users\david\Documents\IngenieriaDeSoftware-BackEnd\RestauranteAPI\GatewayAPI\
 C:\Users\david\Documents\IngenieriaDeSoftware-BackEnd\RestauranteAPI\GatewayAPI\obj\Debug\netcoreapp2.2\GatewayAPI.RazorTargetAssemblyInfo.cache
 C:\Users\david\Documents\IngenieriaDeSoftware-BackEnd\RestauranteAPI\GatewayAPI\obj\Debug\netcoreapp2.2\GatewayAPI.dll
 C:\Users\david\Documents\IngenieriaDeSoftware-BackEnd\RestauranteAPI\GatewayAPI\obj\Debug\netcoreapp2.2\GatewayAPI.pdb
+D:\UserFiles\U\Ingeniería de Software\repos\IngenieriaDeSoftware-BackEnd\RestauranteAPI\GatewayAPI\bin\Debug\netcoreapp2.2\GatewayAPI.deps.json
+D:\UserFiles\U\Ingeniería de Software\repos\IngenieriaDeSoftware-BackEnd\RestauranteAPI\GatewayAPI\bin\Debug\netcoreapp2.2\GatewayAPI.runtimeconfig.json
+D:\UserFiles\U\Ingeniería de Software\repos\IngenieriaDeSoftware-BackEnd\RestauranteAPI\GatewayAPI\bin\Debug\netcoreapp2.2\GatewayAPI.runtimeconfig.dev.json
+D:\UserFiles\U\Ingeniería de Software\repos\IngenieriaDeSoftware-BackEnd\RestauranteAPI\GatewayAPI\bin\Debug\netcoreapp2.2\GatewayAPI.dll
+D:\UserFiles\U\Ingeniería de Software\repos\IngenieriaDeSoftware-BackEnd\RestauranteAPI\GatewayAPI\bin\Debug\netcoreapp2.2\GatewayAPI.pdb
+D:\UserFiles\U\Ingeniería de Software\repos\IngenieriaDeSoftware-BackEnd\RestauranteAPI\GatewayAPI\obj\Debug\netcoreapp2.2\GatewayAPI.csprojAssemblyReference.cache
+D:\UserFiles\U\Ingeniería de Software\repos\IngenieriaDeSoftware-BackEnd\RestauranteAPI\GatewayAPI\obj\Debug\netcoreapp2.2\GatewayAPI.csproj.CoreCompileInputs.cache
+D:\UserFiles\U\Ingeniería de Software\repos\IngenieriaDeSoftware-BackEnd\RestauranteAPI\GatewayAPI\obj\Debug\netcoreapp2.2\GatewayAPI.RazorAssemblyInfo.cache
+D:\UserFiles\U\Ingeniería de Software\repos\IngenieriaDeSoftware-BackEnd\RestauranteAPI\GatewayAPI\obj\Debug\netcoreapp2.2\GatewayAPI.RazorAssemblyInfo.cs
+D:\UserFiles\U\Ingeniería de Software\repos\IngenieriaDeSoftware-BackEnd\RestauranteAPI\GatewayAPI\obj\Debug\netcoreapp2.2\GatewayAPI.AssemblyInfoInputs.cache
+D:\UserFiles\U\Ingeniería de Software\repos\IngenieriaDeSoftware-BackEnd\RestauranteAPI\GatewayAPI\obj\Debug\netcoreapp2.2\GatewayAPI.AssemblyInfo.cs
+D:\UserFiles\U\Ingeniería de Software\repos\IngenieriaDeSoftware-BackEnd\RestauranteAPI\GatewayAPI\obj\Debug\netcoreapp2.2\GatewayAPI.RazorTargetAssemblyInfo.cache
+D:\UserFiles\U\Ingeniería de Software\repos\IngenieriaDeSoftware-BackEnd\RestauranteAPI\GatewayAPI\obj\Debug\netcoreapp2.2\GatewayAPI.dll
+D:\UserFiles\U\Ingeniería de Software\repos\IngenieriaDeSoftware-BackEnd\RestauranteAPI\GatewayAPI\obj\Debug\netcoreapp2.2\GatewayAPI.pdb

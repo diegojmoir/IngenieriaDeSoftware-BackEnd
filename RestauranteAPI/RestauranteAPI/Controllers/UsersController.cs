@@ -13,6 +13,8 @@ namespace RestauranteAPI.Controllers
     {
         private readonly IUserService _userService;
 
+
+
         public UsersController(IUserService userService)
         {
             _userService = userService;
@@ -33,6 +35,15 @@ namespace RestauranteAPI.Controllers
                 return NotFound();
             return Ok(responseObject);
         }
+
+        [HttpGet]
+        [Route("test")]
+        public IActionResult Something()
+        {
+            return Ok("Hola");
+
+        }
+
 
         /// <summary>
         /// Create user in schema if provided object is valid
